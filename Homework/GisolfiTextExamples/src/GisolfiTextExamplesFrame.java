@@ -57,7 +57,7 @@ public class GisolfiTextExamplesFrame extends JFrame {
 	private void jbInit() {
 		setTitle("Text Example Homework");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 509, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -95,7 +95,12 @@ public class GisolfiTextExamplesFrame extends JFrame {
 		String email = emailTF.getText();
 		String phoneNum = phoneNumTF.getText();
 		
-		if (name.isEmpty()) {
+		if(name.isEmpty() && email.isEmpty() && phoneNum.isEmpty()) {
+			outputTA.setForeground(Color.RED);
+			outputTA.append("Please enter a value for Name\n");
+			outputTA.append("Please enter a value for Email\n");
+			outputTA.append("Please enter a value for Phone Number\n");
+		}else if (name.isEmpty()) {
 			outputTA.setForeground(Color.RED);
 			outputTA.append("Please enter a value for Name\n");
 		}else if (email.isEmpty()) {
