@@ -113,19 +113,27 @@ public class GisolfiPizzaFrame extends JFrame {
 		contentPane.add(lblName);
 	}
 	protected void do_btnPlaceOrder_actionPerformed(ActionEvent e) {
+		//clear text output area when button is pressed
 		outputTA.setText("");
+		//declare a list object to store topping values 
 		Object[] toppings = toppingsList.getSelectedValues();
+		//declare a string to hold the name of the user 
 		String name = nameTF.getText();
+		//if the name is empty, return an error
 		if (name.isEmpty()) {
 			outputTA.setForeground(Color.RED);
 			outputTA.append("Please Provide a name for\nthe Order \n");
+		//Else process the order
 		}else {
+			//Set the text color black in case it was previously set red
 			outputTA.setForeground(Color.BLACK);
-			nameTF.setText("");
+			//Print a greeting using the user's name and the size of pizza ordered
 			outputTA.setText("Thank You " + name + ", you\nordered a(n) " + sizeCB.getSelectedItem().toString() + " pizza \n");
+			//Test whether any toppings were selected, if not let the user know they ordered only cheese
 			if (toppings.length <= 0) {
 				outputTA.append("With cheese as no toppings \nwere selected \n");
 			}else {
+				//print a list of the chosen toppings
 				outputTA.append("With the following toppings: \n");
 				for (int i = 0; i < toppings.length; i++) {
 					outputTA.append(toppings[i].toString() + "\n");
