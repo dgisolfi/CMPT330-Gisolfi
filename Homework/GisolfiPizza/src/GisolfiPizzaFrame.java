@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import javax.swing.JTextField;
 
 public class GisolfiPizzaFrame extends JFrame {
 
@@ -29,6 +30,8 @@ public class GisolfiPizzaFrame extends JFrame {
 	private final JList toppingsList = new JList();
 	private final JLabel lblToppings = new JLabel("Toppings:");
 	private final JScrollPane toppingsScroll = new JScrollPane();
+	private final JTextField nameTF = new JTextField();
+	private final JLabel lblName = new JLabel("Name:");
 
 	/**
 	 * Launch the application.
@@ -50,12 +53,14 @@ public class GisolfiPizzaFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GisolfiPizzaFrame() {
+		nameTF.setBounds(69, 228, 130, 26);
+		nameTF.setColumns(10);
 		jbInit();
 	}
 	private void jbInit() {
 		setTitle("Gisolfi Pizza Ordering App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 343);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,7 +83,7 @@ public class GisolfiPizzaFrame extends JFrame {
 				do_btnPlaceOrder_actionPerformed(e);
 			}
 		});
-		btnPlaceOrder.setBounds(69, 228, 117, 29);
+		btnPlaceOrder.setBounds(69, 273, 117, 29);
 		
 		contentPane.add(btnPlaceOrder);
 		OutputScroll.setBounds(222, 64, 199, 160);
@@ -101,13 +106,31 @@ public class GisolfiPizzaFrame extends JFrame {
 		lblToppings.setBounds(0, 101, 67, 16);
 		
 		contentPane.add(lblToppings);
+		
+		contentPane.add(nameTF);
+		lblName.setBounds(6, 233, 61, 16);
+		
+		contentPane.add(lblName);
 	}
 	protected void do_btnPlaceOrder_actionPerformed(ActionEvent e) {
-		outputTA.append("Your Ordered a(n) " + sizeCB.getSelectedItem().toString() + "\n");
+		outputTA.setText("");
 		Object[] toppings = toppingsList.getSelectedValues();
-		outputTA.append("with the following toppings: \n");
-		for (int i = 0; i < toppings.length; i++) {
-			outputTA.append(toppings[i].toString() + "\n");
+		String name = nameTF.getText();
+		if (name.isEmpty()) {
+			outputTA.setForeground(Color.RED);
+			outputTA.append("Please Provide a name for\nthe Order \n");
+		}else {
+			outputTA.setForeground(Color.BLACK);
+			nameTF.setText("");
+			outputTA.setText("Thank You " + name + ", you\nordered a(n) " + sizeCB.getSelectedItem().toString() + " pizza \n");
+			if (toppings.length <= 0) {
+				outputTA.append("With cheese as no toppings \nwere selected \n");
+			}else {
+				outputTA.append("With the following toppings: \n");
+				for (int i = 0; i < toppings.length; i++) {
+					outputTA.append(toppings[i].toString() + "\n");
+				}	
+			}	
 		}
 	}
 }
