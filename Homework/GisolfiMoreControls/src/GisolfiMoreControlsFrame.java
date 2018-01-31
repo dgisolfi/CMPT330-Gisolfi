@@ -138,7 +138,7 @@ public class GisolfiMoreControlsFrame extends JFrame {
 		lblRadiogroup.setBounds(6, 28, 133, 16);
 		
 		contentPane.add(lblRadiogroup);
-		lblCheckboxes.setBounds(159, 28, 128, 16);
+		lblCheckboxes.setBounds(159, 28, 268, 16);
 		
 		contentPane.add(lblCheckboxes);
 	}
@@ -158,17 +158,45 @@ public class GisolfiMoreControlsFrame extends JFrame {
 		lblRadiogroup.setText("RadioGroup: " + rdbtnSecond.getText());
 	}
 	
+//	public void checkboxHandeler() {
+//		String box1Val = chckbxOne.getText();
+//		String box2Val = chckbxTwo.getText();
+//		String box3Val = chckbxThree.getText();
+//		String box4Val = chckbxFour.getText();
+//		String chckbxVal = "Checkboxes:";
+//		
+//		if (chckbxOne.isSelected()) {
+//			chckbxVal += " " + box1Val;
+//			
+//		}else if (chckbxTwo.isSelected()){
+//			chckbxVal += " " + box2Val;
+//			
+//		}else if (chckbxThree.isSelected()) {
+//			chckbxVal += " " + box3Val;
+//			
+//		}else if (chckbxFour.isSelected()) {
+//			chckbxVal += " " + box4Val;
+//			
+//		}
+//		
+//		lblCheckboxes.setText(chckbxVal);
+//	}
+	
 	//Check boxes
 	protected void do_chckbxTwo_stateChanged(ChangeEvent e) {
 		lblCheckboxes.setText("Checkboxes: " +chckbxTwo.getText());
+//		checkboxHandeler();
 	}
 	protected void do_chckbxFour_stateChanged(ChangeEvent e) {
 		lblCheckboxes.setText("Checkboxes: " +chckbxFour.getText());
+//		checkboxHandeler();
 	}
 	protected void do_chckbxOne_stateChanged(ChangeEvent e) {
 		lblCheckboxes.setText("Checkboxes: " +chckbxOne.getText());
+//		checkboxHandeler();
 	}
 	protected void do_chckbxThree_stateChanged(ChangeEvent e) {
 		lblCheckboxes.setText("Checkboxes: " + chckbxThree.getText());
+//		checkboxHandeler();
 	}
 }
