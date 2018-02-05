@@ -4,18 +4,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GisolfiFlashingLabelFrame extends JFrame {
 
 	private JPanel contentPane;
-	private final JLabel lblCMPT330 = new JLabel("CMPT - 330");
-	private final JButton btnNewButton = new JButton("Flash");
-	private final JButton btnFancier = new JButton("Fancier");
-	private final JLabel lblDmb = new JLabel("DMB");
 
 	/**
 	 * Launch the application.
@@ -37,50 +33,31 @@ public class GisolfiFlashingLabelFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GisolfiFlashingLabelFrame() {
-		jbInit();
-	}
-	private void jbInit() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		lblCMPT330.setBounds(169, 64, 89, 14);
-		//add your own code before the object is added
-		//Set the label to begin as not visible
-		lblCMPT330.setVisible(false);
-		contentPane.add(lblCMPT330);
+		
+		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				do_btnNewButton_actionPerformed(arg0);
-			}
-		});
-		btnNewButton.setBounds(169, 117, 89, 23);
-		
-		contentPane.add(btnNewButton);
-		btnFancier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				do_btnFancier_actionPerformed(e);
+				if (lblCMPT330.isVisible(); == True) {
+					lblCMPT330.setVisible(False);
+				}else {
+					lblCMPT330.setVisible(True);
+				}
+				
+				
+				
 			}
 		});
-		btnFancier.setBounds(169, 151, 89, 23);
+		btnNewButton.setBounds(60, 132, 117, 29);
+		contentPane.add(btnNewButton);
 		
-		contentPane.add(btnFancier);
-		lblDmb.setBounds(169, 89, 46, 14);
-		
-		contentPane.add(lblDmb);
-	}
-	protected void do_btnNewButton_actionPerformed(ActionEvent arg0) {
-		lblCMPT330.setVisible(!lblCMPT330.isVisible());
-	}
-//		if (lblCMPT330.isVisible()) {
-//			lblCMPT330.setVisible(false);
-//		}else
-//			lblCMPT330.setVisible(true);	
-//	}
-	protected void do_btnFancier_actionPerformed(ActionEvent e) {
-		lblCMPT330.setVisible(!lblCMPT330.isVisible());
-		lblDmb.setVisible(!lblDmb.isVisible());
+		JLabel lblCmpt = new JLabel("CMPT - 330");
+		lblCmpt.setBounds(75, 86, 84, 16);
+		contentPane.add(lblCmpt);
 	}
 }
