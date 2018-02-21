@@ -41,7 +41,6 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblZip = new JLabel("ZIP: ");
 	private final JLabel lblLengthOfOccupancy_1 = new JLabel("Occupancy Length:");
 	private final JTextField lastNameTF = new JTextField();
-	private final JTextField middleInitialTF = new JTextField();
 	private final JTextField firstNameTF = new JTextField();
 	private final JTextField maidennameTF = new JTextField();
 	private final JFormattedTextField SSNFTF = new JFormattedTextField();
@@ -84,8 +83,8 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel label_5 = new JLabel("Relationship: ");
 	private final JTextField textField = new JTextField();
 	private final JTextField textField_1 = new JTextField();
-	private final JFormattedTextField formattedTextField = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+	private final JFormattedTextField D2YOSFTF = new JFormattedTextField();
+	private final JFormattedTextField D2DOBFTF = new JFormattedTextField();
 	private final JRadioButton radioButton = new JRadioButton("Native American");
 	private final JRadioButton radioButton_1 = new JRadioButton("Asian");
 	private final JRadioButton radioButton_2 = new JRadioButton("African American");
@@ -100,8 +99,8 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel label_11 = new JLabel("Relationship: ");
 	private final JTextField textField_2 = new JTextField();
 	private final JTextField textField_3 = new JTextField();
-	private final JFormattedTextField formattedTextField_2 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_3 = new JFormattedTextField();
+	private final JFormattedTextField D3YOSFTF = new JFormattedTextField();
+	private final JFormattedTextField D3DOBFTF = new JFormattedTextField();
 	private final JRadioButton radioButton_6 = new JRadioButton("Native American");
 	private final JRadioButton radioButton_7 = new JRadioButton("Asian");
 	private final JRadioButton radioButton_8 = new JRadioButton("African American");
@@ -110,42 +109,42 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton radioButton_11 = new JRadioButton("Multi-Racial");
 	private final JLabel label_12 = new JLabel("Race:");
 	private final JLabel lblIncome = new JLabel("Income");
-	private final JLabel lblSnapfoodStamps = new JLabel("Snap-Food Stamps");
+	private final JLabel lblSnapfoodStamps = new JLabel("Snap-Food Stamps:");
 	private final JLabel lblSsdisability = new JLabel("SS/Disability");
-	private final JLabel lblWages = new JLabel("Wages");
-	private final JLabel lblTanfOrTea = new JLabel("Tanf or Tea");
-	private final JLabel lblUnemployment = new JLabel("Unemployment");
-	private final JLabel lblChildSupport = new JLabel("Child Support");
-	private final JLabel lblOther = new JLabel("Other");
-	private final JFormattedTextField formattedTextField_5 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_6 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_7 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_8 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_9 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_10 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_11 = new JFormattedTextField();
+	private final JLabel lblWages = new JLabel("Wages:");
+	private final JLabel lblTanfOrTea = new JLabel("Tanf or Tea:");
+	private final JLabel lblUnemployment = new JLabel("Unemployment:");
+	private final JLabel lblChildSupport = new JLabel("Child Support:");
+	private final JLabel lblOther = new JLabel("Other:");
+	private final JFormattedTextField snapFoodStampsFTF = new JFormattedTextField();
+	private final JFormattedTextField ssDisabilityFTF = new JFormattedTextField();
+	private final JFormattedTextField wagesFTF = new JFormattedTextField();
+	private final JFormattedTextField tanfTeaFTF = new JFormattedTextField();
+	private final JFormattedTextField unemploymentFTF = new JFormattedTextField();
+	private final JFormattedTextField childSupFTF = new JFormattedTextField();
+	private final JFormattedTextField otherIncFTF = new JFormattedTextField();
 	private final JLabel lblExpenses = new JLabel("Expenses");
-	private final JLabel lblRent = new JLabel("Rent");
-	private final JLabel lblUtilities = new JLabel("Utilities");
-	private final JLabel lblTelephone = new JLabel("Telephone");
-	private final JLabel lblFood = new JLabel("Food");
-	private final JLabel lblCarPayment = new JLabel("Car Payment");
-	private final JLabel label_17 = new JLabel("Child Support");
-	private final JLabel label_18 = new JLabel("Other");
-	private final JFormattedTextField formattedTextField_13 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_14 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_15 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_16 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_17 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_18 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_19 = new JFormattedTextField();
+	private final JLabel lblRent = new JLabel("Rent:");
+	private final JLabel lblUtilities = new JLabel("Utilities:");
+	private final JLabel lblTelephone = new JLabel("Telephone:");
+	private final JLabel lblFood = new JLabel("Food:");
+	private final JLabel lblCarPayment = new JLabel("Car Payment:");
+	private final JLabel label_17 = new JLabel("Child Support:");
+	private final JLabel label_18 = new JLabel("Other:");
+	private final JFormattedTextField rentFTF = new JFormattedTextField();
+	private final JFormattedTextField utilitiesFTF = new JFormattedTextField();
+	private final JFormattedTextField telCostFTF = new JFormattedTextField();
+	private final JFormattedTextField foodFTF = new JFormattedTextField();
+	private final JFormattedTextField carPayFTF = new JFormattedTextField();
+	private final JFormattedTextField childSupExFTF = new JFormattedTextField();
+	private final JFormattedTextField otherExFTF = new JFormattedTextField();
 	private final JLabel lblAreYourEmployed = new JLabel("Are Your Employed?");
 	private final JLabel lblPlaceOfEmployment = new JLabel("Place of Employment");
 	private final JLabel lblLengthOfOccupancy = new JLabel("Length of Occupancy:");
 	private final JLabel lblIfNotEmployed = new JLabel("Registered with Careersource");
 	private final JLabel lblS = new JLabel("of Southwest Florida?\n");
 	private final JTextField textField_4 = new JTextField();
-	private final JFormattedTextField formattedTextField_4 = new JFormattedTextField();
+	private final JFormattedTextField lenofOccFTF = new JFormattedTextField();
 	private final JLabel lblYears = new JLabel("years");
 	private final JCheckBox chckbxYes = new JCheckBox("Yes");
 	private final JCheckBox chckbxNo = new JCheckBox("No");
@@ -156,7 +155,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JCheckBox checkBox_3 = new JCheckBox("No");
 	private final JLabel label_7 = new JLabel("Place of Employment");
 	private final JTextField textField_5 = new JTextField();
-	private final JFormattedTextField formattedTextField_12 = new JFormattedTextField();
+	private final JFormattedTextField lenofOccSpouseFTF = new JFormattedTextField();
 	private final JLabel label_13 = new JLabel("years");
 	private final JLabel label_14 = new JLabel("Length of Occupancy:");
 	private final JLabel label_15 = new JLabel("of Southwest Florida?\n");
@@ -176,8 +175,8 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JTextField textField_6 = new JTextField();
 	private final JTextField textField_7 = new JTextField();
 	private final JTextField textField_8 = new JTextField();
-	private final JFormattedTextField formattedTextField_20 = new JFormattedTextField();
-	private final JFormattedTextField formattedTextField_21 = new JFormattedTextField();
+	private final JFormattedTextField zipFTF = new JFormattedTextField();
+	private final JFormattedTextField hLengthFTF = new JFormattedTextField();
 	private final JFormattedTextField phFTF = new JFormattedTextField();
 	private final JLabel lblSpouseInformation = new JLabel("Spouse Information");
 	private final JLabel lblSpouseName = new JLabel("Spouse Name");
@@ -195,14 +194,15 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel label_21 = new JLabel("City: ");
 	private final JTextField textField_10 = new JTextField();
 	private final JLabel label_22 = new JLabel("Occupancy Length:");
-	private final JFormattedTextField formattedTextField_23 = new JFormattedTextField();
+	private final JFormattedTextField hLengthSpouseFTF = new JFormattedTextField();
 	private final JLabel label_23 = new JLabel("Telephone:");
 	private final JFormattedTextField phSpouseFTF = new JFormattedTextField();
 	private final JTextField textField_11 = new JTextField();
-	private final JFormattedTextField formattedTextField_25 = new JFormattedTextField();
+	private final JFormattedTextField dobSpouseFTF = new JFormattedTextField();
 	private final JFormattedTextField spouseSSNFTF = new JFormattedTextField();
-	
-	
+	private final JLabel lblYears_1 = new JLabel("years");
+	private final JLabel label_24 = new JLabel("years");
+	private final JFormattedTextField middleInitialFTF = new JFormattedTextField();
 	
 	
 	//Define the SSN Mask
@@ -212,6 +212,48 @@ public class GisolfiSABTSAFrame extends JFrame {
 	//Define the Phone number mask
 	MaskFormatter telMask = createFormatter("###-###-####");
 	MaskFormatter telSpouseMask = createFormatter("###-###-####");
+	
+	//Define the DOB mask
+	MaskFormatter dobMask = createFormatter("##/##/##");
+	MaskFormatter dobSpouseMask = createFormatter("##/##/##");
+	
+	MaskFormatter D1DOBMask = createFormatter("##/##/##");
+	MaskFormatter D2DOBMask = createFormatter("##/##/##");
+	MaskFormatter D3DOBMask = createFormatter("##/##/##");
+	
+	
+	//Define the occupancy length mask
+	MaskFormatter hLengthMask = createFormatter("##");
+	MaskFormatter hLengthSpouseMask = createFormatter("##");
+	
+	MaskFormatter lenofOccMask = createFormatter("##");
+	MaskFormatter lenofOccSpouseMask = createFormatter("##");
+
+	//Define the Zip mask
+	MaskFormatter zipMask = createFormatter("#####");
+	
+	//Define the Middle initial mask
+	MaskFormatter mInitialMask = createFormatter("U");
+	
+	//Define the year of school mask
+	
+	MaskFormatter D1YOSMask = createFormatter("##");
+	MaskFormatter D2YOSMask = createFormatter("##");
+	MaskFormatter D3YOSMask = createFormatter("##");
+	
+	//Income and Expense Masks
+	
+	//income
+	
+	MaskFormatter snapFoodStampsMask = createFormatter("###,###");
+	MaskFormatter ssDisabilityMask = createFormatter("###,###");
+	MaskFormatter wagesMask = createFormatter("###,###");
+	MaskFormatter tanfTeaMask = createFormatter("###,###");
+	MaskFormatter unemploymentMask= createFormatter("###,###");
+	MaskFormatter childSupMask = createFormatter("###,###");
+	MaskFormatter otherIncMask = createFormatter("###,###");
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -263,8 +305,6 @@ public class GisolfiSABTSAFrame extends JFrame {
 		maidennameTF.setColumns(10);
 		firstNameTF.setBounds(144, 92, 130, 26);
 		firstNameTF.setColumns(10);
-		middleInitialTF.setBounds(144, 64, 130, 26);
-		middleInitialTF.setColumns(10);
 		lastNameTF.setBounds(144, 36, 130, 26);
 		lastNameTF.setColumns(10);
 		jbInit();
@@ -289,6 +329,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 				do_mntmExit_actionPerformed(e);
 			}
 		});
+	
 		
 		//Associate All masks
 		
@@ -300,7 +341,6 @@ public class GisolfiSABTSAFrame extends JFrame {
 		ssnSpouseMask.install(spouseSSNFTF);
 		
 		
-		
 		//Associate TEL masks
 		telMask.setPlaceholderCharacter('#');
 		telMask.install(phFTF);
@@ -308,10 +348,97 @@ public class GisolfiSABTSAFrame extends JFrame {
 		telSpouseMask.setPlaceholderCharacter('#');
 		telSpouseMask.install(phSpouseFTF);
 		
+		//Associate DOB masks
+		dobMask.setPlaceholderCharacter('0');
+		dobMask.install(dobFTF);
 		
+		dobSpouseMask.setPlaceholderCharacter('0');
+		dobSpouseMask.install(dobSpouseFTF);
 		
+		D1DOBMask.setPlaceholderCharacter('0');
+		D1DOBMask.install(D1DOBFTF);
 		
+		D2DOBMask.setPlaceholderCharacter('0');
+		D2DOBMask.install(D2DOBFTF);
 		
+		D3DOBMask.setPlaceholderCharacter('0');
+		D3DOBMask.install(D3DOBFTF);
+		
+		//Associate the occupancy length masks
+		hLengthMask.setPlaceholderCharacter('0');
+		hLengthMask.install(hLengthFTF);
+		
+		hLengthSpouseMask.setPlaceholderCharacter('0');
+		hLengthSpouseMask.install(hLengthSpouseFTF);
+		
+		lenofOccMask.setPlaceholderCharacter('0');
+		lenofOccMask.install(lenofOccFTF);
+		
+		lenofOccSpouseMask.setPlaceholderCharacter('0');
+		lenofOccSpouseMask.install(lenofOccSpouseFTF);
+		
+		//Associate the Zip masks
+		zipMask.setPlaceholderCharacter('0');
+		zipMask.install(zipFTF);
+		
+		//Associate the  Middle initial masks
+		mInitialMask.setPlaceholderCharacter('A');
+		mInitialMask.install(middleInitialFTF);
+		
+		//Associate the Year of school masks
+		D1YOSMask.setPlaceholderCharacter('0');
+		D1YOSMask.install(D1YOSFTF);
+		
+		D2YOSMask.setPlaceholderCharacter('0');
+		D2YOSMask.install(D2YOSFTF);
+		
+		D3YOSMask.setPlaceholderCharacter('0');
+		D3YOSMask.install(D2YOSFTF);
+		
+		//Associate Income and expense masks
+		//income
+		snapFoodStampsMask.setPlaceholderCharacter('0');
+		snapFoodStampsMask.install(snapFoodStampsFTF);
+		
+		ssDisabilityMask.setPlaceholderCharacter('0');
+		ssDisabilityMask.install(ssDisabilityFTF);
+		
+		wagesMask.setPlaceholderCharacter('0');
+		wagesMask.install(wagesFTF);
+		
+		tanfTeaMask.setPlaceholderCharacter('0');
+		tanfTeaMask.install(tanfTeaFTF);
+		
+		unemploymentMask.setPlaceholderCharacter('0');
+		unemploymentMask.install(unemploymentFTF);
+		
+		childSupMask.setPlaceholderCharacter('0');
+		childSupMask.install(childSupFTF);
+		
+		otherIncMask.setPlaceholderCharacter('0');
+		otherIncMask.install(otherIncFTF);
+		
+		//Expenses
+//		rentMask.setPlaceholderCharacter('0');
+//		rentMask.install(rentFTF);
+//		
+//		utilitiesMask.setPlaceholderCharacter('0');
+//		utilitiesMask.install(utilitiesFTF);
+//		
+//		wagesMask.setPlaceholderCharacter('0');
+//		wagesMask.install(wagesFTF);
+//		
+//		tanfTeaMask.setPlaceholderCharacter('0');
+//		tanfTeaMask.install(tanfTeaFTF);
+//		
+//		unemploymentMask.setPlaceholderCharacter('0');
+//		unemploymentMask.install(unemploymentFTF);
+//		
+//		childSupMask.setPlaceholderCharacter('0');
+//		childSupMask.install(childSupFTF);
+//		
+//		otherIncMask.setPlaceholderCharacter('0');
+//		otherIncMask.install(otherIncFTF);
 		
 		
 		
@@ -373,15 +500,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		applicantInfoPanel.add(lastNameTF);
 		
-		applicantInfoPanel.add(middleInitialTF);
-		
 		applicantInfoPanel.add(firstNameTF);
 		
 		applicantInfoPanel.add(maidennameTF);
 		SSNFTF.setBounds(146, 148, 42, 26);
 		
 		applicantInfoPanel.add(SSNFTF);
-		dobFTF.setBounds(144, 176, 71, 26);
+		dobFTF.setBounds(144, 176, 72, 26);
 		
 		applicantInfoPanel.add(dobFTF);
 		buttonGroup.add(rdbtnNativeAmerican);
@@ -427,13 +552,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 		applicantInfoPanel.add(textField_7);
 		
 		applicantInfoPanel.add(textField_8);
-		formattedTextField_20.setBounds(146, 288, 71, 26);
+		zipFTF.setBounds(146, 288, 50, 26);
 		
-		applicantInfoPanel.add(formattedTextField_20);
-		formattedTextField_21.setBounds(146, 316, 71, 26);
+		applicantInfoPanel.add(zipFTF);
+		hLengthFTF.setBounds(146, 316, 42, 26);
 		
-		applicantInfoPanel.add(formattedTextField_21);
-		phFTF.setBounds(146, 344, 71, 26);
+		applicantInfoPanel.add(hLengthFTF);
+		phFTF.setBounds(146, 344, 107, 26);
 		
 		applicantInfoPanel.add(phFTF);
 		lblSpouseInformation.setBounds(157, 431, 130, 16);
@@ -486,23 +611,32 @@ public class GisolfiSABTSAFrame extends JFrame {
 		label_22.setBounds(6, 612, 153, 16);
 		
 		applicantInfoPanel.add(label_22);
-		formattedTextField_23.setBounds(144, 607, 71, 26);
+		hLengthSpouseFTF.setBounds(144, 607, 42, 26);
 		
-		applicantInfoPanel.add(formattedTextField_23);
+		applicantInfoPanel.add(hLengthSpouseFTF);
 		label_23.setBounds(6, 640, 117, 16);
 		
 		applicantInfoPanel.add(label_23);
-		phSpouseFTF.setBounds(144, 635, 71, 26);
+		phSpouseFTF.setBounds(144, 635, 107, 26);
 		
 		applicantInfoPanel.add(phSpouseFTF);
 		
 		applicantInfoPanel.add(textField_11);
-		formattedTextField_25.setBounds(144, 523, 71, 26);
+		dobSpouseFTF.setBounds(144, 523, 72, 26);
 		
-		applicantInfoPanel.add(formattedTextField_25);
+		applicantInfoPanel.add(dobSpouseFTF);
 		spouseSSNFTF.setBounds(144, 495, 42, 26);
 		
 		applicantInfoPanel.add(spouseSSNFTF);
+		lblYears_1.setBounds(190, 321, 61, 16);
+		
+		applicantInfoPanel.add(lblYears_1);
+		label_24.setBounds(190, 612, 61, 16);
+		
+		applicantInfoPanel.add(label_24);
+		middleInitialFTF.setBounds(144, 63, 18, 26);
+		
+		applicantInfoPanel.add(middleInitialFTF);
 		
 		armyFormTP.addTab("Child Information", null, childInfoPanel, null);
 		childInfoPanel.setLayout(null);
@@ -525,10 +659,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 		childInfoPanel.add(D1NameTF);
 		
 		childInfoPanel.add(D1relationshipTF);
-		D1YOSFTF.setBounds(125, 73, 44, 26);
+		D1YOSFTF.setBounds(125, 73, 28, 26);
 		
 		childInfoPanel.add(D1YOSFTF);
-		D1DOBFTF.setBounds(125, 101, 69, 26);
+		D1DOBFTF.setBounds(125, 101, 76, 26);
 		
 		childInfoPanel.add(D1DOBFTF);
 		rdbtnNativeAmerican_1.setBounds(267, 46, 141, 23);
@@ -575,12 +709,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		textField_1.setBounds(125, 325, 130, 26);
 		
 		childInfoPanel.add(textField_1);
-		formattedTextField.setBounds(125, 269, 44, 26);
+		D2YOSFTF.setBounds(125, 269, 28, 26);
 		
-		childInfoPanel.add(formattedTextField);
-		formattedTextField_1.setBounds(125, 297, 69, 26);
+		childInfoPanel.add(D2YOSFTF);
+		D2DOBFTF.setBounds(125, 297, 76, 26);
 		
-		childInfoPanel.add(formattedTextField_1);
+		childInfoPanel.add(D2DOBFTF);
 		radioButton.setBounds(267, 242, 141, 23);
 		
 		childInfoPanel.add(radioButton);
@@ -625,12 +759,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		textField_3.setBounds(125, 521, 130, 26);
 		
 		childInfoPanel.add(textField_3);
-		formattedTextField_2.setBounds(125, 465, 44, 26);
+		D3YOSFTF.setBounds(125, 465, 28, 26);
 		
-		childInfoPanel.add(formattedTextField_2);
-		formattedTextField_3.setBounds(125, 493, 69, 26);
+		childInfoPanel.add(D3YOSFTF);
+		D3DOBFTF.setBounds(125, 493, 76, 26);
 		
-		childInfoPanel.add(formattedTextField_3);
+		childInfoPanel.add(D3DOBFTF);
 		radioButton_6.setBounds(267, 438, 141, 23);
 		
 		childInfoPanel.add(radioButton_6);
@@ -679,27 +813,27 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblOther.setBounds(6, 692, 61, 16);
 		
 		financialInfoPanel.add(lblOther);
-		formattedTextField_5.setBounds(126, 524, 95, 26);
+		snapFoodStampsFTF.setBounds(126, 524, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_5);
-		formattedTextField_6.setBounds(126, 552, 95, 26);
+		financialInfoPanel.add(snapFoodStampsFTF);
+		ssDisabilityFTF.setBounds(126, 552, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_6);
-		formattedTextField_7.setBounds(126, 580, 95, 26);
+		financialInfoPanel.add(ssDisabilityFTF);
+		wagesFTF.setBounds(126, 580, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_7);
-		formattedTextField_8.setBounds(126, 608, 95, 26);
+		financialInfoPanel.add(wagesFTF);
+		tanfTeaFTF.setBounds(126, 608, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_8);
-		formattedTextField_9.setBounds(126, 636, 95, 26);
+		financialInfoPanel.add(tanfTeaFTF);
+		unemploymentFTF.setBounds(126, 636, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_9);
-		formattedTextField_10.setBounds(126, 664, 95, 26);
+		financialInfoPanel.add(unemploymentFTF);
+		childSupFTF.setBounds(126, 664, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_10);
-		formattedTextField_11.setBounds(126, 692, 95, 26);
+		financialInfoPanel.add(childSupFTF);
+		otherIncFTF.setBounds(126, 692, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_11);
+		financialInfoPanel.add(otherIncFTF);
 		lblExpenses.setBounds(248, 496, 61, 16);
 		
 		financialInfoPanel.add(lblExpenses);
@@ -724,27 +858,27 @@ public class GisolfiSABTSAFrame extends JFrame {
 		label_18.setBounds(248, 692, 61, 16);
 		
 		financialInfoPanel.add(label_18);
-		formattedTextField_13.setBounds(366, 524, 95, 26);
+		rentFTF.setBounds(366, 524, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_13);
-		formattedTextField_14.setBounds(366, 552, 95, 26);
+		financialInfoPanel.add(rentFTF);
+		utilitiesFTF.setBounds(366, 552, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_14);
-		formattedTextField_15.setBounds(366, 580, 95, 26);
+		financialInfoPanel.add(utilitiesFTF);
+		telCostFTF.setBounds(366, 580, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_15);
-		formattedTextField_16.setBounds(366, 608, 95, 26);
+		financialInfoPanel.add(telCostFTF);
+		foodFTF.setBounds(366, 608, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_16);
-		formattedTextField_17.setBounds(366, 636, 95, 26);
+		financialInfoPanel.add(foodFTF);
+		carPayFTF.setBounds(366, 636, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_17);
-		formattedTextField_18.setBounds(366, 664, 95, 26);
+		financialInfoPanel.add(carPayFTF);
+		childSupExFTF.setBounds(366, 664, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_18);
-		formattedTextField_19.setBounds(366, 692, 95, 26);
+		financialInfoPanel.add(childSupExFTF);
+		otherExFTF.setBounds(366, 692, 95, 26);
 		
-		financialInfoPanel.add(formattedTextField_19);
+		financialInfoPanel.add(otherExFTF);
 		lblAreYourEmployed.setBounds(6, 46, 160, 16);
 		
 		financialInfoPanel.add(lblAreYourEmployed);
@@ -762,9 +896,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		financialInfoPanel.add(lblS);
 		
 		financialInfoPanel.add(textField_4);
-		formattedTextField_4.setBounds(237, 124, 33, 26);
+		lenofOccFTF.setBounds(237, 124, 27, 26);
 		
-		financialInfoPanel.add(formattedTextField_4);
+		financialInfoPanel.add(lenofOccFTF);
 		lblYears.setBounds(269, 129, 61, 16);
 		
 		financialInfoPanel.add(lblYears);
@@ -796,9 +930,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		textField_5.setBounds(237, 296, 130, 26);
 		
 		financialInfoPanel.add(textField_5);
-		formattedTextField_12.setBounds(237, 333, 33, 26);
+		lenofOccSpouseFTF.setBounds(237, 333, 27, 26);
 		
-		financialInfoPanel.add(formattedTextField_12);
+		financialInfoPanel.add(lenofOccSpouseFTF);
 		label_13.setBounds(269, 338, 61, 16);
 		
 		financialInfoPanel.add(label_13);
@@ -826,10 +960,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblLevelOfEducation.setBounds(6, 423, 160, 16);
 		
 		financialInfoPanel.add(lblLevelOfEducation);
-		lblTotal.setBounds(126, 730, 61, 16);
+		lblTotal.setBounds(98, 730, 61, 16);
 		
 		financialInfoPanel.add(lblTotal);
-		label_19.setBounds(366, 730, 61, 16);
+		label_19.setBounds(338, 730, 61, 16);
 		
 		financialInfoPanel.add(label_19);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"No GED/Diploma", "GED", "High School Diploma", "Associates Degree", "Bachelors Degree Post-Gradudate"}));
