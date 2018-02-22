@@ -76,7 +76,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblDependent1 = new JLabel("Dependent 1");
 	private final JLabel lblName = new JLabel("Name*");
 	private final JLabel lblYearOfSchool = new JLabel("Year of School*");
-	private final JLabel lblDateOfBirth = new JLabel("Date of Birth*");
+	private final JLabel lblDateOfBirthD1 = new JLabel("Date of Birth*");
 	private final JLabel lblRelationship = new JLabel("Relationship*");
 	private final JTextField D1NameTF = new JTextField();
 	private final JTextField D1relationshipTF = new JTextField();
@@ -186,7 +186,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblSpouseInformation = new JLabel("Spouse Information");
 	private final JLabel lblSpouseName = new JLabel("Spouse Name");
 	private final JLabel lblSocialSecuritySpouse = new JLabel("Social Security");
-	private final JLabel lblDateOfBirth_1 = new JLabel("Date of Birth");
+	private final JLabel lblDOBSpouse = new JLabel("Date of Birth");
 	private final JLabel label = new JLabel("Race:");
 	private final JRadioButton rdbtnSpouseNA = new JRadioButton("Native American");
 	private final JRadioButton rdbtnSpouseA = new JRadioButton("Asian");
@@ -646,9 +646,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblSocialSecuritySpouse.setBounds(6, 534, 107, 16);
 		
 		applicantInfoPanel.add(lblSocialSecuritySpouse);
-		lblDateOfBirth_1.setBounds(6, 562, 90, 16);
+		lblDOBSpouse.setBounds(6, 562, 90, 16);
 		
-		applicantInfoPanel.add(lblDateOfBirth_1);
+		applicantInfoPanel.add(lblDOBSpouse);
 		label.setBounds(320, 506, 61, 16);
 		
 		applicantInfoPanel.add(label);
@@ -773,9 +773,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblYearOfSchool.setBounds(20, 89, 98, 16);
 		
 		childInfoPanel.add(lblYearOfSchool);
-		lblDateOfBirth.setBounds(20, 117, 98, 16);
+		lblDateOfBirthD1.setBounds(20, 117, 98, 16);
 		
-		childInfoPanel.add(lblDateOfBirth);
+		childInfoPanel.add(lblDateOfBirthD1);
 		lblRelationship.setBounds(20, 145, 98, 16);
 		
 		childInfoPanel.add(lblRelationship);
@@ -1451,7 +1451,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 				    JOptionPane.ERROR_MESSAGE);
 			
 		}else if(D1DOBFTF.getText().trim().isEmpty()) {
-			lblDateOfBirth.setForeground(Color.RED);
+			lblDateOfBirthD1.setForeground(Color.RED);
 			armyFormTP.setSelectedIndex(1);
 			D1DOBFTF.requestFocus();
 			
@@ -1474,7 +1474,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 			//Set all colors back to black
 			lblName.setForeground(Color.BLACK);
 			lblYearOfSchool.setForeground(Color.BLACK);
-			lblDateOfBirth.setForeground(Color.BLACK);
+			lblDateOfBirthD1.setForeground(Color.BLACK);
 			lblRelationship.setForeground(Color.BLACK);
 			
 		}
@@ -1612,20 +1612,79 @@ public class GisolfiSABTSAFrame extends JFrame {
 		if (dobFTF.getText().trim().equals("00/00/00")) {
 			
 			lblDOB.setForeground(Color.RED);
-			dobFTF.requestFocus();
+//			This creates and infinite loop
+//			dobFTF.requestFocus();
 			
 			JOptionPane.showMessageDialog(this,
 				    "Please enter a valid Date",
 				    "Invalid Data Error",
 				    JOptionPane.ERROR_MESSAGE);
+		}else{
+			lblDOB.setForeground(Color.BLACK);
 		}
 	}
 	protected void do_dobSpouseFTF_focusLost(FocusEvent e) {
+		System.out.println(dobSpouseFTF.getText().trim());
+		if (dobSpouseFTF.getText().trim().equals("00/00/00")) {
+			
+			lblDOBSpouse.setForeground(Color.RED);
+//			This creates and infinite loop
+//			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please enter a valid Date",
+				    "Invalid Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else{
+			lblDOBSpouse.setForeground(Color.BLACK);
+		}
 	}
 	protected void do_D1DOBFTF_focusLost(FocusEvent e) {
+		System.out.println(D1DOBFTF.getText().trim());
+		if (D1DOBFTF.getText().trim().equals("00/00/00")) {
+			
+			lblDateOfBirthD1.setForeground(Color.RED);
+//			This creates and infinite loop
+//			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please enter a valid Date",
+				    "Invalid Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else{
+			lblDateOfBirthD1.setForeground(Color.BLACK);
+		}
 	}
 	protected void do_D2DOBFTF_focusLost(FocusEvent e) {
+		System.out.println(D2DOBFTF.getText().trim());
+		if (D2DOBFTF.getText().trim().equals("00/00/00")) {
+			
+			lblDateOfBirthD2.setForeground(Color.RED);
+//			This creates and infinite loop
+//			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please enter a valid Date",
+				    "Invalid Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else{
+			lblDateOfBirthD2.setForeground(Color.BLACK);
+		}
 	}
 	protected void do_D3DOBFTF_focusLost(FocusEvent e) {
+		System.out.println(D3DOBFTF.getText().trim());
+		if (D3DOBFTF.getText().trim().equals("00/00/00")) {
+			
+			lblDateOfBirthD3.setForeground(Color.RED);
+//			This creates and infinite loop
+//			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please enter a valid Date",
+				    "Invalid Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else{
+			lblDateOfBirthD3.setForeground(Color.BLACK);
+		}
 	}
 }
