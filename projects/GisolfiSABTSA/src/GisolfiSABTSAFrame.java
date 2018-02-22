@@ -233,7 +233,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final ButtonGroup D2raceBG = new ButtonGroup();
 	private final ButtonGroup D3raceBG = new ButtonGroup();
 	private final JLabel lblrequiredfeilds = new JLabel("* = All required Feilds");
-	private final JLabel lblrequiredfeildsFinacial = new JLabel("* = All required Feilds");
+	private final JLabel label_18 = new JLabel("* = All required Feilds");
 	private final JLabel lblonlyLast = new JLabel("(Only Last 4 Digits)");
 	
 	
@@ -570,6 +570,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		SSNFTF.setBounds(144, 182, 42, 26);
 		
 		applicantInfoPanel.add(SSNFTF);
+		dobFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_dobFTF_focusLost(e);
+			}
+		});
 		dobFTF.setToolTipText("enter your DOB in format 00/00/00");
 		dobFTF.setBounds(144, 210, 72, 26);
 		
@@ -708,6 +714,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		applicantInfoPanel.add(phSpouseFTF);
 		
 		applicantInfoPanel.add(spouseNameTF);
+		dobSpouseFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_dobSpouseFTF_focusLost(e);
+			}
+		});
 		dobSpouseFTF.setToolTipText("enter your spouse's date of birth in format: 00/00/00");
 		dobSpouseFTF.setBounds(144, 557, 72, 26);
 		
@@ -775,6 +787,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		D1YOSFTF.setBounds(125, 84, 28, 26);
 		
 		childInfoPanel.add(D1YOSFTF);
+		D1DOBFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_D1DOBFTF_focusLost(e);
+			}
+		});
 		D1DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D1DOBFTF.setBounds(125, 112, 76, 26);
 		
@@ -835,6 +853,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		D2YOSFTF.setBounds(125, 319, 28, 26);
 		
 		childInfoPanel.add(D2YOSFTF);
+		D2DOBFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_D2DOBFTF_focusLost(e);
+			}
+		});
 		D2DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D2DOBFTF.setBounds(125, 347, 76, 26);
 		
@@ -895,6 +919,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 		D3YOSFTF.setBounds(125, 558, 28, 26);
 		
 		childInfoPanel.add(D3YOSFTF);
+		D3DOBFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_D3DOBFTF_focusLost(e);
+			}
+		});
 		D3DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D3DOBFTF.setBounds(125, 586, 76, 26);
 		
@@ -1265,9 +1295,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		rdbtnSpouseCSNo.setBounds(226, 393, 141, 23);
 		
 		financialInfoPanel.add(rdbtnSpouseCSNo);
-		lblrequiredfeildsFinacial.setBounds(6, 6, 147, 16);
+		label_18.setBounds(6, 6, 147, 16);
 		
-		financialInfoPanel.add(lblrequiredfeildsFinacial);
+		financialInfoPanel.add(label_18);
 		financialInfoPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{snapFoodStampsFTF, ssDisabilityFTF, wagesFTF, tanfTeaFTF, unemploymentFTF, childSupFTF, otherIncFTF, lblExpenses, lblRent, lblUtilities, lblTelephone, lblFood, lblCarPayment, lblChildSupportExp, lblOtherExp, rentFTF, utilitiesFTF, telCostFTF, foodFTF, carPayFTF, childSupExFTF, otherExFTF, lblAreYourEmployed, lblPlaceOfEmployment, lblLengthOfOccupancy, lblIfNotEmployed, lblCarreersource, placeofEmplTF, lenofOccFTF, lblYears, lblAreYourEmployedspopuse, lblplaceofemplSpouse, placeofEmplSpouseTF, lenofOccSpouseFTF, educationComboBox}));
 		
 		armyFormTP.addChangeListener(new ChangeListener() {
@@ -1573,5 +1603,29 @@ public class GisolfiSABTSAFrame extends JFrame {
 	}
 	protected void do_armyFormTP_stateChanged(ChangeEvent e) {
 	
+	}
+	
+	
+	
+	protected void do_dobFTF_focusLost(FocusEvent e) {
+		System.out.println(dobFTF.getText().trim());
+		if (dobFTF.getText().trim().equals("00/00/00")) {
+			
+			lblDOB.setForeground(Color.RED);
+			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please enter a valid Date",
+				    "Invalid Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	protected void do_dobSpouseFTF_focusLost(FocusEvent e) {
+	}
+	protected void do_D1DOBFTF_focusLost(FocusEvent e) {
+	}
+	protected void do_D2DOBFTF_focusLost(FocusEvent e) {
+	}
+	protected void do_D3DOBFTF_focusLost(FocusEvent e) {
 	}
 }
