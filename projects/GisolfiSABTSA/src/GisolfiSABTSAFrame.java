@@ -15,6 +15,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
@@ -25,6 +26,13 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class GisolfiSABTSAFrame extends JFrame {
 
@@ -39,8 +47,8 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblMaidenName = new JLabel("Maiden Name: ");
 	private final JLabel lblSocialSecurity = new JLabel("Social Security*");
 	private final JLabel lblDOB = new JLabel("Date Of Birth*");
-	private final JLabel lblRace = new JLabel("Race:");
-	private final JLabel lblTribe = new JLabel("Tribe: ");
+	private final JLabel lblRace = new JLabel("Race");
+	private final JLabel lblTribe = new JLabel("Tribe");
 	private final JLabel lblAddress = new JLabel("Address*");
 	private final JLabel lblCity = new JLabel("City*");
 	private final JLabel lblZip = new JLabel("ZIP");
@@ -66,10 +74,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JMenuItem mntmChildInformationHelp = new JMenuItem("Child Information Help");
 	private final JMenuItem mntmFinancialInformationHelp = new JMenuItem("Financial Information Help");
 	private final JLabel lblDependent = new JLabel("Dependent 1");
-	private final JLabel lblName = new JLabel("Name: ");
-	private final JLabel lblYearOfSchool = new JLabel("Year of School: ");
-	private final JLabel lblDateOfBirth = new JLabel("Date of Birth: ");
-	private final JLabel lblRelationship = new JLabel("Relationship: ");
+	private final JLabel lblName = new JLabel("Name*");
+	private final JLabel lblYearOfSchool = new JLabel("Year of School*");
+	private final JLabel lblDateOfBirth = new JLabel("Date of Birth*");
+	private final JLabel lblRelationship = new JLabel("Relationship*");
 	private final JTextField D1NameTF = new JTextField();
 	private final JTextField D1relationshipTF = new JTextField();
 	private final JFormattedTextField D1YOSFTF = new JFormattedTextField();
@@ -82,10 +90,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton rdbtnMultiracial_1 = new JRadioButton("Multi-Racial");
 	private final JLabel lblRaceD1 = new JLabel("Race");
 	private final JLabel lblD2 = new JLabel("Dependent 2");
-	private final JLabel label_2 = new JLabel("Name: ");
-	private final JLabel label_3 = new JLabel("Year of School: ");
-	private final JLabel label_4 = new JLabel("Date of Birth: ");
-	private final JLabel label_5 = new JLabel("Relationship: ");
+	private final JLabel lblName_1 = new JLabel("Name");
+	private final JLabel lblYearOfSchool_1 = new JLabel("Year of School");
+	private final JLabel lblDateOfBirth_2 = new JLabel("Date of Birth");
+	private final JLabel lblRelationship_1 = new JLabel("Relationship");
 	private final JTextField textField = new JTextField();
 	private final JTextField textField_1 = new JTextField();
 	private final JFormattedTextField D2YOSFTF = new JFormattedTextField();
@@ -96,12 +104,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton radioButton_3 = new JRadioButton("Caucasian");
 	private final JRadioButton radioButton_4 = new JRadioButton("Hispanic");
 	private final JRadioButton radioButton_5 = new JRadioButton("Multi-Racial");
-	private final JLabel label_6 = new JLabel("Race:");
+	private final JLabel lblRace_1 = new JLabel("Race");
 	private final JLabel lblDependent_1 = new JLabel("Dependent 3");
-	private final JLabel label_8 = new JLabel("Name: ");
-	private final JLabel label_9 = new JLabel("Year of School: ");
-	private final JLabel label_10 = new JLabel("Date of Birth: ");
-	private final JLabel label_11 = new JLabel("Relationship: ");
+	private final JLabel lblName_2 = new JLabel("Name");
+	private final JLabel lblYearOfSchool_2 = new JLabel("Year of School");
+	private final JLabel lblDateOfBirth_3 = new JLabel("Date of Birth");
+	private final JLabel lblRelationship_2 = new JLabel("Relationship");
 	private final JTextField textField_2 = new JTextField();
 	private final JTextField textField_3 = new JTextField();
 	private final JFormattedTextField D3YOSFTF = new JFormattedTextField();
@@ -143,21 +151,21 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JFormattedTextField carPayFTF = new JFormattedTextField();
 	private final JFormattedTextField childSupExFTF = new JFormattedTextField();
 	private final JFormattedTextField otherExFTF = new JFormattedTextField();
-	private final JLabel lblAreYourEmployed = new JLabel("Are Your Employed?");
+	private final JLabel lblAreYourEmployed = new JLabel("Are Your Employed?*");
 	private final JLabel lblPlaceOfEmployment = new JLabel("Place of Employment");
 	private final JLabel lblLengthOfOccupancy = new JLabel("Length of Occupancy:");
 	private final JLabel lblIfNotEmployed = new JLabel("Registered with Careersource");
-	private final JLabel lblS = new JLabel("of Southwest Florida?\n");
+	private final JLabel lblS = new JLabel("of Southwest Florida?\n*");
 	private final JTextField textField_4 = new JTextField();
 	private final JFormattedTextField lenofOccFTF = new JFormattedTextField();
 	private final JLabel lblYears = new JLabel("years");
-	private final JLabel label_1 = new JLabel("Are Your Employed?");
+	private final JLabel lblAreYourEmployed_1 = new JLabel("Are Your Employed?*");
 	private final JLabel label_7 = new JLabel("Place of Employment");
 	private final JTextField textField_5 = new JTextField();
 	private final JFormattedTextField lenofOccSpouseFTF = new JFormattedTextField();
 	private final JLabel label_13 = new JLabel("years");
 	private final JLabel label_14 = new JLabel("Length of Occupancy:");
-	private final JLabel label_15 = new JLabel("of Southwest Florida?\n");
+	private final JLabel lblOfSouthwestFlorida = new JLabel("of Southwest Florida?\n*");
 	private final JLabel label_16 = new JLabel("Registered with Careersource");
 	private final JLabel lblPersonal = new JLabel("Personal");
 	private final JLabel lblSpouse = new JLabel("Spouse");
@@ -166,7 +174,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblTotal = new JLabel("Total");
 	private final JComboBox comboBox = new JComboBox();
 	private final JLabel lblPersonalInformation = new JLabel("Personal Information");
-	private final JLabel lblTelephone_1 = new JLabel("Telephone*");
+	private final JLabel lblphonenumber = new JLabel("Telephone*");
 	private final JLabel lblFamilyStatus = new JLabel("Family Status");
 	private final JComboBox FamilyStatusComboBox = new JComboBox();
 	private final JTextField tribeTF = new JTextField();
@@ -176,38 +184,57 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JFormattedTextField hLengthFTF = new JFormattedTextField();
 	private final JFormattedTextField phFTF = new JFormattedTextField();
 	private final JLabel lblSpouseInformation = new JLabel("Spouse Information");
-	private final JLabel lblSpouseName = new JLabel("Spouse Name*");
-	private final JLabel lblSocialSecurity_1 = new JLabel("Social Security*");
-	private final JLabel lblDateOfBirth_1 = new JLabel("Date of Birth*");
+	private final JLabel lblSpouseName = new JLabel("Spouse Name");
+	private final JLabel lblSocialSecuritySpouse = new JLabel("Social Security");
+	private final JLabel lblDateOfBirth_1 = new JLabel("Date of Birth");
 	private final JLabel label = new JLabel("Race:");
-	private final JRadioButton radioButton_12 = new JRadioButton("Native American");
-	private final JRadioButton radioButton_13 = new JRadioButton("Asian");
-	private final JRadioButton radioButton_14 = new JRadioButton("African American");
-	private final JRadioButton radioButton_15 = new JRadioButton("Caucasian");
-	private final JRadioButton radioButton_16 = new JRadioButton("Hispanic");
-	private final JRadioButton radioButton_17 = new JRadioButton("Multi-Racial");
-	private final JTextField textField_9 = new JTextField();
-	private final JLabel lblAddress_1 = new JLabel("Address*");
-	private final JLabel lblCity_1 = new JLabel("City*");
-	private final JTextField textField_10 = new JTextField();
-	private final JLabel label_22 = new JLabel("Occupancy Length:");
+	private final JRadioButton rdbtnSpouseNA = new JRadioButton("Native American");
+	private final JRadioButton rdbtnSpouseA = new JRadioButton("Asian");
+	private final JRadioButton rdbtnSpouseAA = new JRadioButton("African American");
+	private final JRadioButton rdbtnSpouseC = new JRadioButton("Caucasian");
+	private final JRadioButton rdbtnSpouseH = new JRadioButton("Hispanic");
+	private final JRadioButton rdbtnSpouseMR = new JRadioButton("Multi-Racial");
+	private final JTextField spouseAddressTF = new JTextField();
+	private final JLabel lblSpouseAddress = new JLabel("Address");
+	private final JLabel lblSpouseCity = new JLabel("City");
+	private final JTextField spouseCityTF = new JTextField();
+	private final JLabel lblSpouseoccupancy = new JLabel("Occupancy Length:");
 	private final JFormattedTextField hLengthSpouseFTF = new JFormattedTextField();
-	private final JLabel lblTelephone_2 = new JLabel("Telephone*");
+	private final JLabel lblTelephoneSpouse = new JLabel("Telephone");
 	private final JFormattedTextField phSpouseFTF = new JFormattedTextField();
 	private final JTextField textField_11 = new JTextField();
 	private final JFormattedTextField dobSpouseFTF = new JFormattedTextField();
 	private final JFormattedTextField spouseSSNFTF = new JFormattedTextField();
 	private final JLabel lblYears_1 = new JLabel("years");
-	private final JLabel label_24 = new JLabel("years");
+	private final JLabel lblOccupancyLenYears = new JLabel("years");
 	private final JFormattedTextField middleInitialFTF = new JFormattedTextField();
 	private final JLabel lblTab3ApplicantName = new JLabel("Applicant: ");
 	private final JLabel lblTab1ApplicantName = new JLabel("Applicant: ");
 	private final JLabel lblTab2ApplicantName = new JLabel("Applicant: ");
-	private final JLabel lblAll = new JLabel("* = All required Feilds");
+	private final JLabel lblrequired = new JLabel("* = All required Feilds");
 	private final JLabel lblIncCalcTotal = new JLabel("");
 	private final JLabel lblNetTotal = new JLabel("Net Total");
 	private final JLabel lblnettotcalc = new JLabel("0");
 	private final JLabel lblExpCalcTotal = new JLabel("0");
+	private final JRadioButton rdbtnEmployedYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnEmployedNo = new JRadioButton("No");
+	private final JRadioButton rdbtnCSYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnCSNo = new JRadioButton("No");
+	private final JRadioButton rdbtnSpouseEmployedYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnSpouseEmployedNo = new JRadioButton("No");
+	private final JRadioButton rdbtnSpouseCSYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnSpouseCSNo = new JRadioButton("No");
+	private final ButtonGroup employedBG = new ButtonGroup();
+	private final ButtonGroup CarreerSourceBG = new ButtonGroup();
+	private final ButtonGroup spouseEmployedBG = new ButtonGroup();
+	private final ButtonGroup SpouseCarreerSourceBG = new ButtonGroup();
+	private final ButtonGroup spouseRaceBG = new ButtonGroup();
+	private final ButtonGroup D1raceBG = new ButtonGroup();
+	private final ButtonGroup D2raceBG = new ButtonGroup();
+	private final ButtonGroup D3raceBG = new ButtonGroup();
+	private final JLabel label_17 = new JLabel("* = All required Feilds");
+	private final JLabel label_18 = new JLabel("* = All required Feilds");
+	private final JLabel lblonlyLast = new JLabel("(Only Last 4 Digits)");
 	
 	
 	//Define the SSN Mask
@@ -266,22 +293,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	MaskFormatter carPayMask = createFormatter("######");
 	MaskFormatter childSupExMask = createFormatter("######");
 	MaskFormatter otherExMask = createFormatter("######");
-	private final JRadioButton rdbtnEmployedYes = new JRadioButton("Yes");
-	private final JRadioButton rdbtnEmployedNo = new JRadioButton("No");
-	private final JRadioButton rdbtnCSYes = new JRadioButton("Yes");
-	private final JRadioButton rdbtnCSNo = new JRadioButton("No");
-	private final JRadioButton rdbtnSpouseEmployedYes = new JRadioButton("Yes");
-	private final JRadioButton rdbtnSpouseEmployedNo = new JRadioButton("No");
-	private final JRadioButton rdbtnSpouseCSYes = new JRadioButton("Yes");
-	private final JRadioButton rdbtnSpouseCSNo = new JRadioButton("No");
-	private final ButtonGroup employedBG = new ButtonGroup();
-	private final ButtonGroup CarreerSourceBG = new ButtonGroup();
-	private final ButtonGroup spouseEmployedBG = new ButtonGroup();
-	private final ButtonGroup SpouseCarreerSourceBG = new ButtonGroup();
-	private final ButtonGroup spouseRaceBG = new ButtonGroup();
-	private final ButtonGroup D1raceBG = new ButtonGroup();
-	private final ButtonGroup D2raceBG = new ButtonGroup();
-	private final ButtonGroup D3raceBG = new ButtonGroup();
+
 
 	
 	
@@ -318,22 +330,30 @@ public class GisolfiSABTSAFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GisolfiSABTSAFrame() {
+		textField_11.setToolTipText("enter your spouse's name");
 		textField_11.setBounds(144, 501, 130, 26);
 		textField_11.setColumns(10);
+		cityTF.setToolTipText("enter your city");
 		cityTF.setBounds(144, 294, 130, 26);
 		cityTF.setColumns(10);
+		addressTF.setToolTipText("enter your address");
 		addressTF.setBounds(144, 266, 130, 26);
 		addressTF.setColumns(10);
+		tribeTF.setToolTipText("enter your tribe");
 		tribeTF.setBounds(144, 238, 130, 26);
 		tribeTF.setColumns(10);
-		textField_4.setBounds(226, 87, 130, 26);
+		textField_4.setBounds(226, 97, 130, 26);
 		textField_4.setColumns(10);
+		D1relationshipTF.setToolTipText("enter your relationship to the dependet");
 		D1relationshipTF.setBounds(125, 140, 130, 26);
 		D1relationshipTF.setColumns(10);
+		D1NameTF.setToolTipText("enter name of child/dependent");
 		D1NameTF.setBounds(125, 56, 130, 26);
 		D1NameTF.setColumns(10);
+		maidennameTF.setToolTipText("Enter your maiden name if nessecary");
 		maidennameTF.setBounds(144, 154, 130, 26);
 		maidennameTF.setColumns(10);
+		firstNameTF.setToolTipText("Enter your first name");
 		firstNameTF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
@@ -342,6 +362,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		});
 		firstNameTF.setBounds(144, 126, 130, 26);
 		firstNameTF.setColumns(10);
+		lastNameTF.setToolTipText("Enter your last name");
 		lastNameTF.setBounds(144, 70, 130, 26);
 		lastNameTF.setColumns(10);
 		jbInit();
@@ -414,7 +435,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		zipMask.install(zipFTF);
 		
 		//Associate the  Middle initial masks
-		mInitialMask.setPlaceholderCharacter('A');
+		mInitialMask.setPlaceholderCharacter(' ');
 		mInitialMask.install(middleInitialFTF);
 		
 		//Associate the Year of school masks
@@ -491,15 +512,14 @@ public class GisolfiSABTSAFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		armyFormTP.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				do_armyFormTP_stateChanged(e);
+			}
+		});
 		armyFormTP.setBounds(6, 6, 488, 798);
 		
 		contentPane.add(armyFormTP);
-		applicantInfoPanel.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				do_applicantInfoPanel_focusLost(e);
-			}
-		});
 		
 		armyFormTP.addTab("Applicant Information", null, applicantInfoPanel, null);
 		applicantInfoPanel.setLayout(null);
@@ -545,9 +565,11 @@ public class GisolfiSABTSAFrame extends JFrame {
 		applicantInfoPanel.add(firstNameTF);
 		
 		applicantInfoPanel.add(maidennameTF);
+		SSNFTF.setToolTipText("enter the last 4 digits of your social security number");
 		SSNFTF.setBounds(144, 182, 42, 26);
 		
 		applicantInfoPanel.add(SSNFTF);
+		dobFTF.setToolTipText("enter your DOB in format 00/00/00");
 		dobFTF.setBounds(144, 210, 72, 26);
 		
 		applicantInfoPanel.add(dobFTF);
@@ -578,12 +600,14 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblPersonalInformation.setBounds(122, 6, 153, 16);
 		
 		applicantInfoPanel.add(lblPersonalInformation);
-		lblTelephone_1.setBounds(6, 378, 117, 16);
+		lblphonenumber.setBounds(6, 378, 117, 16);
 		
-		applicantInfoPanel.add(lblTelephone_1);
+		applicantInfoPanel.add(lblphonenumber);
+		lblFamilyStatus.setToolTipText("");
 		lblFamilyStatus.setBounds(6, 410, 107, 16);
 		
 		applicantInfoPanel.add(lblFamilyStatus);
+		FamilyStatusComboBox.setToolTipText("Select a Family status");
 		FamilyStatusComboBox.setModel(new DefaultComboBoxModel(new String[] {"...", "Married", "Single", "Divorced", "Seperated", "Widowed"}));
 		FamilyStatusComboBox.setBounds(144, 406, 107, 27);
 		
@@ -594,12 +618,15 @@ public class GisolfiSABTSAFrame extends JFrame {
 		applicantInfoPanel.add(addressTF);
 		
 		applicantInfoPanel.add(cityTF);
+		zipFTF.setToolTipText("enter your Zip code");
 		zipFTF.setBounds(144, 322, 50, 26);
 		
 		applicantInfoPanel.add(zipFTF);
+		hLengthFTF.setToolTipText("Enter your length of time in that residence");
 		hLengthFTF.setBounds(144, 350, 42, 26);
 		
 		applicantInfoPanel.add(hLengthFTF);
+		phFTF.setToolTipText("enter your phone number");
 		phFTF.setBounds(144, 377, 107, 26);
 		
 		applicantInfoPanel.add(phFTF);
@@ -609,94 +636,118 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblSpouseName.setBounds(6, 506, 107, 16);
 		
 		applicantInfoPanel.add(lblSpouseName);
-		lblSocialSecurity_1.setBounds(6, 534, 107, 16);
+		lblSocialSecuritySpouse.setBounds(6, 534, 107, 16);
 		
-		applicantInfoPanel.add(lblSocialSecurity_1);
+		applicantInfoPanel.add(lblSocialSecuritySpouse);
 		lblDateOfBirth_1.setBounds(6, 562, 90, 16);
 		
 		applicantInfoPanel.add(lblDateOfBirth_1);
 		label.setBounds(320, 506, 61, 16);
 		
 		applicantInfoPanel.add(label);
-		spouseRaceBG.add(radioButton_12);
-		radioButton_12.setBounds(320, 534, 141, 23);
+		spouseRaceBG.add(rdbtnSpouseNA);
+		rdbtnSpouseNA.setBounds(320, 534, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_12);
-		spouseRaceBG.add(radioButton_13);
-		radioButton_13.setBounds(320, 569, 141, 23);
+		applicantInfoPanel.add(rdbtnSpouseNA);
+		spouseRaceBG.add(rdbtnSpouseA);
+		rdbtnSpouseA.setBounds(320, 569, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_13);
-		spouseRaceBG.add(radioButton_14);
-		radioButton_14.setBounds(320, 600, 141, 23);
+		applicantInfoPanel.add(rdbtnSpouseA);
+		spouseRaceBG.add(rdbtnSpouseAA);
+		rdbtnSpouseAA.setBounds(320, 600, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_14);
-		spouseRaceBG.add(radioButton_15);
-		radioButton_15.setBounds(320, 635, 141, 23);
+		applicantInfoPanel.add(rdbtnSpouseAA);
+		spouseRaceBG.add(rdbtnSpouseC);
+		rdbtnSpouseC.setBounds(320, 635, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_15);
-		spouseRaceBG.add(radioButton_16);
-		radioButton_16.setBounds(320, 670, 141, 23);
+		applicantInfoPanel.add(rdbtnSpouseC);
+		spouseRaceBG.add(rdbtnSpouseH);
+		rdbtnSpouseH.setBounds(320, 670, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_16);
-		spouseRaceBG.add(radioButton_17);
-		radioButton_17.setBounds(320, 705, 141, 23);
+		applicantInfoPanel.add(rdbtnSpouseH);
+		spouseRaceBG.add(rdbtnSpouseMR);
+		rdbtnSpouseMR.setBounds(320, 705, 141, 23);
 		
-		applicantInfoPanel.add(radioButton_17);
-		textField_9.setColumns(10);
-		textField_9.setBounds(144, 585, 130, 26);
+		applicantInfoPanel.add(rdbtnSpouseMR);
+		spouseAddressTF.setToolTipText("enter your spouse's address");
+		spouseAddressTF.setColumns(10);
+		spouseAddressTF.setBounds(144, 585, 130, 26);
 		
-		applicantInfoPanel.add(textField_9);
-		lblAddress_1.setBounds(6, 590, 61, 16);
+		applicantInfoPanel.add(spouseAddressTF);
+		lblSpouseAddress.setBounds(6, 590, 61, 16);
 		
-		applicantInfoPanel.add(lblAddress_1);
-		lblCity_1.setBounds(6, 618, 61, 16);
+		applicantInfoPanel.add(lblSpouseAddress);
+		lblSpouseCity.setBounds(6, 618, 61, 16);
 		
-		applicantInfoPanel.add(lblCity_1);
-		textField_10.setColumns(10);
-		textField_10.setBounds(144, 613, 130, 26);
+		applicantInfoPanel.add(lblSpouseCity);
+		spouseCityTF.setToolTipText("enter your spouse's city");
+		spouseCityTF.setColumns(10);
+		spouseCityTF.setBounds(144, 613, 130, 26);
 		
-		applicantInfoPanel.add(textField_10);
-		label_22.setBounds(6, 646, 153, 16);
+		applicantInfoPanel.add(spouseCityTF);
+		lblSpouseoccupancy.setBounds(6, 646, 153, 16);
 		
-		applicantInfoPanel.add(label_22);
+		applicantInfoPanel.add(lblSpouseoccupancy);
+		hLengthSpouseFTF.setToolTipText("enter your spouse's duration in that residence");
+		hLengthSpouseFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_hLengthSpouseFTF_focusLost(e);
+			}
+		});
 		hLengthSpouseFTF.setBounds(144, 641, 42, 26);
 		
 		applicantInfoPanel.add(hLengthSpouseFTF);
-		lblTelephone_2.setBounds(6, 674, 117, 16);
+		lblTelephoneSpouse.setBounds(6, 674, 117, 16);
 		
-		applicantInfoPanel.add(lblTelephone_2);
+		applicantInfoPanel.add(lblTelephoneSpouse);
+		phSpouseFTF.setToolTipText("enter your spouse's phone number");
 		phSpouseFTF.setBounds(144, 669, 107, 26);
 		
 		applicantInfoPanel.add(phSpouseFTF);
 		
 		applicantInfoPanel.add(textField_11);
+		dobSpouseFTF.setToolTipText("enter your spouse's date of birth in format: 00/00/00");
 		dobSpouseFTF.setBounds(144, 557, 72, 26);
 		
 		applicantInfoPanel.add(dobSpouseFTF);
+		spouseSSNFTF.setToolTipText("enter your spouse's lasgt 4 digits of ssn");
 		spouseSSNFTF.setBounds(144, 529, 42, 26);
 		
 		applicantInfoPanel.add(spouseSSNFTF);
 		lblYears_1.setBounds(190, 355, 61, 16);
 		
 		applicantInfoPanel.add(lblYears_1);
-		label_24.setBounds(190, 646, 61, 16);
+		lblOccupancyLenYears.setBounds(190, 646, 61, 16);
 		
-		applicantInfoPanel.add(label_24);
-		middleInitialFTF.setBounds(144, 97, 18, 26);
+		applicantInfoPanel.add(lblOccupancyLenYears);
+		middleInitialFTF.setToolTipText("Enter your middle initial");
+		middleInitialFTF.setBounds(144, 97, 22, 26);
 		
 		applicantInfoPanel.add(middleInitialFTF);
 		lblTab1ApplicantName.setBounds(286, 7, 181, 14);
 		
 		applicantInfoPanel.add(lblTab1ApplicantName);
-		lblAll.setBounds(6, 42, 147, 16);
+		lblrequired.setBounds(6, 42, 147, 16);
 		
-		applicantInfoPanel.add(lblAll);
+		applicantInfoPanel.add(lblrequired);
+		lblonlyLast.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		lblonlyLast.setBounds(190, 187, 97, 16);
+		
+		applicantInfoPanel.add(lblonlyLast);
+		
 		D1DOBMask.install(D1DOBFTF);
 		D2DOBMask.install(D2DOBFTF);
 		D3DOBMask.install(D3DOBFTF);
 		D1YOSMask.install(D1YOSFTF);
 		D2YOSMask.install(D2YOSFTF);
 		D3YOSMask.install(D2YOSFTF);
+		childInfoPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				do_childInfoPanel_mouseClicked(e);
+			}
+		});
 		
 		armyFormTP.addTab("Child Information", null, childInfoPanel, null);
 		childInfoPanel.setLayout(null);
@@ -719,9 +770,11 @@ public class GisolfiSABTSAFrame extends JFrame {
 		childInfoPanel.add(D1NameTF);
 		
 		childInfoPanel.add(D1relationshipTF);
+		D1YOSFTF.setToolTipText("enter grade in school of child/dependent");
 		D1YOSFTF.setBounds(125, 84, 28, 26);
 		
 		childInfoPanel.add(D1YOSFTF);
+		D1DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D1DOBFTF.setBounds(125, 112, 76, 26);
 		
 		childInfoPanel.add(D1DOBFTF);
@@ -755,29 +808,33 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblD2.setBounds(20, 268, 85, 16);
 		
 		childInfoPanel.add(lblD2);
-		label_2.setBounds(20, 296, 61, 16);
+		lblName_1.setBounds(20, 296, 61, 16);
 		
-		childInfoPanel.add(label_2);
-		label_3.setBounds(20, 324, 98, 16);
+		childInfoPanel.add(lblName_1);
+		lblYearOfSchool_1.setBounds(20, 324, 133, 16);
 		
-		childInfoPanel.add(label_3);
-		label_4.setBounds(20, 352, 98, 16);
+		childInfoPanel.add(lblYearOfSchool_1);
+		lblDateOfBirth_2.setBounds(20, 352, 98, 16);
 		
-		childInfoPanel.add(label_4);
-		label_5.setBounds(20, 380, 98, 16);
+		childInfoPanel.add(lblDateOfBirth_2);
+		lblRelationship_1.setBounds(20, 380, 98, 16);
 		
-		childInfoPanel.add(label_5);
+		childInfoPanel.add(lblRelationship_1);
+		textField.setToolTipText("enter name of child/dependent");
 		textField.setColumns(10);
 		textField.setBounds(125, 291, 130, 26);
 		
 		childInfoPanel.add(textField);
+		textField_1.setToolTipText("enter your relationship to the dependet");
 		textField_1.setColumns(10);
 		textField_1.setBounds(125, 375, 130, 26);
 		
 		childInfoPanel.add(textField_1);
+		D2YOSFTF.setToolTipText("enter grade in school of child/dependent");
 		D2YOSFTF.setBounds(125, 319, 28, 26);
 		
 		childInfoPanel.add(D2YOSFTF);
+		D2DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D2DOBFTF.setBounds(125, 347, 76, 26);
 		
 		childInfoPanel.add(D2DOBFTF);
@@ -805,35 +862,39 @@ public class GisolfiSABTSAFrame extends JFrame {
 		radioButton_5.setBounds(267, 429, 141, 23);
 		
 		childInfoPanel.add(radioButton_5);
-		label_6.setBounds(272, 268, 61, 16);
+		lblRace_1.setBounds(272, 268, 61, 16);
 		
-		childInfoPanel.add(label_6);
+		childInfoPanel.add(lblRace_1);
 		lblDependent_1.setBounds(20, 507, 85, 16);
 		
 		childInfoPanel.add(lblDependent_1);
-		label_8.setBounds(20, 535, 61, 16);
+		lblName_2.setBounds(20, 535, 61, 16);
 		
-		childInfoPanel.add(label_8);
-		label_9.setBounds(20, 563, 98, 16);
+		childInfoPanel.add(lblName_2);
+		lblYearOfSchool_2.setBounds(20, 563, 116, 16);
 		
-		childInfoPanel.add(label_9);
-		label_10.setBounds(20, 591, 98, 16);
+		childInfoPanel.add(lblYearOfSchool_2);
+		lblDateOfBirth_3.setBounds(20, 591, 98, 16);
 		
-		childInfoPanel.add(label_10);
-		label_11.setBounds(20, 619, 98, 16);
+		childInfoPanel.add(lblDateOfBirth_3);
+		lblRelationship_2.setBounds(20, 619, 98, 16);
 		
-		childInfoPanel.add(label_11);
+		childInfoPanel.add(lblRelationship_2);
+		textField_2.setToolTipText("enter name of child/dependent");
 		textField_2.setColumns(10);
 		textField_2.setBounds(125, 530, 130, 26);
 		
 		childInfoPanel.add(textField_2);
+		textField_3.setToolTipText("enter your relationship to the dependet");
 		textField_3.setColumns(10);
 		textField_3.setBounds(125, 614, 130, 26);
 		
 		childInfoPanel.add(textField_3);
+		D3YOSFTF.setToolTipText("enter grade in school of child/dependent");
 		D3YOSFTF.setBounds(125, 558, 28, 26);
 		
 		childInfoPanel.add(D3YOSFTF);
+		D3DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
 		D3DOBFTF.setBounds(125, 586, 76, 26);
 		
 		childInfoPanel.add(D3DOBFTF);
@@ -867,6 +928,9 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblTab2ApplicantName.setBounds(291, 11, 182, 14);
 		
 		childInfoPanel.add(lblTab2ApplicantName);
+		label_17.setBounds(20, 10, 147, 16);
+		
+		childInfoPanel.add(label_17);
 		lenofOccMask.install(lenofOccFTF);
 		lenofOccSpouseMask.install(lenofOccSpouseFTF);
 		snapFoodStampsMask.install(snapFoodStampsFTF);
@@ -908,6 +972,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		financialInfoPanel.add(lblChildSupport);
 		lblOther.setBounds(6, 650, 61, 16);
+	
 		
 		financialInfoPanel.add(lblOther);
 		snapFoodStampsFTF.addFocusListener(new FocusAdapter() {
@@ -1060,13 +1125,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 		otherExFTF.setBounds(344, 650, 64, 26);
 		
 		financialInfoPanel.add(otherExFTF);
-		lblAreYourEmployed.setBounds(6, 46, 160, 16);
+		lblAreYourEmployed.setBounds(6, 56, 160, 16);
 		
 		financialInfoPanel.add(lblAreYourEmployed);
-		lblPlaceOfEmployment.setBounds(6, 92, 131, 16);
+		lblPlaceOfEmployment.setBounds(6, 102, 131, 16);
 		
 		financialInfoPanel.add(lblPlaceOfEmployment);
-		lblLengthOfOccupancy.setBounds(6, 129, 147, 16);
+		lblLengthOfOccupancy.setBounds(6, 139, 147, 16);
 		
 		financialInfoPanel.add(lblLengthOfOccupancy);
 		lblIfNotEmployed.setBounds(8, 162, 203, 26);
@@ -1077,15 +1142,15 @@ public class GisolfiSABTSAFrame extends JFrame {
 		financialInfoPanel.add(lblS);
 		
 		financialInfoPanel.add(textField_4);
-		lenofOccFTF.setBounds(226, 124, 27, 26);
+		lenofOccFTF.setBounds(226, 134, 27, 26);
 		
 		financialInfoPanel.add(lenofOccFTF);
-		lblYears.setBounds(258, 129, 61, 16);
+		lblYears.setBounds(258, 139, 61, 16);
 		
 		financialInfoPanel.add(lblYears);
-		label_1.setBounds(6, 255, 160, 16);
+		lblAreYourEmployed_1.setBounds(6, 255, 160, 16);
 		
-		financialInfoPanel.add(label_1);
+		financialInfoPanel.add(lblAreYourEmployed_1);
 		label_7.setBounds(6, 301, 131, 16);
 		
 		financialInfoPanel.add(label_7);
@@ -1102,13 +1167,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 		label_14.setBounds(6, 338, 147, 16);
 		
 		financialInfoPanel.add(label_14);
-		label_15.setBounds(8, 395, 171, 16);
+		lblOfSouthwestFlorida.setBounds(8, 395, 171, 16);
 		
-		financialInfoPanel.add(label_15);
+		financialInfoPanel.add(lblOfSouthwestFlorida);
 		label_16.setBounds(8, 371, 203, 26);
 		
 		financialInfoPanel.add(label_16);
-		lblPersonal.setBounds(156, 6, 61, 16);
+		lblPersonal.setBounds(150, 28, 61, 16);
 		
 		financialInfoPanel.add(lblPersonal);
 		lblSpouse.setBounds(156, 227, 61, 16);
@@ -1118,65 +1183,83 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		financialInfoPanel.add(lblLevelOfEducation);
 		lblIncTotal.setBounds(97, 688, 40, 16);
-		//		private String sum = 
-		//		
-		//		lblIncTotal.setText("Total: " + sum);
-				financialInfoPanel.add(lblIncTotal);
-				lblTotal.setBounds(306, 688, 40, 16);
-				
-				financialInfoPanel.add(lblTotal);
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"No GED/Diploma", "GED", "High School Diploma", "Associates Degree", "Bachelors Degree Post-Gradudate"}));
-				comboBox.setBounds(226, 424, 171, 27);
-				
-				financialInfoPanel.add(comboBox);
-				lblTab3ApplicantName.setBounds(288, 7, 185, 14);
-				financialInfoPanel.add(lblTab3ApplicantName);
-				lblIncCalcTotal.setBounds(160, 688, 77, 16);
-				
-				financialInfoPanel.add(lblIncCalcTotal);
-				lblNetTotal.setBounds(72, 716, 61, 16);
-				
-				financialInfoPanel.add(lblNetTotal);
-				lblnettotcalc.setBounds(160, 716, 119, 16);
-				
-				financialInfoPanel.add(lblnettotcalc);
-				lblExpCalcTotal.setBounds(355, 688, 95, 16);
-				
-				financialInfoPanel.add(lblExpCalcTotal);
-				employedBG.add(rdbtnEmployedYes);
-				rdbtnEmployedYes.setBounds(226, 33, 141, 23);
-				
-				financialInfoPanel.add(rdbtnEmployedYes);
-				employedBG.add(rdbtnEmployedNo);
-				rdbtnEmployedNo.setBounds(226, 56, 141, 23);
-				
-				financialInfoPanel.add(rdbtnEmployedNo);
-				CarreerSourceBG.add(rdbtnCSYes);
-				rdbtnCSYes.setBounds(226, 162, 141, 23);
-				
-				financialInfoPanel.add(rdbtnCSYes);
-				CarreerSourceBG.add(rdbtnCSNo);
-				rdbtnCSNo.setBounds(226, 185, 141, 23);
-				
-				financialInfoPanel.add(rdbtnCSNo);
-				spouseEmployedBG.add(rdbtnSpouseEmployedYes);
-				rdbtnSpouseEmployedYes.setBounds(226, 238, 141, 23);
-				
-				financialInfoPanel.add(rdbtnSpouseEmployedYes);
-				spouseEmployedBG.add(rdbtnSpouseEmployedNo);
-				rdbtnSpouseEmployedNo.setBounds(226, 261, 141, 23);
-				
-				financialInfoPanel.add(rdbtnSpouseEmployedNo);
-				SpouseCarreerSourceBG.add(rdbtnSpouseCSYes);
-				rdbtnSpouseCSYes.setBounds(226, 370, 141, 23);
-				
-				financialInfoPanel.add(rdbtnSpouseCSYes);
-				SpouseCarreerSourceBG.add(rdbtnSpouseCSNo);
-				rdbtnSpouseCSNo.setBounds(226, 393, 141, 23);
-				
-				financialInfoPanel.add(rdbtnSpouseCSNo);
-				financialInfoPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{snapFoodStampsFTF, ssDisabilityFTF, wagesFTF, tanfTeaFTF, unemploymentFTF, childSupFTF, otherIncFTF, lblExpenses, lblRent, lblUtilities, lblTelephone, lblFood, lblCarPayment, lblChildSupport_1, lblOther_1, rentFTF, utilitiesFTF, telCostFTF, foodFTF, carPayFTF, childSupExFTF, otherExFTF, lblAreYourEmployed, lblPlaceOfEmployment, lblLengthOfOccupancy, lblIfNotEmployed, lblS, textField_4, lenofOccFTF, lblYears, label_1, label_7, textField_5, lenofOccSpouseFTF, comboBox}));
+		
+		financialInfoPanel.add(lblIncTotal);
+		lblTotal.setBounds(306, 688, 40, 16);
+		
+		financialInfoPanel.add(lblTotal);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"No GED/Diploma", "GED", "High School Diploma", "Associates Degree", "Bachelors Degree Post-Gradudate"}));
+		comboBox.setBounds(226, 424, 171, 27);
+		
+		financialInfoPanel.add(comboBox);
+		lblTab3ApplicantName.setBounds(288, 7, 185, 14);
+		financialInfoPanel.add(lblTab3ApplicantName);
+		lblIncCalcTotal.setBounds(160, 688, 77, 16);
+		
+		financialInfoPanel.add(lblIncCalcTotal);
+		lblNetTotal.setBounds(72, 716, 61, 16);
+		
+		financialInfoPanel.add(lblNetTotal);
+		lblnettotcalc.setBounds(160, 716, 119, 16);
+		
+		financialInfoPanel.add(lblnettotcalc);
+		lblExpCalcTotal.setBounds(355, 688, 95, 16);
+		
+		financialInfoPanel.add(lblExpCalcTotal);
+		employedBG.add(rdbtnEmployedYes);
+		rdbtnEmployedYes.setBounds(226, 43, 141, 23);
+		
+		financialInfoPanel.add(rdbtnEmployedYes);
+		employedBG.add(rdbtnEmployedNo);
+		rdbtnEmployedNo.setBounds(226, 66, 141, 23);
+		
+		financialInfoPanel.add(rdbtnEmployedNo);
+		CarreerSourceBG.add(rdbtnCSYes);
+		rdbtnCSYes.setBounds(226, 162, 141, 23);
+		
+		financialInfoPanel.add(rdbtnCSYes);
+		CarreerSourceBG.add(rdbtnCSNo);
+		rdbtnCSNo.setBounds(226, 185, 141, 23);
+		
+		financialInfoPanel.add(rdbtnCSNo);
+		spouseEmployedBG.add(rdbtnSpouseEmployedYes);
+		rdbtnSpouseEmployedYes.setBounds(226, 238, 141, 23);
+		
+		financialInfoPanel.add(rdbtnSpouseEmployedYes);
+		spouseEmployedBG.add(rdbtnSpouseEmployedNo);
+		rdbtnSpouseEmployedNo.setBounds(226, 261, 141, 23);
+		
+		financialInfoPanel.add(rdbtnSpouseEmployedNo);
+		SpouseCarreerSourceBG.add(rdbtnSpouseCSYes);
+		rdbtnSpouseCSYes.setBounds(226, 370, 141, 23);
+		
+		financialInfoPanel.add(rdbtnSpouseCSYes);
+		SpouseCarreerSourceBG.add(rdbtnSpouseCSNo);
+		rdbtnSpouseCSNo.setBounds(226, 393, 141, 23);
+		
+		financialInfoPanel.add(rdbtnSpouseCSNo);
+		label_18.setBounds(6, 6, 147, 16);
+		
+		financialInfoPanel.add(label_18);
+		financialInfoPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{snapFoodStampsFTF, ssDisabilityFTF, wagesFTF, tanfTeaFTF, unemploymentFTF, childSupFTF, otherIncFTF, lblExpenses, lblRent, lblUtilities, lblTelephone, lblFood, lblCarPayment, lblChildSupport_1, lblOther_1, rentFTF, utilitiesFTF, telCostFTF, foodFTF, carPayFTF, childSupExFTF, otherExFTF, lblAreYourEmployed, lblPlaceOfEmployment, lblLengthOfOccupancy, lblIfNotEmployed, lblS, textField_4, lenofOccFTF, lblYears, lblAreYourEmployed_1, label_7, textField_5, lenofOccSpouseFTF, comboBox}));
+		
+		armyFormTP.addChangeListener(new ChangeListener() {
+	        public void stateChanged(ChangeEvent ce) {
+	        		int index = armyFormTP.getSelectedIndex() + 1;
+	           if (index == 2) {
+	        	   		checkTab1();
+	           }else if (index == 3) {
+	        	   		checkTab2();
+	           }
+	        }
+	     });
 	}
+	
+	
+	//change listener 
+
+	
+	
 	//Menu Buttons
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
 		System.exit(0);
@@ -1193,34 +1276,163 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblTab2ApplicantName.setText("Applicant: " + name);
 		lblTab3ApplicantName.setText("Applicant: " + name);
 	}
+	
+	//Validation
+	
+	public void invalidYearCheck(int year, JFormattedTextField textFeild) {
+	
+	if (year < 0 || year > 90) {
+		textFeild.setForeground(Color.RED);
+		
+		JOptionPane.showMessageDialog(this,
+			    "Please enter a Valid length of time",
+			    "Missing Required Data Error",
+			    JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
-	protected void do_applicantInfoPanel_focusLost(FocusEvent e) {
-//LastName
-//Firstname
-//SS
-//DOB
-//Adress
-//City
-//Telephone
+	protected void checkTab1() {
 
-
-
-		if (lastNameTF.getText() == null) {
-			lastNameTF.setForeground(Color.RED);
+		if (lastNameTF.getText().trim().isEmpty()) {
+			lblLastName.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			lastNameTF.requestFocus();
 			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the 'Last Name' feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(firstNameTF.getText().trim().isEmpty()) {
+			lblFirstName.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			firstNameTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the First Name feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(SSNFTF.getText().trim().isEmpty()) {
+			lblSocialSecurity.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			SSNFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Social Security feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(dobFTF.getText().trim().isEmpty()) {
+			lblDOB.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			dobFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Date of Birth feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else if(addressTF.getText().trim().isEmpty()) {
+			lblAddress.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			addressTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the address feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else if(cityTF.getText().trim().isEmpty()) {
+			lblCity.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			cityTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the City feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else if(phFTF.getText().trim().isEmpty()) {
+			lblTelephone.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(0);
+			phFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the telephone feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}else {
+			lblLastName.setForeground(Color.BLACK);
+			lblFirstName.setForeground(Color.BLACK);
+			lblSocialSecurity.setForeground(Color.BLACK);
+			lblDOB.setForeground(Color.BLACK);
+			lblAddress.setForeground(Color.BLACK);
+			lblCity.setForeground(Color.BLACK);
+			lblTelephone.setForeground(Color.BLACK);
+		}
+	}
+	
+	//Ensure all required fields in tab 2 are complete
+	protected void checkTab2() {
+
+		if (D1NameTF.getText().trim().isEmpty()) {
+			lblName.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(1);
+			D1NameTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Name feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(D1YOSFTF.getText().trim().isEmpty()) {
+			lblYearOfSchool.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(1);
+			D1YOSFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Grade in school feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(D1DOBFTF.getText().trim().isEmpty()) {
+			lblDateOfBirth.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(1);
+			D1DOBFTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Date of Birth feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+			
+		}else if(D1relationshipTF.getText().trim().isEmpty()) {
+			lblRelationship.setForeground(Color.RED);
+			armyFormTP.setSelectedIndex(1);
+			D1relationshipTF.requestFocus();
+			
+			JOptionPane.showMessageDialog(this,
+				    "Please fill out the Realtionship feild",
+				    "Missing Required Data Error",
+				    JOptionPane.ERROR_MESSAGE);
+	
+		}else {
+			//Set all colors back to black
+			lblName.setForeground(Color.BLACK);
+			lblYearOfSchool.setForeground(Color.BLACK);
+			lblDateOfBirth.setForeground(Color.BLACK);
+			lblRelationship.setForeground(Color.BLACK);
 			
 		}
-		
 	}
-	//
+		
+	
+	//income calculating function
 	private void updateIncomeTotal(int num) {
 		String oldString = lblIncCalcTotal.getText().trim();
 		int oldVal = Integer.parseInt(oldString);
 		int newTotal = oldVal + num;
 		lblIncCalcTotal.setText(Integer.toString(newTotal));
-		//lblIncCalcTotal.setText(num);
 	}
 	
+	//Call calculating functions when focus lost
 	protected void do_wagesFTF_focusLost(FocusEvent e) {
 		updateIncomeTotal(Integer.parseInt(wagesFTF.getText()));
 		updateNetTotal();
@@ -1258,6 +1470,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblExpCalcTotal.setText(Integer.toString(newTotal));
 	}
 	
+	//Call calculating functions when focus lost
 	protected void do_rentFTF_focusLost(FocusEvent e) {
 		updateExpensesTotal(Integer.parseInt(rentFTF.getText()));
 		updateNetTotal();
@@ -1287,9 +1500,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		updateNetTotal();
 	}
 	
-	
-	
-	
+	//Finds the net total of all expenses and income
 	private void updateNetTotal() {
 		int Income = Integer.parseInt(lblIncCalcTotal.getText());
 		int Expenses = Integer.parseInt(lblExpCalcTotal.getText());
@@ -1320,6 +1531,20 @@ public class GisolfiSABTSAFrame extends JFrame {
 		FinancialInformationHelpFrame financialHelpframe = new FinancialInformationHelpFrame();
 		financialHelpframe.setVisible(true);
 		financialHelpframe.setLocation(this.getX() + 30 , getY() + 30);
+	
+	}
+
+	protected void do_hLengthSpouseFTF_focusLost(FocusEvent e) {
+		int lenOfOccupance = Integer.parseInt(hLengthSpouseFTF.getText());
+		invalidYearCheck(lenOfOccupance, hLengthSpouseFTF);
+	}
+	
+	
+	
+	
+	protected void do_childInfoPanel_mouseClicked(MouseEvent e) {
+	}
+	protected void do_armyFormTP_stateChanged(ChangeEvent e) {
 	
 	}
 }
