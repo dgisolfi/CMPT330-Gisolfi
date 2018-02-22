@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,6 +21,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class GisolfiSABTSAFrame extends JFrame {
 
@@ -28,17 +33,17 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JPanel applicantInfoPanel = new JPanel();
 	private final JPanel childInfoPanel = new JPanel();
 	private final JPanel financialInfoPanel = new JPanel();
-	private final JLabel lblLastName = new JLabel("Last Name: ");
-	private final JLabel lblMiddleInitial = new JLabel("Middle Initial: ");
-	private final JLabel lblFirstName = new JLabel("First Name: ");
+	private final JLabel lblLastName = new JLabel("Last Name* ");
+	private final JLabel lblMiddleInitial = new JLabel("Middle Initial");
+	private final JLabel lblFirstName = new JLabel("First Name:*");
 	private final JLabel lblMaidenName = new JLabel("Maiden Name: ");
-	private final JLabel lblSocialSecurity = new JLabel("Social Security: ");
-	private final JLabel lblDOB = new JLabel("Date Of Birth: ");
+	private final JLabel lblSocialSecurity = new JLabel("Social Security*");
+	private final JLabel lblDOB = new JLabel("Date Of Birth*");
 	private final JLabel lblRace = new JLabel("Race:");
 	private final JLabel lblTribe = new JLabel("Tribe: ");
-	private final JLabel lblAddress = new JLabel("Address: ");
-	private final JLabel lblCity = new JLabel("City: ");
-	private final JLabel lblZip = new JLabel("ZIP: ");
+	private final JLabel lblAddress = new JLabel("Address*");
+	private final JLabel lblCity = new JLabel("City*");
+	private final JLabel lblZip = new JLabel("ZIP");
 	private final JLabel lblLengthOfOccupancy_1 = new JLabel("Occupancy Length:");
 	private final JTextField lastNameTF = new JTextField();
 	private final JTextField firstNameTF = new JTextField();
@@ -51,7 +56,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton rdbtnCaucasian = new JRadioButton("Caucasian");
 	private final JRadioButton rdbtnHispanic = new JRadioButton("Hispanic");
 	private final JRadioButton rdbtnMultiracial = new JRadioButton("Multi-Racial");
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup raceBG = new ButtonGroup();
 	private final JMenuBar FormMenuBar = new JMenuBar();
 	private final JMenu mnFile = new JMenu("File");
 	private final JMenuItem mntmStartNewForm = new JMenuItem("Start New Form");
@@ -75,7 +80,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton rdbtnCaucasian_1 = new JRadioButton("Caucasian");
 	private final JRadioButton rdbtnHispanic_1 = new JRadioButton("Hispanic");
 	private final JRadioButton rdbtnMultiracial_1 = new JRadioButton("Multi-Racial");
-	private final JLabel lblRace_1 = new JLabel("Race:");
+	private final JLabel lblRaceD1 = new JLabel("Race");
 	private final JLabel lblD2 = new JLabel("Dependent 2");
 	private final JLabel label_2 = new JLabel("Name: ");
 	private final JLabel label_3 = new JLabel("Year of School: ");
@@ -109,13 +114,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton radioButton_11 = new JRadioButton("Multi-Racial");
 	private final JLabel label_12 = new JLabel("Race:");
 	private final JLabel lblIncome = new JLabel("Income");
-	private final JLabel lblSnapfoodStamps = new JLabel("Snap-Food Stamps:");
+	private final JLabel lblSnapfoodStamps = new JLabel("Snap-Food Stamps");
 	private final JLabel lblSsdisability = new JLabel("SS/Disability");
-	private final JLabel lblWages = new JLabel("Wages:");
-	private final JLabel lblTanfOrTea = new JLabel("Tanf or Tea:");
-	private final JLabel lblUnemployment = new JLabel("Unemployment:");
-	private final JLabel lblChildSupport = new JLabel("Child Support:");
-	private final JLabel lblOther = new JLabel("Other:");
+	private final JLabel lblWages = new JLabel("Wages");
+	private final JLabel lblTanfOrTea = new JLabel("Tanf or Tea");
+	private final JLabel lblUnemployment = new JLabel("Unemployment");
+	private final JLabel lblChildSupport = new JLabel("Child Support");
+	private final JLabel lblOther = new JLabel("Other");
 	private final JFormattedTextField snapFoodStampsFTF = new JFormattedTextField();
 	private final JFormattedTextField ssDisabilityFTF = new JFormattedTextField();
 	private final JFormattedTextField wagesFTF = new JFormattedTextField();
@@ -124,13 +129,13 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JFormattedTextField childSupFTF = new JFormattedTextField();
 	private final JFormattedTextField otherIncFTF = new JFormattedTextField();
 	private final JLabel lblExpenses = new JLabel("Expenses");
-	private final JLabel lblRent = new JLabel("Rent:");
-	private final JLabel lblUtilities = new JLabel("Utilities:");
-	private final JLabel lblTelephone = new JLabel("Telephone:");
-	private final JLabel lblFood = new JLabel("Food:");
-	private final JLabel lblCarPayment = new JLabel("Car Payment:");
-	private final JLabel label_17 = new JLabel("Child Support:");
-	private final JLabel label_18 = new JLabel("Other:");
+	private final JLabel lblRent = new JLabel("Rent");
+	private final JLabel lblUtilities = new JLabel("Utilities");
+	private final JLabel lblTelephone = new JLabel("Telephone");
+	private final JLabel lblFood = new JLabel("Food");
+	private final JLabel lblCarPayment = new JLabel("Car Payment");
+	private final JLabel lblChildSupport_1 = new JLabel("Child Support");
+	private final JLabel lblOther_1 = new JLabel("Other");
 	private final JFormattedTextField rentFTF = new JFormattedTextField();
 	private final JFormattedTextField utilitiesFTF = new JFormattedTextField();
 	private final JFormattedTextField telCostFTF = new JFormattedTextField();
@@ -146,13 +151,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JTextField textField_4 = new JTextField();
 	private final JFormattedTextField lenofOccFTF = new JFormattedTextField();
 	private final JLabel lblYears = new JLabel("years");
-	private final JCheckBox chckbxYes = new JCheckBox("Yes");
-	private final JCheckBox chckbxNo = new JCheckBox("No");
-	private final JCheckBox checkBox = new JCheckBox("Yes");
-	private final JCheckBox checkBox_1 = new JCheckBox("No");
 	private final JLabel label_1 = new JLabel("Are Your Employed?");
-	private final JCheckBox checkBox_2 = new JCheckBox("Yes");
-	private final JCheckBox checkBox_3 = new JCheckBox("No");
 	private final JLabel label_7 = new JLabel("Place of Employment");
 	private final JTextField textField_5 = new JTextField();
 	private final JFormattedTextField lenofOccSpouseFTF = new JFormattedTextField();
@@ -160,28 +159,26 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel label_14 = new JLabel("Length of Occupancy:");
 	private final JLabel label_15 = new JLabel("of Southwest Florida?\n");
 	private final JLabel label_16 = new JLabel("Registered with Careersource");
-	private final JCheckBox checkBox_4 = new JCheckBox("Yes");
-	private final JCheckBox checkBox_5 = new JCheckBox("No");
 	private final JLabel lblPersonal = new JLabel("Personal");
 	private final JLabel lblSpouse = new JLabel("Spouse");
 	private final JLabel lblLevelOfEducation = new JLabel("Level Of Education:");
-	private final JLabel lblTotal = new JLabel("Total: ");
-	private final JLabel label_19 = new JLabel("Total: ");
+	private final JLabel lblIncTotal = new JLabel("Total");
+	private final JLabel lblTotal = new JLabel("Total");
 	private final JComboBox comboBox = new JComboBox();
 	private final JLabel lblPersonalInformation = new JLabel("Personal Information");
-	private final JLabel lblTelephone_1 = new JLabel("Telephone:");
-	private final JLabel lblFamilyStatus = new JLabel("Family Status: ");
-	private final JComboBox comboBox_1 = new JComboBox();
-	private final JTextField textField_6 = new JTextField();
-	private final JTextField textField_7 = new JTextField();
-	private final JTextField textField_8 = new JTextField();
+	private final JLabel lblTelephone_1 = new JLabel("Telephone*");
+	private final JLabel lblFamilyStatus = new JLabel("Family Status");
+	private final JComboBox FamilyStatusComboBox = new JComboBox();
+	private final JTextField tribeTF = new JTextField();
+	private final JTextField addressTF = new JTextField();
+	private final JTextField cityTF = new JTextField();
 	private final JFormattedTextField zipFTF = new JFormattedTextField();
 	private final JFormattedTextField hLengthFTF = new JFormattedTextField();
 	private final JFormattedTextField phFTF = new JFormattedTextField();
 	private final JLabel lblSpouseInformation = new JLabel("Spouse Information");
-	private final JLabel lblSpouseName = new JLabel("Spouse Name");
-	private final JLabel lblSocialSecurity_1 = new JLabel("Social Security");
-	private final JLabel lblDateOfBirth_1 = new JLabel("Date of Birth");
+	private final JLabel lblSpouseName = new JLabel("Spouse Name*");
+	private final JLabel lblSocialSecurity_1 = new JLabel("Social Security*");
+	private final JLabel lblDateOfBirth_1 = new JLabel("Date of Birth*");
 	private final JLabel label = new JLabel("Race:");
 	private final JRadioButton radioButton_12 = new JRadioButton("Native American");
 	private final JRadioButton radioButton_13 = new JRadioButton("Asian");
@@ -190,12 +187,12 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JRadioButton radioButton_16 = new JRadioButton("Hispanic");
 	private final JRadioButton radioButton_17 = new JRadioButton("Multi-Racial");
 	private final JTextField textField_9 = new JTextField();
-	private final JLabel label_20 = new JLabel("Address: ");
-	private final JLabel label_21 = new JLabel("City: ");
+	private final JLabel lblAddress_1 = new JLabel("Address*");
+	private final JLabel lblCity_1 = new JLabel("City*");
 	private final JTextField textField_10 = new JTextField();
 	private final JLabel label_22 = new JLabel("Occupancy Length:");
 	private final JFormattedTextField hLengthSpouseFTF = new JFormattedTextField();
-	private final JLabel label_23 = new JLabel("Telephone:");
+	private final JLabel lblTelephone_2 = new JLabel("Telephone*");
 	private final JFormattedTextField phSpouseFTF = new JFormattedTextField();
 	private final JTextField textField_11 = new JTextField();
 	private final JFormattedTextField dobSpouseFTF = new JFormattedTextField();
@@ -203,6 +200,14 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JLabel lblYears_1 = new JLabel("years");
 	private final JLabel label_24 = new JLabel("years");
 	private final JFormattedTextField middleInitialFTF = new JFormattedTextField();
+	private final JLabel lblTab3ApplicantName = new JLabel("Applicant: ");
+	private final JLabel lblTab1ApplicantName = new JLabel("Applicant: ");
+	private final JLabel lblTab2ApplicantName = new JLabel("Applicant: ");
+	private final JLabel lblAll = new JLabel("* = All required Feilds");
+	private final JLabel lblIncCalcTotal = new JLabel("");
+	private final JLabel lblNetTotal = new JLabel("Net Total");
+	private final JLabel lblnettotcalc = new JLabel("0");
+	private final JLabel lblExpCalcTotal = new JLabel("0");
 	
 	
 	//Define the SSN Mask
@@ -243,15 +248,41 @@ public class GisolfiSABTSAFrame extends JFrame {
 	
 	//Income and Expense Masks
 	
-	//income
+	//Income
 	
-	MaskFormatter snapFoodStampsMask = createFormatter("###,###");
-	MaskFormatter ssDisabilityMask = createFormatter("###,###");
-	MaskFormatter wagesMask = createFormatter("###,###");
-	MaskFormatter tanfTeaMask = createFormatter("###,###");
-	MaskFormatter unemploymentMask= createFormatter("###,###");
-	MaskFormatter childSupMask = createFormatter("###,###");
-	MaskFormatter otherIncMask = createFormatter("###,###");
+	MaskFormatter snapFoodStampsMask = createFormatter("######");
+	MaskFormatter ssDisabilityMask = createFormatter("######");
+	MaskFormatter wagesMask = createFormatter("######");
+	MaskFormatter tanfTeaMask = createFormatter("######");
+	MaskFormatter unemploymentMask= createFormatter("######");
+	MaskFormatter childSupMask = createFormatter("######");
+	MaskFormatter otherIncMask = createFormatter("######");
+	
+	//Expenses
+	MaskFormatter rentMask = createFormatter("######");
+	MaskFormatter utilitiesMask = createFormatter("######");
+	MaskFormatter telCostMask = createFormatter("######");
+	MaskFormatter foodMask = createFormatter("######");
+	MaskFormatter carPayMask = createFormatter("######");
+	MaskFormatter childSupExMask = createFormatter("######");
+	MaskFormatter otherExMask = createFormatter("######");
+	private final JRadioButton rdbtnEmployedYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnEmployedNo = new JRadioButton("No");
+	private final JRadioButton rdbtnCSYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnCSNo = new JRadioButton("No");
+	private final JRadioButton rdbtnSpouseEmployedYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnSpouseEmployedNo = new JRadioButton("No");
+	private final JRadioButton rdbtnSpouseCSYes = new JRadioButton("Yes");
+	private final JRadioButton rdbtnSpouseCSNo = new JRadioButton("No");
+	private final ButtonGroup employedBG = new ButtonGroup();
+	private final ButtonGroup CarreerSourceBG = new ButtonGroup();
+	private final ButtonGroup spouseEmployedBG = new ButtonGroup();
+	private final ButtonGroup SpouseCarreerSourceBG = new ButtonGroup();
+	private final ButtonGroup spouseRaceBG = new ButtonGroup();
+	private final ButtonGroup D1raceBG = new ButtonGroup();
+	private final ButtonGroup D2raceBG = new ButtonGroup();
+	private final ButtonGroup D3raceBG = new ButtonGroup();
+
 	
 	
 	/**
@@ -287,32 +318,38 @@ public class GisolfiSABTSAFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GisolfiSABTSAFrame() {
-		textField_11.setBounds(144, 467, 130, 26);
+		textField_11.setBounds(144, 501, 130, 26);
 		textField_11.setColumns(10);
-		textField_8.setBounds(144, 260, 130, 26);
-		textField_8.setColumns(10);
-		textField_7.setBounds(144, 232, 130, 26);
-		textField_7.setColumns(10);
-		textField_6.setBounds(144, 204, 130, 26);
-		textField_6.setColumns(10);
-		textField_4.setBounds(237, 87, 130, 26);
+		cityTF.setBounds(144, 294, 130, 26);
+		cityTF.setColumns(10);
+		addressTF.setBounds(144, 266, 130, 26);
+		addressTF.setColumns(10);
+		tribeTF.setBounds(144, 238, 130, 26);
+		tribeTF.setColumns(10);
+		textField_4.setBounds(226, 87, 130, 26);
 		textField_4.setColumns(10);
-		D1relationshipTF.setBounds(125, 129, 130, 26);
+		D1relationshipTF.setBounds(125, 140, 130, 26);
 		D1relationshipTF.setColumns(10);
-		D1NameTF.setBounds(125, 45, 130, 26);
+		D1NameTF.setBounds(125, 56, 130, 26);
 		D1NameTF.setColumns(10);
-		maidennameTF.setBounds(144, 120, 130, 26);
+		maidennameTF.setBounds(144, 154, 130, 26);
 		maidennameTF.setColumns(10);
-		firstNameTF.setBounds(144, 92, 130, 26);
+		firstNameTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				do_firstNameTF_focusLost(arg0);
+			}
+		});
+		firstNameTF.setBounds(144, 126, 130, 26);
 		firstNameTF.setColumns(10);
-		lastNameTF.setBounds(144, 36, 130, 26);
+		lastNameTF.setBounds(144, 70, 130, 26);
 		lastNameTF.setColumns(10);
 		jbInit();
 	}
 	private void jbInit() {
 		setTitle("Salvation Army Back-to-School Form");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 900);
+		setBounds(100, 100, 500, 864);
 		
 		setJMenuBar(FormMenuBar);
 		
@@ -356,13 +393,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 		dobSpouseMask.install(dobSpouseFTF);
 		
 		D1DOBMask.setPlaceholderCharacter('0');
-		D1DOBMask.install(D1DOBFTF);
 		
 		D2DOBMask.setPlaceholderCharacter('0');
-		D2DOBMask.install(D2DOBFTF);
 		
 		D3DOBMask.setPlaceholderCharacter('0');
-		D3DOBMask.install(D3DOBFTF);
 		
 		//Associate the occupancy length masks
 		hLengthMask.setPlaceholderCharacter('0');
@@ -372,10 +406,8 @@ public class GisolfiSABTSAFrame extends JFrame {
 		hLengthSpouseMask.install(hLengthSpouseFTF);
 		
 		lenofOccMask.setPlaceholderCharacter('0');
-		lenofOccMask.install(lenofOccFTF);
 		
 		lenofOccSpouseMask.setPlaceholderCharacter('0');
-		lenofOccSpouseMask.install(lenofOccSpouseFTF);
 		
 		//Associate the Zip masks
 		zipMask.setPlaceholderCharacter('0');
@@ -387,68 +419,72 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		//Associate the Year of school masks
 		D1YOSMask.setPlaceholderCharacter('0');
-		D1YOSMask.install(D1YOSFTF);
 		
 		D2YOSMask.setPlaceholderCharacter('0');
-		D2YOSMask.install(D2YOSFTF);
 		
 		D3YOSMask.setPlaceholderCharacter('0');
-		D3YOSMask.install(D2YOSFTF);
 		
 		//Associate Income and expense masks
 		//income
 		snapFoodStampsMask.setPlaceholderCharacter('0');
-		snapFoodStampsMask.install(snapFoodStampsFTF);
 		
 		ssDisabilityMask.setPlaceholderCharacter('0');
-		ssDisabilityMask.install(ssDisabilityFTF);
 		
 		wagesMask.setPlaceholderCharacter('0');
-		wagesMask.install(wagesFTF);
 		
 		tanfTeaMask.setPlaceholderCharacter('0');
-		tanfTeaMask.install(tanfTeaFTF);
 		
 		unemploymentMask.setPlaceholderCharacter('0');
-		unemploymentMask.install(unemploymentFTF);
 		
 		childSupMask.setPlaceholderCharacter('0');
-		childSupMask.install(childSupFTF);
 		
 		otherIncMask.setPlaceholderCharacter('0');
-		otherIncMask.install(otherIncFTF);
 		
 		//Expenses
-//		rentMask.setPlaceholderCharacter('0');
-//		rentMask.install(rentFTF);
-//		
-//		utilitiesMask.setPlaceholderCharacter('0');
-//		utilitiesMask.install(utilitiesFTF);
-//		
-//		wagesMask.setPlaceholderCharacter('0');
-//		wagesMask.install(wagesFTF);
-//		
-//		tanfTeaMask.setPlaceholderCharacter('0');
-//		tanfTeaMask.install(tanfTeaFTF);
-//		
-//		unemploymentMask.setPlaceholderCharacter('0');
-//		unemploymentMask.install(unemploymentFTF);
-//		
-//		childSupMask.setPlaceholderCharacter('0');
-//		childSupMask.install(childSupFTF);
-//		
-//		otherIncMask.setPlaceholderCharacter('0');
-//		otherIncMask.install(otherIncFTF);
+		rentMask.setPlaceholderCharacter('0');
+		
+		utilitiesMask.setPlaceholderCharacter('0');
+		
+		telCostMask.setPlaceholderCharacter('0');
+		
+		foodMask.setPlaceholderCharacter('0');
+		
+		carPayMask.setPlaceholderCharacter('0');
+		
+		childSupExMask.setPlaceholderCharacter('0');
+		
+		otherExMask.setPlaceholderCharacter('0');
 		
 		
+		lblIncCalcTotal.setText("0");
+		//Populate totals
+//		updateIncomeTotal(0);
+//		updateExpensesTotal(0);
+//		updateNetTotal(0);
+	
 		
 		mnFile.add(mntmExit);
 		
 		FormMenuBar.add(mnHelp);
+		mntmApplicantInformationHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmApplicantInformationHelp_actionPerformed(e);
+			}
+		});
 		
 		mnHelp.add(mntmApplicantInformationHelp);
+		mntmChildInformationHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmChildInformationHelp_actionPerformed(e);
+			}
+		});
 		
 		mnHelp.add(mntmChildInformationHelp);
+		mntmFinancialInformationHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmFinancialInformationHelp_actionPerformed(e);
+			}
+		});
 		
 		mnHelp.add(mntmFinancialInformationHelp);
 		contentPane = new JPanel();
@@ -458,43 +494,49 @@ public class GisolfiSABTSAFrame extends JFrame {
 		armyFormTP.setBounds(6, 6, 488, 798);
 		
 		contentPane.add(armyFormTP);
+		applicantInfoPanel.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_applicantInfoPanel_focusLost(e);
+			}
+		});
 		
 		armyFormTP.addTab("Applicant Information", null, applicantInfoPanel, null);
 		applicantInfoPanel.setLayout(null);
-		lblLastName.setBounds(6, 36, 90, 16);
+		lblLastName.setBounds(6, 70, 90, 16);
 		
 		applicantInfoPanel.add(lblLastName);
-		lblMiddleInitial.setBounds(6, 64, 90, 16);
+		lblMiddleInitial.setBounds(6, 98, 90, 16);
 		
 		applicantInfoPanel.add(lblMiddleInitial);
-		lblFirstName.setBounds(6, 92, 90, 16);
+		lblFirstName.setBounds(6, 126, 90, 16);
 		
 		applicantInfoPanel.add(lblFirstName);
-		lblMaidenName.setBounds(6, 120, 107, 16);
+		lblMaidenName.setBounds(6, 154, 107, 16);
 		
 		applicantInfoPanel.add(lblMaidenName);
-		lblSocialSecurity.setBounds(6, 148, 107, 16);
+		lblSocialSecurity.setBounds(6, 182, 107, 16);
 		
 		applicantInfoPanel.add(lblSocialSecurity);
-		lblDOB.setBounds(6, 176, 90, 16);
+		lblDOB.setBounds(6, 210, 90, 16);
 		
 		applicantInfoPanel.add(lblDOB);
-		lblRace.setBounds(320, 36, 61, 16);
+		lblRace.setBounds(320, 70, 61, 16);
 		
 		applicantInfoPanel.add(lblRace);
-		lblTribe.setBounds(6, 204, 61, 16);
+		lblTribe.setBounds(6, 238, 61, 16);
 		
 		applicantInfoPanel.add(lblTribe);
-		lblAddress.setBounds(6, 232, 61, 16);
+		lblAddress.setBounds(6, 266, 61, 16);
 		
 		applicantInfoPanel.add(lblAddress);
-		lblCity.setBounds(6, 260, 61, 16);
+		lblCity.setBounds(6, 294, 61, 16);
 		
 		applicantInfoPanel.add(lblCity);
-		lblZip.setBounds(6, 288, 61, 16);
+		lblZip.setBounds(6, 322, 61, 16);
 		
 		applicantInfoPanel.add(lblZip);
-		lblLengthOfOccupancy_1.setBounds(6, 316, 153, 16);
+		lblLengthOfOccupancy_1.setBounds(6, 350, 153, 16);
 		
 		applicantInfoPanel.add(lblLengthOfOccupancy_1);
 		
@@ -503,380 +545,519 @@ public class GisolfiSABTSAFrame extends JFrame {
 		applicantInfoPanel.add(firstNameTF);
 		
 		applicantInfoPanel.add(maidennameTF);
-		SSNFTF.setBounds(146, 148, 42, 26);
+		SSNFTF.setBounds(144, 182, 42, 26);
 		
 		applicantInfoPanel.add(SSNFTF);
-		dobFTF.setBounds(144, 176, 72, 26);
+		dobFTF.setBounds(144, 210, 72, 26);
 		
 		applicantInfoPanel.add(dobFTF);
-		buttonGroup.add(rdbtnNativeAmerican);
-		rdbtnNativeAmerican.setBounds(320, 64, 141, 23);
+		raceBG.add(rdbtnNativeAmerican);
+		rdbtnNativeAmerican.setBounds(320, 98, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnNativeAmerican);
-		buttonGroup.add(rdbtnAsian);
-		rdbtnAsian.setBounds(320, 99, 141, 23);
+		raceBG.add(rdbtnAsian);
+		rdbtnAsian.setBounds(320, 133, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnAsian);
-		buttonGroup.add(rdbtnAfricanAmerican);
-		rdbtnAfricanAmerican.setBounds(320, 130, 141, 23);
+		raceBG.add(rdbtnAfricanAmerican);
+		rdbtnAfricanAmerican.setBounds(320, 164, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnAfricanAmerican);
-		buttonGroup.add(rdbtnCaucasian);
-		rdbtnCaucasian.setBounds(320, 165, 141, 23);
+		raceBG.add(rdbtnCaucasian);
+		rdbtnCaucasian.setBounds(320, 199, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnCaucasian);
-		buttonGroup.add(rdbtnHispanic);
-		rdbtnHispanic.setBounds(320, 200, 141, 23);
+		raceBG.add(rdbtnHispanic);
+		rdbtnHispanic.setBounds(320, 234, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnHispanic);
-		buttonGroup.add(rdbtnMultiracial);
-		rdbtnMultiracial.setBounds(320, 235, 141, 23);
+		raceBG.add(rdbtnMultiracial);
+		rdbtnMultiracial.setBounds(320, 269, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnMultiracial);
-		lblPersonalInformation.setBounds(157, 6, 153, 16);
+		lblPersonalInformation.setBounds(122, 6, 153, 16);
 		
 		applicantInfoPanel.add(lblPersonalInformation);
-		lblTelephone_1.setBounds(6, 344, 117, 16);
+		lblTelephone_1.setBounds(6, 378, 117, 16);
 		
 		applicantInfoPanel.add(lblTelephone_1);
-		lblFamilyStatus.setBounds(6, 376, 107, 16);
+		lblFamilyStatus.setBounds(6, 410, 107, 16);
 		
 		applicantInfoPanel.add(lblFamilyStatus);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"…", "Married", "Single", "Divorced", "Seperated", "Widowed"}));
-		comboBox_1.setBounds(144, 372, 107, 27);
+		FamilyStatusComboBox.setModel(new DefaultComboBoxModel(new String[] {"...", "Married", "Single", "Divorced", "Seperated", "Widowed"}));
+		FamilyStatusComboBox.setBounds(144, 406, 107, 27);
 		
-		applicantInfoPanel.add(comboBox_1);
+		applicantInfoPanel.add(FamilyStatusComboBox);
 		
-		applicantInfoPanel.add(textField_6);
+		applicantInfoPanel.add(tribeTF);
 		
-		applicantInfoPanel.add(textField_7);
+		applicantInfoPanel.add(addressTF);
 		
-		applicantInfoPanel.add(textField_8);
-		zipFTF.setBounds(146, 288, 50, 26);
+		applicantInfoPanel.add(cityTF);
+		zipFTF.setBounds(144, 322, 50, 26);
 		
 		applicantInfoPanel.add(zipFTF);
-		hLengthFTF.setBounds(146, 316, 42, 26);
+		hLengthFTF.setBounds(144, 350, 42, 26);
 		
 		applicantInfoPanel.add(hLengthFTF);
-		phFTF.setBounds(146, 344, 107, 26);
+		phFTF.setBounds(144, 377, 107, 26);
 		
 		applicantInfoPanel.add(phFTF);
-		lblSpouseInformation.setBounds(157, 431, 130, 16);
+		lblSpouseInformation.setBounds(157, 465, 130, 16);
 		
 		applicantInfoPanel.add(lblSpouseInformation);
-		lblSpouseName.setBounds(6, 472, 85, 16);
+		lblSpouseName.setBounds(6, 506, 107, 16);
 		
 		applicantInfoPanel.add(lblSpouseName);
-		lblSocialSecurity_1.setBounds(6, 500, 107, 16);
+		lblSocialSecurity_1.setBounds(6, 534, 107, 16);
 		
 		applicantInfoPanel.add(lblSocialSecurity_1);
-		lblDateOfBirth_1.setBounds(6, 528, 90, 16);
+		lblDateOfBirth_1.setBounds(6, 562, 90, 16);
 		
 		applicantInfoPanel.add(lblDateOfBirth_1);
-		label.setBounds(320, 472, 61, 16);
+		label.setBounds(320, 506, 61, 16);
 		
 		applicantInfoPanel.add(label);
-		radioButton_12.setBounds(320, 500, 141, 23);
+		spouseRaceBG.add(radioButton_12);
+		radioButton_12.setBounds(320, 534, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_12);
-		radioButton_13.setBounds(320, 535, 141, 23);
+		spouseRaceBG.add(radioButton_13);
+		radioButton_13.setBounds(320, 569, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_13);
-		radioButton_14.setBounds(320, 566, 141, 23);
+		spouseRaceBG.add(radioButton_14);
+		radioButton_14.setBounds(320, 600, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_14);
-		radioButton_15.setBounds(320, 601, 141, 23);
+		spouseRaceBG.add(radioButton_15);
+		radioButton_15.setBounds(320, 635, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_15);
-		radioButton_16.setBounds(320, 636, 141, 23);
+		spouseRaceBG.add(radioButton_16);
+		radioButton_16.setBounds(320, 670, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_16);
-		radioButton_17.setBounds(320, 671, 141, 23);
+		spouseRaceBG.add(radioButton_17);
+		radioButton_17.setBounds(320, 705, 141, 23);
 		
 		applicantInfoPanel.add(radioButton_17);
 		textField_9.setColumns(10);
-		textField_9.setBounds(144, 551, 130, 26);
+		textField_9.setBounds(144, 585, 130, 26);
 		
 		applicantInfoPanel.add(textField_9);
-		label_20.setBounds(6, 556, 61, 16);
+		lblAddress_1.setBounds(6, 590, 61, 16);
 		
-		applicantInfoPanel.add(label_20);
-		label_21.setBounds(6, 584, 61, 16);
+		applicantInfoPanel.add(lblAddress_1);
+		lblCity_1.setBounds(6, 618, 61, 16);
 		
-		applicantInfoPanel.add(label_21);
+		applicantInfoPanel.add(lblCity_1);
 		textField_10.setColumns(10);
-		textField_10.setBounds(144, 579, 130, 26);
+		textField_10.setBounds(144, 613, 130, 26);
 		
 		applicantInfoPanel.add(textField_10);
-		label_22.setBounds(6, 612, 153, 16);
+		label_22.setBounds(6, 646, 153, 16);
 		
 		applicantInfoPanel.add(label_22);
-		hLengthSpouseFTF.setBounds(144, 607, 42, 26);
+		hLengthSpouseFTF.setBounds(144, 641, 42, 26);
 		
 		applicantInfoPanel.add(hLengthSpouseFTF);
-		label_23.setBounds(6, 640, 117, 16);
+		lblTelephone_2.setBounds(6, 674, 117, 16);
 		
-		applicantInfoPanel.add(label_23);
-		phSpouseFTF.setBounds(144, 635, 107, 26);
+		applicantInfoPanel.add(lblTelephone_2);
+		phSpouseFTF.setBounds(144, 669, 107, 26);
 		
 		applicantInfoPanel.add(phSpouseFTF);
 		
 		applicantInfoPanel.add(textField_11);
-		dobSpouseFTF.setBounds(144, 523, 72, 26);
+		dobSpouseFTF.setBounds(144, 557, 72, 26);
 		
 		applicantInfoPanel.add(dobSpouseFTF);
-		spouseSSNFTF.setBounds(144, 495, 42, 26);
+		spouseSSNFTF.setBounds(144, 529, 42, 26);
 		
 		applicantInfoPanel.add(spouseSSNFTF);
-		lblYears_1.setBounds(190, 321, 61, 16);
+		lblYears_1.setBounds(190, 355, 61, 16);
 		
 		applicantInfoPanel.add(lblYears_1);
-		label_24.setBounds(190, 612, 61, 16);
+		label_24.setBounds(190, 646, 61, 16);
 		
 		applicantInfoPanel.add(label_24);
-		middleInitialFTF.setBounds(144, 63, 18, 26);
+		middleInitialFTF.setBounds(144, 97, 18, 26);
 		
 		applicantInfoPanel.add(middleInitialFTF);
+		lblTab1ApplicantName.setBounds(286, 7, 181, 14);
+		
+		applicantInfoPanel.add(lblTab1ApplicantName);
+		lblAll.setBounds(6, 42, 147, 16);
+		
+		applicantInfoPanel.add(lblAll);
+		D1DOBMask.install(D1DOBFTF);
+		D2DOBMask.install(D2DOBFTF);
+		D3DOBMask.install(D3DOBFTF);
+		D1YOSMask.install(D1YOSFTF);
+		D2YOSMask.install(D2YOSFTF);
+		D3YOSMask.install(D2YOSFTF);
 		
 		armyFormTP.addTab("Child Information", null, childInfoPanel, null);
 		childInfoPanel.setLayout(null);
-		lblDependent.setBounds(20, 22, 85, 16);
+		lblDependent.setBounds(20, 33, 85, 16);
 		
 		childInfoPanel.add(lblDependent);
-		lblName.setBounds(20, 50, 61, 16);
+		lblName.setBounds(20, 61, 61, 16);
 		
 		childInfoPanel.add(lblName);
-		lblYearOfSchool.setBounds(20, 78, 98, 16);
+		lblYearOfSchool.setBounds(20, 89, 98, 16);
 		
 		childInfoPanel.add(lblYearOfSchool);
-		lblDateOfBirth.setBounds(20, 106, 98, 16);
+		lblDateOfBirth.setBounds(20, 117, 98, 16);
 		
 		childInfoPanel.add(lblDateOfBirth);
-		lblRelationship.setBounds(20, 134, 98, 16);
+		lblRelationship.setBounds(20, 145, 98, 16);
 		
 		childInfoPanel.add(lblRelationship);
 		
 		childInfoPanel.add(D1NameTF);
 		
 		childInfoPanel.add(D1relationshipTF);
-		D1YOSFTF.setBounds(125, 73, 28, 26);
+		D1YOSFTF.setBounds(125, 84, 28, 26);
 		
 		childInfoPanel.add(D1YOSFTF);
-		D1DOBFTF.setBounds(125, 101, 76, 26);
+		D1DOBFTF.setBounds(125, 112, 76, 26);
 		
 		childInfoPanel.add(D1DOBFTF);
-		rdbtnNativeAmerican_1.setBounds(267, 46, 141, 23);
+		D1raceBG.add(rdbtnNativeAmerican_1);
+		rdbtnNativeAmerican_1.setBounds(267, 57, 141, 23);
 		
 		childInfoPanel.add(rdbtnNativeAmerican_1);
-		rdbtnAsian_1.setBounds(267, 74, 141, 23);
+		D1raceBG.add(rdbtnAsian_1);
+		rdbtnAsian_1.setBounds(267, 85, 141, 23);
 		
 		childInfoPanel.add(rdbtnAsian_1);
-		rdbtnAfricanAmerican_1.setBounds(267, 102, 141, 23);
+		D1raceBG.add(rdbtnAfricanAmerican_1);
+		rdbtnAfricanAmerican_1.setBounds(267, 113, 141, 23);
 		
 		childInfoPanel.add(rdbtnAfricanAmerican_1);
-		rdbtnCaucasian_1.setBounds(267, 130, 141, 23);
+		D1raceBG.add(rdbtnCaucasian_1);
+		rdbtnCaucasian_1.setBounds(267, 141, 141, 23);
 		
 		childInfoPanel.add(rdbtnCaucasian_1);
-		rdbtnHispanic_1.setBounds(267, 156, 141, 23);
+		D1raceBG.add(rdbtnHispanic_1);
+		rdbtnHispanic_1.setBounds(267, 167, 141, 23);
 		
 		childInfoPanel.add(rdbtnHispanic_1);
-		rdbtnMultiracial_1.setBounds(267, 183, 141, 23);
+		D1raceBG.add(rdbtnMultiracial_1);
+		rdbtnMultiracial_1.setBounds(267, 194, 141, 23);
 		
 		childInfoPanel.add(rdbtnMultiracial_1);
-		lblRace_1.setBounds(272, 22, 61, 16);
+		lblRaceD1.setBounds(272, 33, 61, 16);
 		
-		childInfoPanel.add(lblRace_1);
-		lblD2.setBounds(20, 218, 85, 16);
+		childInfoPanel.add(lblRaceD1);
+		lblD2.setBounds(20, 268, 85, 16);
 		
 		childInfoPanel.add(lblD2);
-		label_2.setBounds(20, 246, 61, 16);
+		label_2.setBounds(20, 296, 61, 16);
 		
 		childInfoPanel.add(label_2);
-		label_3.setBounds(20, 274, 98, 16);
+		label_3.setBounds(20, 324, 98, 16);
 		
 		childInfoPanel.add(label_3);
-		label_4.setBounds(20, 302, 98, 16);
+		label_4.setBounds(20, 352, 98, 16);
 		
 		childInfoPanel.add(label_4);
-		label_5.setBounds(20, 330, 98, 16);
+		label_5.setBounds(20, 380, 98, 16);
 		
 		childInfoPanel.add(label_5);
 		textField.setColumns(10);
-		textField.setBounds(125, 241, 130, 26);
+		textField.setBounds(125, 291, 130, 26);
 		
 		childInfoPanel.add(textField);
 		textField_1.setColumns(10);
-		textField_1.setBounds(125, 325, 130, 26);
+		textField_1.setBounds(125, 375, 130, 26);
 		
 		childInfoPanel.add(textField_1);
-		D2YOSFTF.setBounds(125, 269, 28, 26);
+		D2YOSFTF.setBounds(125, 319, 28, 26);
 		
 		childInfoPanel.add(D2YOSFTF);
-		D2DOBFTF.setBounds(125, 297, 76, 26);
+		D2DOBFTF.setBounds(125, 347, 76, 26);
 		
 		childInfoPanel.add(D2DOBFTF);
-		radioButton.setBounds(267, 242, 141, 23);
+		D2raceBG.add(radioButton);
+		radioButton.setBounds(267, 292, 141, 23);
 		
 		childInfoPanel.add(radioButton);
-		radioButton_1.setBounds(267, 270, 141, 23);
+		D2raceBG.add(radioButton_1);
+		radioButton_1.setBounds(267, 320, 141, 23);
 		
 		childInfoPanel.add(radioButton_1);
-		radioButton_2.setBounds(267, 298, 141, 23);
+		D2raceBG.add(radioButton_2);
+		radioButton_2.setBounds(267, 348, 141, 23);
 		
 		childInfoPanel.add(radioButton_2);
-		radioButton_3.setBounds(267, 326, 141, 23);
+		D2raceBG.add(radioButton_3);
+		radioButton_3.setBounds(267, 376, 141, 23);
 		
 		childInfoPanel.add(radioButton_3);
-		radioButton_4.setBounds(267, 352, 141, 23);
+		D2raceBG.add(radioButton_4);
+		radioButton_4.setBounds(267, 402, 141, 23);
 		
 		childInfoPanel.add(radioButton_4);
-		radioButton_5.setBounds(267, 379, 141, 23);
+		D2raceBG.add(radioButton_5);
+		radioButton_5.setBounds(267, 429, 141, 23);
 		
 		childInfoPanel.add(radioButton_5);
-		label_6.setBounds(272, 218, 61, 16);
+		label_6.setBounds(272, 268, 61, 16);
 		
 		childInfoPanel.add(label_6);
-		lblDependent_1.setBounds(20, 414, 85, 16);
+		lblDependent_1.setBounds(20, 507, 85, 16);
 		
 		childInfoPanel.add(lblDependent_1);
-		label_8.setBounds(20, 442, 61, 16);
+		label_8.setBounds(20, 535, 61, 16);
 		
 		childInfoPanel.add(label_8);
-		label_9.setBounds(20, 470, 98, 16);
+		label_9.setBounds(20, 563, 98, 16);
 		
 		childInfoPanel.add(label_9);
-		label_10.setBounds(20, 498, 98, 16);
+		label_10.setBounds(20, 591, 98, 16);
 		
 		childInfoPanel.add(label_10);
-		label_11.setBounds(20, 526, 98, 16);
+		label_11.setBounds(20, 619, 98, 16);
 		
 		childInfoPanel.add(label_11);
 		textField_2.setColumns(10);
-		textField_2.setBounds(125, 437, 130, 26);
+		textField_2.setBounds(125, 530, 130, 26);
 		
 		childInfoPanel.add(textField_2);
 		textField_3.setColumns(10);
-		textField_3.setBounds(125, 521, 130, 26);
+		textField_3.setBounds(125, 614, 130, 26);
 		
 		childInfoPanel.add(textField_3);
-		D3YOSFTF.setBounds(125, 465, 28, 26);
+		D3YOSFTF.setBounds(125, 558, 28, 26);
 		
 		childInfoPanel.add(D3YOSFTF);
-		D3DOBFTF.setBounds(125, 493, 76, 26);
+		D3DOBFTF.setBounds(125, 586, 76, 26);
 		
 		childInfoPanel.add(D3DOBFTF);
-		radioButton_6.setBounds(267, 438, 141, 23);
+		D3raceBG.add(radioButton_6);
+		radioButton_6.setBounds(267, 531, 141, 23);
 		
 		childInfoPanel.add(radioButton_6);
-		radioButton_7.setBounds(267, 466, 141, 23);
+		D3raceBG.add(radioButton_7);
+		radioButton_7.setBounds(267, 559, 141, 23);
 		
 		childInfoPanel.add(radioButton_7);
-		radioButton_8.setBounds(267, 494, 141, 23);
+		D3raceBG.add(radioButton_8);
+		radioButton_8.setBounds(267, 587, 141, 23);
 		
 		childInfoPanel.add(radioButton_8);
-		radioButton_9.setBounds(267, 522, 141, 23);
+		D3raceBG.add(radioButton_9);
+		radioButton_9.setBounds(267, 615, 141, 23);
 		
 		childInfoPanel.add(radioButton_9);
-		radioButton_10.setBounds(267, 548, 141, 23);
+		D3raceBG.add(radioButton_10);
+		radioButton_10.setBounds(267, 641, 141, 23);
 		
 		childInfoPanel.add(radioButton_10);
-		radioButton_11.setBounds(267, 575, 141, 23);
+		D3raceBG.add(radioButton_11);
+		radioButton_11.setBounds(267, 668, 141, 23);
 		
 		childInfoPanel.add(radioButton_11);
-		label_12.setBounds(272, 414, 61, 16);
+		label_12.setBounds(272, 507, 61, 16);
 		
 		childInfoPanel.add(label_12);
+		lblTab2ApplicantName.setBounds(291, 11, 182, 14);
+		
+		childInfoPanel.add(lblTab2ApplicantName);
+		lenofOccMask.install(lenofOccFTF);
+		lenofOccSpouseMask.install(lenofOccSpouseFTF);
+		snapFoodStampsMask.install(snapFoodStampsFTF);
+		ssDisabilityMask.install(ssDisabilityFTF);
+		wagesMask.install(wagesFTF);
+		tanfTeaMask.install(tanfTeaFTF);
+		unemploymentMask.install(unemploymentFTF);
+		childSupMask.install(childSupFTF);
+		otherIncMask.install(otherIncFTF);
+		rentMask.install(rentFTF);
+		utilitiesMask.install(utilitiesFTF);
+		telCostMask.install(telCostFTF);
+		foodMask.install(foodFTF);
+		carPayMask.install(carPayFTF);
+		childSupExMask.install(childSupExFTF);
+		otherExMask.install(otherExFTF);
 		
 		armyFormTP.addTab("Financial Information", null, financialInfoPanel, null);
 		financialInfoPanel.setLayout(null);
-		lblIncome.setBounds(6, 496, 61, 16);
+		lblIncome.setBounds(6, 454, 61, 16);
 		
 		financialInfoPanel.add(lblIncome);
-		lblSnapfoodStamps.setBounds(6, 524, 119, 16);
+		lblSnapfoodStamps.setBounds(6, 482, 131, 16);
 		
 		financialInfoPanel.add(lblSnapfoodStamps);
-		lblSsdisability.setBounds(6, 552, 101, 16);
+		lblSsdisability.setBounds(6, 510, 101, 16);
 		
 		financialInfoPanel.add(lblSsdisability);
-		lblWages.setBounds(6, 580, 61, 16);
+		lblWages.setBounds(6, 538, 61, 16);
 		
 		financialInfoPanel.add(lblWages);
-		lblTanfOrTea.setBounds(6, 608, 95, 16);
+		lblTanfOrTea.setBounds(6, 566, 95, 16);
 		
 		financialInfoPanel.add(lblTanfOrTea);
-		lblUnemployment.setBounds(6, 636, 101, 16);
+		lblUnemployment.setBounds(6, 594, 101, 16);
 		
 		financialInfoPanel.add(lblUnemployment);
-		lblChildSupport.setBounds(6, 664, 101, 16);
+		lblChildSupport.setBounds(6, 622, 101, 16);
 		
 		financialInfoPanel.add(lblChildSupport);
-		lblOther.setBounds(6, 692, 61, 16);
+		lblOther.setBounds(6, 650, 61, 16);
 		
 		financialInfoPanel.add(lblOther);
-		snapFoodStampsFTF.setBounds(126, 524, 95, 26);
+		snapFoodStampsFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_snapFoodStampsFTF_focusLost(e);
+			}
+		});
+		snapFoodStampsFTF.setBounds(150, 482, 64, 26);
 		
 		financialInfoPanel.add(snapFoodStampsFTF);
-		ssDisabilityFTF.setBounds(126, 552, 95, 26);
+		ssDisabilityFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_ssDisabilityFTF_focusLost(e);
+			}
+		});
+		ssDisabilityFTF.setBounds(150, 510, 64, 26);
 		
 		financialInfoPanel.add(ssDisabilityFTF);
-		wagesFTF.setBounds(126, 580, 95, 26);
+		wagesFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_wagesFTF_focusLost(e);
+			}
+		});
+		wagesFTF.setBounds(150, 538, 64, 26);
 		
 		financialInfoPanel.add(wagesFTF);
-		tanfTeaFTF.setBounds(126, 608, 95, 26);
+		tanfTeaFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_tanfTeaFTF_focusLost(e);
+			}
+		});
+		tanfTeaFTF.setBounds(150, 566, 64, 26);
 		
 		financialInfoPanel.add(tanfTeaFTF);
-		unemploymentFTF.setBounds(126, 636, 95, 26);
+		unemploymentFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_unemploymentFTF_focusLost(e);
+			}
+		});
+		unemploymentFTF.setBounds(150, 594, 64, 26);
 		
 		financialInfoPanel.add(unemploymentFTF);
-		childSupFTF.setBounds(126, 664, 95, 26);
+		childSupFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_childSupFTF_focusLost(e);
+			}
+		});
+		childSupFTF.setBounds(150, 622, 64, 26);
 		
 		financialInfoPanel.add(childSupFTF);
-		otherIncFTF.setBounds(126, 692, 95, 26);
+		otherIncFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_otherIncFTF_focusLost(e);
+			}
+		});
+		otherIncFTF.setBounds(150, 650, 64, 26);
 		
 		financialInfoPanel.add(otherIncFTF);
-		lblExpenses.setBounds(248, 496, 61, 16);
+		lblExpenses.setBounds(226, 454, 61, 16);
 		
 		financialInfoPanel.add(lblExpenses);
-		lblRent.setBounds(248, 524, 119, 16);
+		lblRent.setBounds(226, 482, 119, 16);
 		
 		financialInfoPanel.add(lblRent);
-		lblUtilities.setBounds(248, 552, 101, 16);
+		lblUtilities.setBounds(226, 510, 101, 16);
 		
 		financialInfoPanel.add(lblUtilities);
-		lblTelephone.setBounds(248, 580, 95, 16);
+		lblTelephone.setBounds(226, 538, 95, 16);
 		
 		financialInfoPanel.add(lblTelephone);
-		lblFood.setBounds(248, 608, 95, 16);
+		lblFood.setBounds(226, 566, 95, 16);
 		
 		financialInfoPanel.add(lblFood);
-		lblCarPayment.setBounds(248, 636, 101, 16);
+		lblCarPayment.setBounds(226, 594, 101, 16);
 		
 		financialInfoPanel.add(lblCarPayment);
-		label_17.setBounds(248, 664, 101, 16);
+		lblChildSupport_1.setBounds(226, 622, 101, 16);
 		
-		financialInfoPanel.add(label_17);
-		label_18.setBounds(248, 692, 61, 16);
+		financialInfoPanel.add(lblChildSupport_1);
+		lblOther_1.setBounds(226, 650, 61, 16);
 		
-		financialInfoPanel.add(label_18);
-		rentFTF.setBounds(366, 524, 95, 26);
+		financialInfoPanel.add(lblOther_1);
+		rentFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_rentFTF_focusLost(e);
+			}
+		});
+		rentFTF.setBounds(344, 482, 64, 26);
 		
 		financialInfoPanel.add(rentFTF);
-		utilitiesFTF.setBounds(366, 552, 95, 26);
+		utilitiesFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_utilitiesFTF_focusLost(e);
+			}
+		});
+		utilitiesFTF.setBounds(344, 510, 64, 26);
 		
 		financialInfoPanel.add(utilitiesFTF);
-		telCostFTF.setBounds(366, 580, 95, 26);
+		telCostFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_telCostFTF_focusLost(e);
+			}
+		});
+		telCostFTF.setBounds(344, 538, 64, 26);
 		
 		financialInfoPanel.add(telCostFTF);
-		foodFTF.setBounds(366, 608, 95, 26);
+		foodFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_foodFTF_focusLost(e);
+			}
+		});
+		foodFTF.setBounds(344, 566, 64, 26);
 		
 		financialInfoPanel.add(foodFTF);
-		carPayFTF.setBounds(366, 636, 95, 26);
+		carPayFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_carPayFTF_focusLost(e);
+			}
+		});
+		carPayFTF.setBounds(344, 594, 64, 26);
 		
 		financialInfoPanel.add(carPayFTF);
-		childSupExFTF.setBounds(366, 664, 95, 26);
+		childSupExFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_childSupExFTF_focusLost(e);
+			}
+		});
+		childSupExFTF.setBounds(344, 622, 64, 26);
 		
 		financialInfoPanel.add(childSupExFTF);
-		otherExFTF.setBounds(366, 692, 95, 26);
+		otherExFTF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				do_otherExFTF_focusLost(e);
+			}
+		});
+		otherExFTF.setBounds(344, 650, 64, 26);
 		
 		financialInfoPanel.add(otherExFTF);
 		lblAreYourEmployed.setBounds(6, 46, 160, 16);
@@ -896,44 +1077,26 @@ public class GisolfiSABTSAFrame extends JFrame {
 		financialInfoPanel.add(lblS);
 		
 		financialInfoPanel.add(textField_4);
-		lenofOccFTF.setBounds(237, 124, 27, 26);
+		lenofOccFTF.setBounds(226, 124, 27, 26);
 		
 		financialInfoPanel.add(lenofOccFTF);
-		lblYears.setBounds(269, 129, 61, 16);
+		lblYears.setBounds(258, 129, 61, 16);
 		
 		financialInfoPanel.add(lblYears);
-		chckbxYes.setBounds(239, 162, 128, 23);
-		
-		financialInfoPanel.add(chckbxYes);
-		chckbxNo.setBounds(239, 181, 128, 23);
-		
-		financialInfoPanel.add(chckbxNo);
-		checkBox.setBounds(237, 39, 128, 23);
-		
-		financialInfoPanel.add(checkBox);
-		checkBox_1.setBounds(237, 58, 128, 23);
-		
-		financialInfoPanel.add(checkBox_1);
 		label_1.setBounds(6, 255, 160, 16);
 		
 		financialInfoPanel.add(label_1);
-		checkBox_2.setBounds(237, 248, 128, 23);
-		
-		financialInfoPanel.add(checkBox_2);
-		checkBox_3.setBounds(237, 267, 128, 23);
-		
-		financialInfoPanel.add(checkBox_3);
 		label_7.setBounds(6, 301, 131, 16);
 		
 		financialInfoPanel.add(label_7);
 		textField_5.setColumns(10);
-		textField_5.setBounds(237, 296, 130, 26);
+		textField_5.setBounds(226, 301, 130, 26);
 		
 		financialInfoPanel.add(textField_5);
-		lenofOccSpouseFTF.setBounds(237, 333, 27, 26);
+		lenofOccSpouseFTF.setBounds(226, 338, 27, 26);
 		
 		financialInfoPanel.add(lenofOccSpouseFTF);
-		label_13.setBounds(269, 338, 61, 16);
+		label_13.setBounds(258, 343, 61, 16);
 		
 		financialInfoPanel.add(label_13);
 		label_14.setBounds(6, 338, 147, 16);
@@ -945,12 +1108,6 @@ public class GisolfiSABTSAFrame extends JFrame {
 		label_16.setBounds(8, 371, 203, 26);
 		
 		financialInfoPanel.add(label_16);
-		checkBox_4.setBounds(239, 371, 128, 23);
-		
-		financialInfoPanel.add(checkBox_4);
-		checkBox_5.setBounds(239, 390, 128, 23);
-		
-		financialInfoPanel.add(checkBox_5);
 		lblPersonal.setBounds(156, 6, 61, 16);
 		
 		financialInfoPanel.add(lblPersonal);
@@ -960,16 +1117,65 @@ public class GisolfiSABTSAFrame extends JFrame {
 		lblLevelOfEducation.setBounds(6, 423, 160, 16);
 		
 		financialInfoPanel.add(lblLevelOfEducation);
-		lblTotal.setBounds(98, 730, 61, 16);
-		
-		financialInfoPanel.add(lblTotal);
-		label_19.setBounds(338, 730, 61, 16);
-		
-		financialInfoPanel.add(label_19);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"No GED/Diploma", "GED", "High School Diploma", "Associates Degree", "Bachelors Degree Post-Gradudate"}));
-		comboBox.setBounds(237, 419, 171, 27);
-		
-		financialInfoPanel.add(comboBox);
+		lblIncTotal.setBounds(97, 688, 40, 16);
+		//		private String sum = 
+		//		
+		//		lblIncTotal.setText("Total: " + sum);
+				financialInfoPanel.add(lblIncTotal);
+				lblTotal.setBounds(306, 688, 40, 16);
+				
+				financialInfoPanel.add(lblTotal);
+				comboBox.setModel(new DefaultComboBoxModel(new String[] {"No GED/Diploma", "GED", "High School Diploma", "Associates Degree", "Bachelors Degree Post-Gradudate"}));
+				comboBox.setBounds(226, 424, 171, 27);
+				
+				financialInfoPanel.add(comboBox);
+				lblTab3ApplicantName.setBounds(288, 7, 185, 14);
+				financialInfoPanel.add(lblTab3ApplicantName);
+				lblIncCalcTotal.setBounds(160, 688, 77, 16);
+				
+				financialInfoPanel.add(lblIncCalcTotal);
+				lblNetTotal.setBounds(72, 716, 61, 16);
+				
+				financialInfoPanel.add(lblNetTotal);
+				lblnettotcalc.setBounds(160, 716, 119, 16);
+				
+				financialInfoPanel.add(lblnettotcalc);
+				lblExpCalcTotal.setBounds(355, 688, 95, 16);
+				
+				financialInfoPanel.add(lblExpCalcTotal);
+				employedBG.add(rdbtnEmployedYes);
+				rdbtnEmployedYes.setBounds(226, 33, 141, 23);
+				
+				financialInfoPanel.add(rdbtnEmployedYes);
+				employedBG.add(rdbtnEmployedNo);
+				rdbtnEmployedNo.setBounds(226, 56, 141, 23);
+				
+				financialInfoPanel.add(rdbtnEmployedNo);
+				CarreerSourceBG.add(rdbtnCSYes);
+				rdbtnCSYes.setBounds(226, 162, 141, 23);
+				
+				financialInfoPanel.add(rdbtnCSYes);
+				CarreerSourceBG.add(rdbtnCSNo);
+				rdbtnCSNo.setBounds(226, 185, 141, 23);
+				
+				financialInfoPanel.add(rdbtnCSNo);
+				spouseEmployedBG.add(rdbtnSpouseEmployedYes);
+				rdbtnSpouseEmployedYes.setBounds(226, 238, 141, 23);
+				
+				financialInfoPanel.add(rdbtnSpouseEmployedYes);
+				spouseEmployedBG.add(rdbtnSpouseEmployedNo);
+				rdbtnSpouseEmployedNo.setBounds(226, 261, 141, 23);
+				
+				financialInfoPanel.add(rdbtnSpouseEmployedNo);
+				SpouseCarreerSourceBG.add(rdbtnSpouseCSYes);
+				rdbtnSpouseCSYes.setBounds(226, 370, 141, 23);
+				
+				financialInfoPanel.add(rdbtnSpouseCSYes);
+				SpouseCarreerSourceBG.add(rdbtnSpouseCSNo);
+				rdbtnSpouseCSNo.setBounds(226, 393, 141, 23);
+				
+				financialInfoPanel.add(rdbtnSpouseCSNo);
+				financialInfoPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{snapFoodStampsFTF, ssDisabilityFTF, wagesFTF, tanfTeaFTF, unemploymentFTF, childSupFTF, otherIncFTF, lblExpenses, lblRent, lblUtilities, lblTelephone, lblFood, lblCarPayment, lblChildSupport_1, lblOther_1, rentFTF, utilitiesFTF, telCostFTF, foodFTF, carPayFTF, childSupExFTF, otherExFTF, lblAreYourEmployed, lblPlaceOfEmployment, lblLengthOfOccupancy, lblIfNotEmployed, lblS, textField_4, lenofOccFTF, lblYears, label_1, label_7, textField_5, lenofOccSpouseFTF, comboBox}));
 	}
 	//Menu Buttons
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
@@ -979,5 +1185,141 @@ public class GisolfiSABTSAFrame extends JFrame {
 		this.dispose();
 		GisolfiSABTSAFrame frame = new GisolfiSABTSAFrame();
 		frame.setVisible(true);
+	}
+
+	protected void do_firstNameTF_focusLost(FocusEvent arg0) {
+		String name = firstNameTF.getText();
+		lblTab1ApplicantName.setText("Applicant: " + name);
+		lblTab2ApplicantName.setText("Applicant: " + name);
+		lblTab3ApplicantName.setText("Applicant: " + name);
+	}
+
+	protected void do_applicantInfoPanel_focusLost(FocusEvent e) {
+//LastName
+//Firstname
+//SS
+//DOB
+//Adress
+//City
+//Telephone
+
+
+
+		if (lastNameTF.getText() == null) {
+			lastNameTF.setForeground(Color.RED);
+			
+			
+		}
+		
+	}
+	//
+	private void updateIncomeTotal(int num) {
+		String oldString = lblIncCalcTotal.getText().trim();
+		int oldVal = Integer.parseInt(oldString);
+		int newTotal = oldVal + num;
+		lblIncCalcTotal.setText(Integer.toString(newTotal));
+		//lblIncCalcTotal.setText(num);
+	}
+	
+	protected void do_wagesFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(wagesFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_ssDisabilityFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(ssDisabilityFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_otherIncFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(otherIncFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_childSupFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(childSupFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_tanfTeaFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(tanfTeaFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_unemploymentFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(unemploymentFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_snapFoodStampsFTF_focusLost(FocusEvent e) {
+		updateIncomeTotal(Integer.parseInt(snapFoodStampsFTF.getText()));
+		updateNetTotal();
+	}
+	
+	//Calculate Expenses
+	private void updateExpensesTotal(int num) {
+		String oldString = lblExpCalcTotal.getText().trim();
+		int oldVal = Integer.parseInt(oldString);
+		int newTotal = oldVal + num;
+		lblExpCalcTotal.setText(Integer.toString(newTotal));
+	}
+	
+	protected void do_rentFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(rentFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_childSupExFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(childSupExFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_telCostFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(telCostFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_otherExFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(otherExFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_utilitiesFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(utilitiesFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_foodFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(foodFTF.getText()));
+		updateNetTotal();
+	}
+	protected void do_carPayFTF_focusLost(FocusEvent e) {
+		updateExpensesTotal(Integer.parseInt(carPayFTF.getText()));
+		updateNetTotal();
+	}
+	
+	
+	
+	
+	private void updateNetTotal() {
+		int Income = Integer.parseInt(lblIncCalcTotal.getText());
+		int Expenses = Integer.parseInt(lblExpCalcTotal.getText());
+		int netTotal = Income - Expenses;
+		if (netTotal < 0) {
+			lblnettotcalc.setForeground(Color.RED);
+		}else {
+			lblnettotcalc.setForeground(Color.BLACK);
+		}
+		lblnettotcalc.setText(Integer.toString(netTotal));
+	}
+	
+	
+	//Help Menus
+	protected void do_mntmApplicantInformationHelp_actionPerformed(ActionEvent e) {
+		ApplicantInformationHelpFrame personalinfoHelpframe = new ApplicantInformationHelpFrame();
+		personalinfoHelpframe.setVisible(true);
+		personalinfoHelpframe.setLocation(this.getX() + 30 , getY() + 30);
+		
+	}
+	protected void do_mntmChildInformationHelp_actionPerformed(ActionEvent e) {
+		ChildInformationHelpFrame childHelpframe = new ChildInformationHelpFrame();
+		childHelpframe.setVisible(true);
+		childHelpframe.setLocation(this.getX() + 30 , getY() + 30);
+	
+	}
+	protected void do_mntmFinancialInformationHelp_actionPerformed(ActionEvent e) {
+		FinancialInformationHelpFrame financialHelpframe = new FinancialInformationHelpFrame();
+		financialHelpframe.setVisible(true);
+		financialHelpframe.setLocation(this.getX() + 30 , getY() + 30);
+	
 	}
 }
