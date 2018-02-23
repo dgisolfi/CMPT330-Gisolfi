@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ApplicantInformationHelpFrame extends JFrame {
 
@@ -16,6 +19,7 @@ public class ApplicantInformationHelpFrame extends JFrame {
 	private final JLabel lblPleaseEnterThe = new JLabel("Please enter the phone number in the format of 845-555-3000");
 	private final JLabel lblPleaseChooseA = new JLabel("Please Choose a Family status if applicable");
 	private final JLabel lblFinallyPleaseFill = new JLabel("Finally please fill out the same information for your spouse");
+	private final JButton btnOkay = new JButton("Okay");
 
 
 	/**
@@ -27,7 +31,7 @@ public class ApplicantInformationHelpFrame extends JFrame {
 	private void jbInit() {
 		setTitle("Applicant Information Help");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 580, 217);
+		setBounds(100, 100, 580, 252);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,6 +57,17 @@ public class ApplicantInformationHelpFrame extends JFrame {
 		lblFinallyPleaseFill.setBounds(6, 174, 401, 16);
 		
 		contentPane.add(lblFinallyPleaseFill);
+		btnOkay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnOkay_actionPerformed(e);
+			}
+		});
+		btnOkay.setBounds(237, 195, 117, 29);
+		
+		contentPane.add(btnOkay);
 	}
 
+	protected void do_btnOkay_actionPerformed(ActionEvent e) {
+		this.dispose();
+	}
 }

@@ -82,12 +82,6 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JTextField D1relationshipTF = new JTextField();
 	private final JFormattedTextField D1YOSFTF = new JFormattedTextField();
 	private final JFormattedTextField D1DOBFTF = new JFormattedTextField();
-	private final JRadioButton rdbtnNativeAmericanD1 = new JRadioButton("Native American");
-	private final JRadioButton rdbtnAsianD1 = new JRadioButton("Asian");
-	private final JRadioButton rdbtnAfricanAmericanD1 = new JRadioButton("African American");
-	private final JRadioButton rdbtnCaucasianD1 = new JRadioButton("Caucasian");
-	private final JRadioButton rdbtnHispanicD1 = new JRadioButton("Hispanic");
-	private final JRadioButton rdbtnMultiracialD1 = new JRadioButton("Multi-Racial");
 	private final JLabel lblRaceD1 = new JLabel("Race");
 	private final JLabel lblD2 = new JLabel("Dependent 2");
 	private final JLabel lblNameD2 = new JLabel("Name");
@@ -98,29 +92,17 @@ public class GisolfiSABTSAFrame extends JFrame {
 	private final JTextField D2relationshipTF = new JTextField();
 	private final JFormattedTextField D2YOSFTF = new JFormattedTextField();
 	private final JFormattedTextField D2DOBFTF = new JFormattedTextField();
-	private final JRadioButton rdbtnNativeAmericanD2 = new JRadioButton("Native American");
-	private final JRadioButton rdbtnAsianD2 = new JRadioButton("Asian");
-	private final JRadioButton rdbtnAfricanAmericanD2 = new JRadioButton("African American");
-	private final JRadioButton rdbtnCaucasianD2 = new JRadioButton("Caucasian");
-	private final JRadioButton rdbtnHispanicD2 = new JRadioButton("Hispanic");
-	private final JRadioButton rdbtnMultiracialD2 = new JRadioButton("Multi-Racial");
-	private final JLabel lblRaced2 = new JLabel("Race");
+	private final JLabel lblRaceD2 = new JLabel("Race");
 	private final JLabel lblDependentD3 = new JLabel("Dependent 3");
 	private final JLabel lblNameD3 = new JLabel("Name");
 	private final JLabel lblYearOfSchoolD3 = new JLabel("Year of School");
 	private final JLabel lblDateOfBirthD3 = new JLabel("Date of Birth");
 	private final JLabel lblRelationshipD3 = new JLabel("Relationship");
-	private final JTextField D3nameTF = new JTextField();
-	private final JTextField D3relationshiTF = new JTextField();
+	private final JTextField D3NameTF = new JTextField();
+	private final JTextField D3relationshipTF = new JTextField();
 	private final JFormattedTextField D3YOSFTF = new JFormattedTextField();
 	private final JFormattedTextField D3DOBFTF = new JFormattedTextField();
-	private final JRadioButton rdbtnNativeAmericanD3 = new JRadioButton("Native American");
-	private final JRadioButton rdbtnAsianD3 = new JRadioButton("Asian");
-	private final JRadioButton rdbtnAfricanAmericanD3 = new JRadioButton("African American");
-	private final JRadioButton rdbtnCaucasianD3 = new JRadioButton("Caucasian");
-	private final JRadioButton rdbtnHispanicD3 = new JRadioButton("Hispanic");
-	private final JRadioButton rdbtnMultiracialD3 = new JRadioButton("Multi-Racial");
-	private final JLabel lblraceD3 = new JLabel("Race:");
+	private final JLabel lblraceD3 = new JLabel("Race");
 	private final JLabel lblIncome = new JLabel("Income");
 	private final JLabel lblSnapfoodStamps = new JLabel("Snap-Food Stamps");
 	private final JLabel lblSsdisability = new JLabel("SS/Disability");
@@ -293,6 +275,23 @@ public class GisolfiSABTSAFrame extends JFrame {
 	MaskFormatter carPayMask = createFormatter("######");
 	MaskFormatter childSupExMask = createFormatter("######");
 	MaskFormatter otherExMask = createFormatter("######");
+	private final JCheckBox chckbxEnableD2 = new JCheckBox("enable");
+	private final JCheckBox chckbxEnableD3 = new JCheckBox("enable");
+	private final JComboBox RaceD2comboBox = new JComboBox();
+	private final JComboBox RaceD3comboBox = new JComboBox();
+	private final JComboBox RaceD1comboBox = new JComboBox();
+	private final JLabel lblDependentD4 = new JLabel("Dependent 4");
+	private final JCheckBox chckbxEnableD4 = new JCheckBox("enable");
+	private final JLabel lblNameD4 = new JLabel("Name");
+	private final JTextField D4NameTF = new JTextField();
+	private final JLabel lblYearOfSchoolD4 = new JLabel("Year of School");
+	private final JFormattedTextField D4YOSFTF = new JFormattedTextField();
+	private final JLabel lblDateOfBirthD4 = new JLabel("Date of Birth");
+	private final JFormattedTextField D4DOBFTF = new JFormattedTextField();
+	private final JLabel lblRelationshipD4 = new JLabel("Relationship");
+	private final JTextField D4relationshipTF = new JTextField();
+	private final JLabel lblraceD4 = new JLabel("Race");
+	private final JComboBox RaceD4comboBox = new JComboBox();
 
 
 	
@@ -331,28 +330,28 @@ public class GisolfiSABTSAFrame extends JFrame {
 	 */
 	public GisolfiSABTSAFrame() {
 		spouseNameTF.setToolTipText("enter your spouse's name");
-		spouseNameTF.setBounds(144, 501, 130, 26);
+		spouseNameTF.setBounds(144, 519, 130, 26);
 		spouseNameTF.setColumns(10);
 		cityTF.setToolTipText("enter your city");
-		cityTF.setBounds(144, 294, 130, 26);
+		cityTF.setBounds(144, 312, 130, 26);
 		cityTF.setColumns(10);
 		addressTF.setToolTipText("enter your address");
-		addressTF.setBounds(144, 266, 130, 26);
+		addressTF.setBounds(144, 284, 130, 26);
 		addressTF.setColumns(10);
 		tribeTF.setToolTipText("enter your tribe");
-		tribeTF.setBounds(144, 238, 130, 26);
+		tribeTF.setBounds(144, 256, 130, 26);
 		tribeTF.setColumns(10);
 		placeofEmplTF.setToolTipText("name the place of employment");
 		placeofEmplTF.setBounds(226, 97, 130, 26);
 		placeofEmplTF.setColumns(10);
 		D1relationshipTF.setToolTipText("enter your relationship to the dependet");
-		D1relationshipTF.setBounds(125, 140, 130, 26);
+		D1relationshipTF.setBounds(119, 140, 130, 26);
 		D1relationshipTF.setColumns(10);
 		D1NameTF.setToolTipText("enter name of child/dependent");
-		D1NameTF.setBounds(125, 56, 130, 26);
+		D1NameTF.setBounds(119, 56, 130, 26);
 		D1NameTF.setColumns(10);
 		maidennameTF.setToolTipText("Enter your maiden name if nessecary");
-		maidennameTF.setBounds(144, 154, 130, 26);
+		maidennameTF.setBounds(144, 172, 130, 26);
 		maidennameTF.setColumns(10);
 		firstNameTF.setToolTipText("Enter your first name");
 		firstNameTF.addFocusListener(new FocusAdapter() {
@@ -361,10 +360,10 @@ public class GisolfiSABTSAFrame extends JFrame {
 				do_firstNameTF_focusLost(arg0);
 			}
 		});
-		firstNameTF.setBounds(144, 126, 130, 26);
+		firstNameTF.setBounds(144, 144, 130, 26);
 		firstNameTF.setColumns(10);
 		lastNameTF.setToolTipText("Enter your last name");
-		lastNameTF.setBounds(144, 70, 130, 26);
+		lastNameTF.setBounds(144, 88, 130, 26);
 		lastNameTF.setColumns(10);
 		jbInit();
 	}
@@ -524,40 +523,40 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		armyFormTP.addTab("Applicant Information", null, applicantInfoPanel, null);
 		applicantInfoPanel.setLayout(null);
-		lblLastName.setBounds(6, 70, 90, 16);
+		lblLastName.setBounds(6, 88, 90, 16);
 		
 		applicantInfoPanel.add(lblLastName);
-		lblMiddleInitial.setBounds(6, 98, 90, 16);
+		lblMiddleInitial.setBounds(6, 116, 90, 16);
 		
 		applicantInfoPanel.add(lblMiddleInitial);
-		lblFirstName.setBounds(6, 126, 90, 16);
+		lblFirstName.setBounds(6, 144, 90, 16);
 		
 		applicantInfoPanel.add(lblFirstName);
-		lblMaidenName.setBounds(6, 154, 107, 16);
+		lblMaidenName.setBounds(6, 172, 107, 16);
 		
 		applicantInfoPanel.add(lblMaidenName);
-		lblSocialSecurity.setBounds(6, 182, 107, 16);
+		lblSocialSecurity.setBounds(6, 200, 107, 16);
 		
 		applicantInfoPanel.add(lblSocialSecurity);
-		lblDOB.setBounds(6, 210, 90, 16);
+		lblDOB.setBounds(6, 228, 90, 16);
 		
 		applicantInfoPanel.add(lblDOB);
-		lblRace.setBounds(320, 70, 61, 16);
+		lblRace.setBounds(320, 88, 61, 16);
 		
 		applicantInfoPanel.add(lblRace);
-		lblTribe.setBounds(6, 238, 61, 16);
+		lblTribe.setBounds(6, 256, 61, 16);
 		
 		applicantInfoPanel.add(lblTribe);
-		lblAddress.setBounds(6, 266, 61, 16);
+		lblAddress.setBounds(6, 284, 61, 16);
 		
 		applicantInfoPanel.add(lblAddress);
-		lblCity.setBounds(6, 294, 61, 16);
+		lblCity.setBounds(6, 312, 61, 16);
 		
 		applicantInfoPanel.add(lblCity);
-		lblZip.setBounds(6, 322, 61, 16);
+		lblZip.setBounds(6, 340, 61, 16);
 		
 		applicantInfoPanel.add(lblZip);
-		lblLengthOfOccupancyPersonal.setBounds(6, 350, 153, 16);
+		lblLengthOfOccupancyPersonal.setBounds(6, 368, 153, 16);
 		
 		applicantInfoPanel.add(lblLengthOfOccupancyPersonal);
 		
@@ -567,7 +566,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		applicantInfoPanel.add(maidennameTF);
 		SSNFTF.setToolTipText("enter the last 4 digits of your social security number");
-		SSNFTF.setBounds(144, 182, 42, 26);
+		SSNFTF.setBounds(144, 200, 42, 26);
 		
 		applicantInfoPanel.add(SSNFTF);
 		dobFTF.addFocusListener(new FocusAdapter() {
@@ -577,46 +576,47 @@ public class GisolfiSABTSAFrame extends JFrame {
 			}
 		});
 		dobFTF.setToolTipText("enter your DOB in format 00/00/00");
-		dobFTF.setBounds(144, 210, 72, 26);
+		dobFTF.setBounds(144, 228, 72, 26);
 		
 		applicantInfoPanel.add(dobFTF);
 		raceBG.add(rdbtnNativeAmerican);
-		rdbtnNativeAmerican.setBounds(320, 98, 141, 23);
+		rdbtnNativeAmerican.setBounds(320, 116, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnNativeAmerican);
 		raceBG.add(rdbtnAsian);
-		rdbtnAsian.setBounds(320, 133, 141, 23);
+		rdbtnAsian.setBounds(320, 151, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnAsian);
 		raceBG.add(rdbtnAfricanAmerican);
-		rdbtnAfricanAmerican.setBounds(320, 164, 141, 23);
+		rdbtnAfricanAmerican.setBounds(320, 182, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnAfricanAmerican);
 		raceBG.add(rdbtnCaucasian);
-		rdbtnCaucasian.setBounds(320, 199, 141, 23);
+		rdbtnCaucasian.setBounds(320, 217, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnCaucasian);
 		raceBG.add(rdbtnHispanic);
-		rdbtnHispanic.setBounds(320, 234, 141, 23);
+		rdbtnHispanic.setBounds(320, 252, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnHispanic);
 		raceBG.add(rdbtnMultiracial);
-		rdbtnMultiracial.setBounds(320, 269, 141, 23);
+		rdbtnMultiracial.setBounds(320, 287, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnMultiracial);
-		lblPersonalInformation.setBounds(122, 6, 153, 16);
+		lblPersonalInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		lblPersonalInformation.setBounds(125, 32, 190, 16);
 		
 		applicantInfoPanel.add(lblPersonalInformation);
-		lblphonenumber.setBounds(6, 378, 117, 16);
+		lblphonenumber.setBounds(6, 396, 117, 16);
 		
 		applicantInfoPanel.add(lblphonenumber);
 		lblFamilyStatus.setToolTipText("");
-		lblFamilyStatus.setBounds(6, 410, 107, 16);
+		lblFamilyStatus.setBounds(6, 428, 107, 16);
 		
 		applicantInfoPanel.add(lblFamilyStatus);
 		FamilyStatusComboBox.setToolTipText("Select a Family status");
 		FamilyStatusComboBox.setModel(new DefaultComboBoxModel(new String[] {"...", "Married", "Single", "Divorced", "Seperated", "Widowed"}));
-		FamilyStatusComboBox.setBounds(144, 406, 107, 27);
+		FamilyStatusComboBox.setBounds(144, 424, 107, 27);
 		
 		applicantInfoPanel.add(FamilyStatusComboBox);
 		
@@ -626,73 +626,73 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		applicantInfoPanel.add(cityTF);
 		zipFTF.setToolTipText("enter your Zip code");
-		zipFTF.setBounds(144, 322, 50, 26);
+		zipFTF.setBounds(144, 340, 50, 26);
 		
 		applicantInfoPanel.add(zipFTF);
 		hLengthFTF.setToolTipText("Enter your length of time in that residence");
-		hLengthFTF.setBounds(144, 350, 42, 26);
+		hLengthFTF.setBounds(144, 368, 42, 26);
 		
 		applicantInfoPanel.add(hLengthFTF);
 		phFTF.setToolTipText("enter your phone number");
-		phFTF.setBounds(144, 377, 107, 26);
+		phFTF.setBounds(144, 395, 107, 26);
 		
 		applicantInfoPanel.add(phFTF);
-		lblSpouseInformation.setBounds(157, 465, 130, 16);
+		lblSpouseInformation.setBounds(157, 483, 130, 16);
 		
 		applicantInfoPanel.add(lblSpouseInformation);
-		lblSpouseName.setBounds(6, 506, 107, 16);
+		lblSpouseName.setBounds(6, 524, 107, 16);
 		
 		applicantInfoPanel.add(lblSpouseName);
-		lblSocialSecuritySpouse.setBounds(6, 534, 107, 16);
+		lblSocialSecuritySpouse.setBounds(6, 552, 107, 16);
 		
 		applicantInfoPanel.add(lblSocialSecuritySpouse);
-		lblDOBSpouse.setBounds(6, 562, 90, 16);
+		lblDOBSpouse.setBounds(6, 580, 90, 16);
 		
 		applicantInfoPanel.add(lblDOBSpouse);
-		label.setBounds(320, 506, 61, 16);
+		label.setBounds(320, 524, 61, 16);
 		
 		applicantInfoPanel.add(label);
 		spouseRaceBG.add(rdbtnSpouseNA);
-		rdbtnSpouseNA.setBounds(320, 534, 141, 23);
+		rdbtnSpouseNA.setBounds(320, 552, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseNA);
 		spouseRaceBG.add(rdbtnSpouseA);
-		rdbtnSpouseA.setBounds(320, 569, 141, 23);
+		rdbtnSpouseA.setBounds(320, 587, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseA);
 		spouseRaceBG.add(rdbtnSpouseAA);
-		rdbtnSpouseAA.setBounds(320, 600, 141, 23);
+		rdbtnSpouseAA.setBounds(320, 618, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseAA);
 		spouseRaceBG.add(rdbtnSpouseC);
-		rdbtnSpouseC.setBounds(320, 635, 141, 23);
+		rdbtnSpouseC.setBounds(320, 653, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseC);
 		spouseRaceBG.add(rdbtnSpouseH);
-		rdbtnSpouseH.setBounds(320, 670, 141, 23);
+		rdbtnSpouseH.setBounds(320, 688, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseH);
 		spouseRaceBG.add(rdbtnSpouseMR);
-		rdbtnSpouseMR.setBounds(320, 705, 141, 23);
+		rdbtnSpouseMR.setBounds(320, 723, 141, 23);
 		
 		applicantInfoPanel.add(rdbtnSpouseMR);
 		spouseAddressTF.setToolTipText("enter your spouse's address");
 		spouseAddressTF.setColumns(10);
-		spouseAddressTF.setBounds(144, 585, 130, 26);
+		spouseAddressTF.setBounds(144, 603, 130, 26);
 		
 		applicantInfoPanel.add(spouseAddressTF);
-		lblSpouseAddress.setBounds(6, 590, 61, 16);
+		lblSpouseAddress.setBounds(6, 608, 61, 16);
 		
 		applicantInfoPanel.add(lblSpouseAddress);
-		lblSpouseCity.setBounds(6, 618, 61, 16);
+		lblSpouseCity.setBounds(6, 636, 61, 16);
 		
 		applicantInfoPanel.add(lblSpouseCity);
 		spouseCityTF.setToolTipText("enter your spouse's city");
 		spouseCityTF.setColumns(10);
-		spouseCityTF.setBounds(144, 613, 130, 26);
+		spouseCityTF.setBounds(144, 631, 130, 26);
 		
 		applicantInfoPanel.add(spouseCityTF);
-		lblSpouseoccupancy.setBounds(6, 646, 153, 16);
+		lblSpouseoccupancy.setBounds(6, 664, 153, 16);
 		
 		applicantInfoPanel.add(lblSpouseoccupancy);
 		hLengthSpouseFTF.setToolTipText("enter your spouse's duration in that residence");
@@ -702,14 +702,14 @@ public class GisolfiSABTSAFrame extends JFrame {
 				do_hLengthSpouseFTF_focusLost(e);
 			}
 		});
-		hLengthSpouseFTF.setBounds(144, 641, 42, 26);
+		hLengthSpouseFTF.setBounds(144, 659, 42, 26);
 		
 		applicantInfoPanel.add(hLengthSpouseFTF);
-		lblTelephoneSpouse.setBounds(6, 674, 117, 16);
+		lblTelephoneSpouse.setBounds(6, 692, 117, 16);
 		
 		applicantInfoPanel.add(lblTelephoneSpouse);
 		phSpouseFTF.setToolTipText("enter your spouse's phone number");
-		phSpouseFTF.setBounds(144, 669, 107, 26);
+		phSpouseFTF.setBounds(144, 687, 107, 26);
 		
 		applicantInfoPanel.add(phSpouseFTF);
 		
@@ -721,31 +721,31 @@ public class GisolfiSABTSAFrame extends JFrame {
 			}
 		});
 		dobSpouseFTF.setToolTipText("enter your spouse's date of birth in format: 00/00/00");
-		dobSpouseFTF.setBounds(144, 557, 72, 26);
+		dobSpouseFTF.setBounds(144, 575, 72, 26);
 		
 		applicantInfoPanel.add(dobSpouseFTF);
 		spouseSSNFTF.setToolTipText("enter your spouse's lasgt 4 digits of ssn");
-		spouseSSNFTF.setBounds(144, 529, 42, 26);
+		spouseSSNFTF.setBounds(144, 547, 42, 26);
 		
 		applicantInfoPanel.add(spouseSSNFTF);
-		lblYears_1.setBounds(190, 355, 61, 16);
+		lblYears_1.setBounds(190, 373, 61, 16);
 		
 		applicantInfoPanel.add(lblYears_1);
-		lblOccupancyLenYears.setBounds(190, 646, 61, 16);
+		lblOccupancyLenYears.setBounds(190, 664, 61, 16);
 		
 		applicantInfoPanel.add(lblOccupancyLenYears);
 		middleInitialFTF.setToolTipText("Enter your middle initial");
-		middleInitialFTF.setBounds(144, 97, 22, 26);
+		middleInitialFTF.setBounds(144, 115, 22, 26);
 		
 		applicantInfoPanel.add(middleInitialFTF);
-		lblTab1ApplicantName.setBounds(286, 7, 181, 14);
+		lblTab1ApplicantName.setBounds(280, 6, 181, 14);
 		
 		applicantInfoPanel.add(lblTab1ApplicantName);
-		lblrequired.setBounds(6, 42, 147, 16);
+		lblrequired.setBounds(6, 60, 147, 16);
 		
 		applicantInfoPanel.add(lblrequired);
 		lblonlyLast.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		lblonlyLast.setBounds(190, 187, 97, 16);
+		lblonlyLast.setBounds(190, 205, 97, 16);
 		
 		applicantInfoPanel.add(lblonlyLast);
 		
@@ -764,19 +764,19 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		armyFormTP.addTab("Child Information", null, childInfoPanel, null);
 		childInfoPanel.setLayout(null);
-		lblDependent1.setBounds(20, 33, 85, 16);
+		lblDependent1.setBounds(14, 33, 85, 16);
 		
 		childInfoPanel.add(lblDependent1);
-		lblName.setBounds(20, 61, 61, 16);
+		lblName.setBounds(14, 61, 61, 16);
 		
 		childInfoPanel.add(lblName);
-		lblYearOfSchool.setBounds(20, 89, 98, 16);
+		lblYearOfSchool.setBounds(14, 89, 98, 16);
 		
 		childInfoPanel.add(lblYearOfSchool);
-		lblDateOfBirthD1.setBounds(20, 117, 98, 16);
+		lblDateOfBirthD1.setBounds(14, 117, 98, 16);
 		
 		childInfoPanel.add(lblDateOfBirthD1);
-		lblRelationship.setBounds(20, 145, 98, 16);
+		lblRelationship.setBounds(14, 145, 98, 16);
 		
 		childInfoPanel.add(lblRelationship);
 		
@@ -784,7 +784,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		
 		childInfoPanel.add(D1relationshipTF);
 		D1YOSFTF.setToolTipText("enter grade in school of child/dependent");
-		D1YOSFTF.setBounds(125, 84, 28, 26);
+		D1YOSFTF.setBounds(119, 84, 28, 26);
 		
 		childInfoPanel.add(D1YOSFTF);
 		D1DOBFTF.addFocusListener(new FocusAdapter() {
@@ -794,65 +794,49 @@ public class GisolfiSABTSAFrame extends JFrame {
 			}
 		});
 		D1DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
-		D1DOBFTF.setBounds(125, 112, 76, 26);
+		D1DOBFTF.setBounds(119, 112, 76, 26);
 		
 		childInfoPanel.add(D1DOBFTF);
-		D1raceBG.add(rdbtnNativeAmericanD1);
-		rdbtnNativeAmericanD1.setBounds(267, 57, 141, 23);
-		
-		childInfoPanel.add(rdbtnNativeAmericanD1);
-		D1raceBG.add(rdbtnAsianD1);
-		rdbtnAsianD1.setBounds(267, 85, 141, 23);
-		
-		childInfoPanel.add(rdbtnAsianD1);
-		D1raceBG.add(rdbtnAfricanAmericanD1);
-		rdbtnAfricanAmericanD1.setBounds(267, 113, 141, 23);
-		
-		childInfoPanel.add(rdbtnAfricanAmericanD1);
-		D1raceBG.add(rdbtnCaucasianD1);
-		rdbtnCaucasianD1.setBounds(267, 141, 141, 23);
-		
-		childInfoPanel.add(rdbtnCaucasianD1);
-		D1raceBG.add(rdbtnHispanicD1);
-		rdbtnHispanicD1.setBounds(267, 167, 141, 23);
-		
-		childInfoPanel.add(rdbtnHispanicD1);
-		D1raceBG.add(rdbtnMultiracialD1);
-		rdbtnMultiracialD1.setBounds(267, 194, 141, 23);
-		
-		childInfoPanel.add(rdbtnMultiracialD1);
-		lblRaceD1.setBounds(272, 33, 61, 16);
+		lblRaceD1.setBounds(14, 173, 61, 16);
 		
 		childInfoPanel.add(lblRaceD1);
-		lblD2.setBounds(20, 268, 85, 16);
+		lblD2.setBounds(14, 212, 85, 16);
 		
 		childInfoPanel.add(lblD2);
-		lblNameD2.setBounds(20, 296, 61, 16);
+		lblNameD2.setEnabled(false);
+		lblNameD2.setBounds(14, 240, 61, 16);
 		
 		childInfoPanel.add(lblNameD2);
-		lblYearOfSchoolD2.setBounds(20, 324, 133, 16);
+		lblYearOfSchoolD2.setEnabled(false);
+		lblYearOfSchoolD2.setBounds(14, 268, 98, 16);
 		
 		childInfoPanel.add(lblYearOfSchoolD2);
-		lblDateOfBirthD2.setBounds(20, 352, 98, 16);
+		lblDateOfBirthD2.setEnabled(false);
+		lblDateOfBirthD2.setBounds(14, 296, 98, 16);
 		
 		childInfoPanel.add(lblDateOfBirthD2);
-		lblRelationshipD2.setBounds(20, 380, 98, 16);
+		lblRelationshipD2.setEnabled(false);
+		lblRelationshipD2.setBounds(14, 324, 98, 16);
 		
 		childInfoPanel.add(lblRelationshipD2);
+		D2NameTF.setEnabled(false);
 		D2NameTF.setToolTipText("enter name of child/dependent");
 		D2NameTF.setColumns(10);
-		D2NameTF.setBounds(125, 291, 130, 26);
+		D2NameTF.setBounds(119, 235, 130, 26);
 		
 		childInfoPanel.add(D2NameTF);
+		D2relationshipTF.setEnabled(false);
 		D2relationshipTF.setToolTipText("enter your relationship to the dependet");
 		D2relationshipTF.setColumns(10);
-		D2relationshipTF.setBounds(125, 375, 130, 26);
+		D2relationshipTF.setBounds(119, 319, 130, 26);
 		
 		childInfoPanel.add(D2relationshipTF);
+		D2YOSFTF.setEnabled(false);
 		D2YOSFTF.setToolTipText("enter grade in school of child/dependent");
-		D2YOSFTF.setBounds(125, 319, 28, 26);
+		D2YOSFTF.setBounds(119, 263, 28, 26);
 		
 		childInfoPanel.add(D2YOSFTF);
+		D2DOBFTF.setEnabled(false);
 		D2DOBFTF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -860,65 +844,50 @@ public class GisolfiSABTSAFrame extends JFrame {
 			}
 		});
 		D2DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
-		D2DOBFTF.setBounds(125, 347, 76, 26);
+		D2DOBFTF.setBounds(119, 291, 76, 26);
 		
 		childInfoPanel.add(D2DOBFTF);
-		D2raceBG.add(rdbtnNativeAmericanD2);
-		rdbtnNativeAmericanD2.setBounds(267, 292, 141, 23);
+		lblRaceD2.setEnabled(false);
+		lblRaceD2.setBounds(14, 350, 61, 16);
 		
-		childInfoPanel.add(rdbtnNativeAmericanD2);
-		D2raceBG.add(rdbtnAsianD2);
-		rdbtnAsianD2.setBounds(267, 320, 141, 23);
-		
-		childInfoPanel.add(rdbtnAsianD2);
-		D2raceBG.add(rdbtnAfricanAmericanD2);
-		rdbtnAfricanAmericanD2.setBounds(267, 348, 141, 23);
-		
-		childInfoPanel.add(rdbtnAfricanAmericanD2);
-		D2raceBG.add(rdbtnCaucasianD2);
-		rdbtnCaucasianD2.setBounds(267, 376, 141, 23);
-		
-		childInfoPanel.add(rdbtnCaucasianD2);
-		D2raceBG.add(rdbtnHispanicD2);
-		rdbtnHispanicD2.setBounds(267, 402, 141, 23);
-		
-		childInfoPanel.add(rdbtnHispanicD2);
-		D2raceBG.add(rdbtnMultiracialD2);
-		rdbtnMultiracialD2.setBounds(267, 429, 141, 23);
-		
-		childInfoPanel.add(rdbtnMultiracialD2);
-		lblRaced2.setBounds(272, 268, 61, 16);
-		
-		childInfoPanel.add(lblRaced2);
-		lblDependentD3.setBounds(20, 507, 85, 16);
+		childInfoPanel.add(lblRaceD2);
+		lblDependentD3.setBounds(14, 389, 85, 16);
 		
 		childInfoPanel.add(lblDependentD3);
-		lblNameD3.setBounds(20, 535, 61, 16);
+		lblNameD3.setEnabled(false);
+		lblNameD3.setBounds(14, 417, 61, 16);
 		
 		childInfoPanel.add(lblNameD3);
-		lblYearOfSchoolD3.setBounds(20, 563, 116, 16);
+		lblYearOfSchoolD3.setEnabled(false);
+		lblYearOfSchoolD3.setBounds(14, 445, 116, 16);
 		
 		childInfoPanel.add(lblYearOfSchoolD3);
-		lblDateOfBirthD3.setBounds(20, 591, 98, 16);
+		lblDateOfBirthD3.setEnabled(false);
+		lblDateOfBirthD3.setBounds(14, 473, 98, 16);
 		
 		childInfoPanel.add(lblDateOfBirthD3);
-		lblRelationshipD3.setBounds(20, 619, 98, 16);
+		lblRelationshipD3.setEnabled(false);
+		lblRelationshipD3.setBounds(14, 501, 98, 16);
 		
 		childInfoPanel.add(lblRelationshipD3);
-		D3nameTF.setToolTipText("enter name of child/dependent");
-		D3nameTF.setColumns(10);
-		D3nameTF.setBounds(125, 530, 130, 26);
+		D3NameTF.setEnabled(false);
+		D3NameTF.setToolTipText("enter name of child/dependent");
+		D3NameTF.setColumns(10);
+		D3NameTF.setBounds(119, 412, 130, 26);
 		
-		childInfoPanel.add(D3nameTF);
-		D3relationshiTF.setToolTipText("enter your relationship to the dependet");
-		D3relationshiTF.setColumns(10);
-		D3relationshiTF.setBounds(125, 614, 130, 26);
+		childInfoPanel.add(D3NameTF);
+		D3relationshipTF.setEnabled(false);
+		D3relationshipTF.setToolTipText("enter your relationship to the dependet");
+		D3relationshipTF.setColumns(10);
+		D3relationshipTF.setBounds(119, 496, 130, 26);
 		
-		childInfoPanel.add(D3relationshiTF);
+		childInfoPanel.add(D3relationshipTF);
+		D3YOSFTF.setEnabled(false);
 		D3YOSFTF.setToolTipText("enter grade in school of child/dependent");
-		D3YOSFTF.setBounds(125, 558, 28, 26);
+		D3YOSFTF.setBounds(119, 440, 28, 26);
 		
 		childInfoPanel.add(D3YOSFTF);
+		D3DOBFTF.setEnabled(false);
 		D3DOBFTF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -926,42 +895,107 @@ public class GisolfiSABTSAFrame extends JFrame {
 			}
 		});
 		D3DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
-		D3DOBFTF.setBounds(125, 586, 76, 26);
+		D3DOBFTF.setBounds(119, 468, 76, 26);
 		
 		childInfoPanel.add(D3DOBFTF);
-		D3raceBG.add(rdbtnNativeAmericanD3);
-		rdbtnNativeAmericanD3.setBounds(267, 531, 141, 23);
-		
-		childInfoPanel.add(rdbtnNativeAmericanD3);
-		D3raceBG.add(rdbtnAsianD3);
-		rdbtnAsianD3.setBounds(267, 559, 141, 23);
-		
-		childInfoPanel.add(rdbtnAsianD3);
-		D3raceBG.add(rdbtnAfricanAmericanD3);
-		rdbtnAfricanAmericanD3.setBounds(267, 587, 141, 23);
-		
-		childInfoPanel.add(rdbtnAfricanAmericanD3);
-		D3raceBG.add(rdbtnCaucasianD3);
-		rdbtnCaucasianD3.setBounds(267, 615, 141, 23);
-		
-		childInfoPanel.add(rdbtnCaucasianD3);
-		D3raceBG.add(rdbtnHispanicD3);
-		rdbtnHispanicD3.setBounds(267, 641, 141, 23);
-		
-		childInfoPanel.add(rdbtnHispanicD3);
-		D3raceBG.add(rdbtnMultiracialD3);
-		rdbtnMultiracialD3.setBounds(267, 668, 141, 23);
-		
-		childInfoPanel.add(rdbtnMultiracialD3);
-		lblraceD3.setBounds(272, 507, 61, 16);
+		lblraceD3.setEnabled(false);
+		lblraceD3.setBounds(14, 529, 61, 16);
 		
 		childInfoPanel.add(lblraceD3);
-		lblTab2ApplicantName.setBounds(291, 11, 182, 14);
+		lblTab2ApplicantName.setBounds(285, 7, 182, 14);
 		
 		childInfoPanel.add(lblTab2ApplicantName);
-		lblrequiredfeilds.setBounds(20, 10, 147, 16);
+		lblrequiredfeilds.setBounds(14, 6, 147, 16);
 		
 		childInfoPanel.add(lblrequiredfeilds);
+		chckbxEnableD2.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				do_chckbxEnableD2_stateChanged(e);
+			}
+		});
+		chckbxEnableD2.setBounds(119, 208, 128, 23);
+		
+		childInfoPanel.add(chckbxEnableD2);
+		chckbxEnableD3.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				do_chckbxEnableD3_stateChanged(e);
+			}
+		});
+		chckbxEnableD3.setBounds(119, 385, 128, 23);
+		
+		childInfoPanel.add(chckbxEnableD3);
+		RaceD2comboBox.setEnabled(false);
+		RaceD2comboBox.setModel(new DefaultComboBoxModel(new String[] {"…", "Native American", "Asian", "African American", "Caucasian", "Hispanic", "Multi-Racial"}));
+		RaceD2comboBox.setBounds(119, 346, 182, 27);
+		
+		childInfoPanel.add(RaceD2comboBox);
+		RaceD3comboBox.setModel(new DefaultComboBoxModel(new String[] {"…", "Native American", "Asian", "African American", "Caucasian", "Hispanic", "Multi-Racial"}));
+		RaceD3comboBox.setEnabled(false);
+		RaceD3comboBox.setBounds(119, 525, 182, 27);
+		
+		childInfoPanel.add(RaceD3comboBox);
+		RaceD1comboBox.setModel(new DefaultComboBoxModel(new String[] {"…", "Native American", "Asian", "African American", "Caucasian", "Hispanic", "Multi-Racial"}));
+		RaceD1comboBox.setBounds(119, 169, 182, 27);
+		
+		childInfoPanel.add(RaceD1comboBox);
+		lblDependentD4.setBounds(14, 568, 85, 16);
+		
+		childInfoPanel.add(lblDependentD4);
+		chckbxEnableD4.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				do_chckbxEnableD4_stateChanged(e);
+			}
+		});
+		chckbxEnableD4.setBounds(119, 564, 128, 23);
+		
+		childInfoPanel.add(chckbxEnableD4);
+		lblNameD4.setEnabled(false);
+		lblNameD4.setBounds(14, 596, 61, 16);
+		
+		childInfoPanel.add(lblNameD4);
+		D4NameTF.setToolTipText("enter name of child/dependent");
+		D4NameTF.setEnabled(false);
+		D4NameTF.setColumns(10);
+		D4NameTF.setBounds(119, 591, 130, 26);
+		
+		childInfoPanel.add(D4NameTF);
+		lblYearOfSchoolD4.setEnabled(false);
+		lblYearOfSchoolD4.setBounds(14, 624, 116, 16);
+		
+		childInfoPanel.add(lblYearOfSchoolD4);
+		D4YOSFTF.setToolTipText("enter grade in school of child/dependent");
+		D4YOSFTF.setEnabled(false);
+		D4YOSFTF.setBounds(119, 619, 28, 26);
+		
+		childInfoPanel.add(D4YOSFTF);
+		lblDateOfBirthD4.setEnabled(false);
+		lblDateOfBirthD4.setBounds(14, 652, 98, 16);
+		
+		childInfoPanel.add(lblDateOfBirthD4);
+		D4DOBFTF.setToolTipText("enter date of birth for child/dependet in format 00/00/00");
+		D4DOBFTF.setEnabled(false);
+		D4DOBFTF.setBounds(119, 647, 76, 26);
+		
+		childInfoPanel.add(D4DOBFTF);
+		lblRelationshipD4.setEnabled(false);
+		lblRelationshipD4.setBounds(14, 680, 98, 16);
+		
+		childInfoPanel.add(lblRelationshipD4);
+		D4relationshipTF.setToolTipText("enter your relationship to the dependet");
+		D4relationshipTF.setEnabled(false);
+		D4relationshipTF.setColumns(10);
+		D4relationshipTF.setBounds(119, 675, 130, 26);
+		
+		childInfoPanel.add(D4relationshipTF);
+		lblraceD4.setEnabled(false);
+		lblraceD4.setBounds(14, 708, 61, 16);
+		
+		childInfoPanel.add(lblraceD4);
+		RaceD4comboBox.setModel(new DefaultComboBoxModel(new String[] {"…", "Native American", "Asian", "African American", "Caucasian", "Hispanic", "Multi-Racial"}));
+		RaceD4comboBox.setEnabled(false);
+		RaceD4comboBox.setBounds(119, 704, 182, 27);
+		
+		childInfoPanel.add(RaceD4comboBox);
 		lenofOccMask.install(lenofOccFTF);
 		lenofOccSpouseMask.install(lenofOccSpouseFTF);
 		snapFoodStampsMask.install(snapFoodStampsFTF);
@@ -1348,6 +1382,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 		}
 	}
 
+
 	protected void checkTab1() {
 
 		if (lastNameTF.getText().trim().isEmpty()) {
@@ -1407,7 +1442,7 @@ public class GisolfiSABTSAFrame extends JFrame {
 				    "Please fill out the City feild",
 				    "Missing Required Data Error",
 				    JOptionPane.ERROR_MESSAGE);
-		}else if(phFTF.getText().trim().isEmpty()) {
+		}else if(phFTF.getText().trim().equals("###-###-####")) {
 			lblTelephone.setForeground(Color.RED);
 			armyFormTP.setSelectedIndex(0);
 			phFTF.requestFocus();
@@ -1685,6 +1720,84 @@ public class GisolfiSABTSAFrame extends JFrame {
 				    JOptionPane.ERROR_MESSAGE);
 		}else{
 			lblDateOfBirthD3.setForeground(Color.BLACK);
+		}
+	}
+	protected void do_chckbxEnableD2_stateChanged(ChangeEvent e) {
+		if (chckbxEnableD2.isSelected()) {
+			lblNameD2.setEnabled(true);
+			D2NameTF.setEnabled(true);
+			lblYearOfSchoolD2.setEnabled(true);
+			D2YOSFTF.setEnabled(true);
+			lblDateOfBirthD2.setEnabled(true);
+			D2DOBFTF.setEnabled(true);
+			lblRelationshipD2.setEnabled(true);
+			D2relationshipTF.setEnabled(true);
+			lblRaceD2.setEnabled(true);
+			RaceD2comboBox.setEnabled(true);
+		}else {
+			lblNameD2.setEnabled(false);
+			D2NameTF.setEnabled(false);
+			lblYearOfSchoolD2.setEnabled(false);
+			D2YOSFTF.setEnabled(false);
+			lblDateOfBirthD2.setEnabled(false);
+			D2DOBFTF.setEnabled(false);
+			lblRelationshipD2.setEnabled(false);
+			D2relationshipTF.setEnabled(false);
+			lblRaceD2.setEnabled(false);
+			RaceD2comboBox.setEnabled(false);
+			
+		}
+	}
+	protected void do_chckbxEnableD3_stateChanged(ChangeEvent e) {
+		if (chckbxEnableD3.isSelected()) {
+			lblNameD3.setEnabled(true);
+			D3NameTF.setEnabled(true);
+			lblYearOfSchoolD3.setEnabled(true);
+			D3YOSFTF.setEnabled(true);
+			lblDateOfBirthD3.setEnabled(true);
+			D3DOBFTF.setEnabled(true);
+			lblRelationshipD3.setEnabled(true);
+			D3relationshipTF.setEnabled(true);
+			lblraceD3.setEnabled(true);
+			RaceD3comboBox.setEnabled(true);
+		}else {
+			lblNameD3.setEnabled(false);
+			D3NameTF.setEnabled(false);
+			lblYearOfSchoolD3.setEnabled(false);
+			D3YOSFTF.setEnabled(false);
+			lblDateOfBirthD3.setEnabled(false);
+			D3DOBFTF.setEnabled(false);
+			lblRelationshipD3.setEnabled(false);
+			D3relationshipTF.setEnabled(false);
+			lblraceD3.setEnabled(false);
+			RaceD3comboBox.setEnabled(false);
+			
+		}
+	}
+	protected void do_chckbxEnableD4_stateChanged(ChangeEvent e) {
+		if (chckbxEnableD4.isSelected()) {
+			lblNameD4.setEnabled(true);
+			D4NameTF.setEnabled(true);
+			lblYearOfSchoolD4.setEnabled(true);
+			D4YOSFTF.setEnabled(true);
+			lblDateOfBirthD4.setEnabled(true);
+			D4DOBFTF.setEnabled(true);
+			lblRelationshipD4.setEnabled(true);
+			D4relationshipTF.setEnabled(true);
+			lblraceD4.setEnabled(true);
+			RaceD3comboBox.setEnabled(true);
+		}else {
+			lblNameD4.setEnabled(false);
+			D4NameTF.setEnabled(false);
+			lblYearOfSchoolD4.setEnabled(false);
+			D4YOSFTF.setEnabled(false);
+			lblDateOfBirthD4.setEnabled(false);
+			D4DOBFTF.setEnabled(false);
+			lblRelationshipD4.setEnabled(false);
+			D4relationshipTF.setEnabled(false);
+			lblraceD4.setEnabled(false);
+			RaceD4comboBox.setEnabled(false);
+			
 		}
 	}
 }

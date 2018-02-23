@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FinancialInformationHelpFrame extends JFrame {
 
@@ -15,6 +18,7 @@ public class FinancialInformationHelpFrame extends JFrame {
 	private final JLabel lblPleaseChooseCarreer = new JLabel("Please choose Carreer source registration status");
 	private final JLabel lblRepeatStepsFor = new JLabel("Repeat steps for Spouse");
 	private final JLabel lblFinallyFillIn = new JLabel("Finally fill in all income and expenses statements");
+	private final JButton btnOkay = new JButton("Okay");
 
 	/**
 	 * Create the frame.
@@ -25,7 +29,7 @@ public class FinancialInformationHelpFrame extends JFrame {
 	private void jbInit() {
 		setTitle("Financial Information Help");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 197);
+		setBounds(100, 100, 450, 238);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,6 +52,17 @@ public class FinancialInformationHelpFrame extends JFrame {
 		lblFinallyFillIn.setBounds(6, 146, 349, 16);
 		
 		contentPane.add(lblFinallyFillIn);
+		btnOkay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnOkay_actionPerformed(e);
+			}
+		});
+		btnOkay.setBounds(169, 181, 117, 29);
+		
+		contentPane.add(btnOkay);
 	}
 
+	protected void do_btnOkay_actionPerformed(ActionEvent e) {
+		this.dispose();
+	}
 }
