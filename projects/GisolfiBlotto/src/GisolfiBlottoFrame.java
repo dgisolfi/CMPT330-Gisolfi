@@ -13,6 +13,7 @@ import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class GisolfiBlottoFrame extends JFrame {
 
@@ -25,6 +26,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JMenuItem mntmSetSort = new JMenuItem("Set Sort");
 	private final JMenuItem mntmSetFilter = new JMenuItem("Set Filter");
 	private final JMenuItem mntmHelp = new JMenuItem("Help");
+	private final JTable outputTA = new JTable();
 
 	/**
 	 * Launch the application.
@@ -84,6 +86,9 @@ public class GisolfiBlottoFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		outputTA.setBounds(6, 6, 438, 161);
+		
+		contentPane.add(outputTA);
 	}
 
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
