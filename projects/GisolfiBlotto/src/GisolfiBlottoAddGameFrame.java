@@ -175,7 +175,7 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 			try {
 				Connection conn = DriverManager.getConnection("jdbc:ucanaccess:///Users/daniel/Dropbox/Marist/Sophmore/Spring/SystemsDesign/GisolfiBlotto/GisolfiBlotto.accdb");
 				stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-				String query = "INSERT INTO Games VALUES (";
+				String query = "INSERT INTO Games(GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners) VALUES (";
 				query += gameIDFTF.getText().trim() + ", ";
 				query += "'" + gameNameTF.getText().trim() + "',";
 				query += "'" + gameTypeCB.getSelectedItem().toString().trim() + "', ";
@@ -185,9 +185,12 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 				query += numWinnersSpin.getValue().toString().trim() + ")";
 
 				System.out.println(query);
-				
-				rs = stmt.executeQuery("INSERT INTO Games VALUES (311, 'TestGame','Bingo', '9800', '908099000', 9, 3)");
-				
+
+				if (stmt.executeUpdate(query) != 0) {
+					System.out.println("Success");
+				}else {
+						System.out.println("Nope");
+				}
 				conn.close();
 				this.dispose();
 		
