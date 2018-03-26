@@ -159,8 +159,9 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 		this.dispose();
 	}
 	protected void do_btnOk_actionPerformed(ActionEvent e) {
-		boolean validate = checkAllVals();
-		if (validate == true){
+		if(checkAllVals() != true) {
+			errMsg("Data Validation Error");
+		}else if (checkAllVals() == true){
 			ResultSet rs = null;
 			Statement stmt = null;
 			//establish the connection

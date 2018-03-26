@@ -42,7 +42,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JMenuItem mntmByPrice = new JMenuItem("By Price");
 	private final JMenuItem mntmByGameType = new JMenuItem("By Game Type");
 	private final JScrollPane scrollPane = new JScrollPane();
-	private final JButton btnQuery = new JButton("Query");
+	private final JButton btnClearSortAnd = new JButton("Clear Sort and Filters");
 
 	/**
 	 * Launch the application.
@@ -94,10 +94,25 @@ public class GisolfiBlottoFrame extends JFrame {
 		mnTools.add(mntmAddGame);
 		
 		mnTools.add(mnSort);
+		mntmGameName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmGameName_actionPerformed(e);
+			}
+		});
 		
 		mnSort.add(mntmGameName);
+		mntmTopPrize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmTopPrize_actionPerformed(e);
+			}
+		});
 		
 		mnSort.add(mntmTopPrize);
+		mntmGameType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmGameType_actionPerformed(e);
+			}
+		});
 		
 		mnSort.add(mntmGameType);
 		
@@ -137,14 +152,14 @@ public class GisolfiBlottoFrame extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(outputTA);
-		btnQuery.addActionListener(new ActionListener() {
+		btnClearSortAnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				do_btnQuery_actionPerformed(e);
+				do_btnClearSortAnd_actionPerformed(e);
 			}
 		});
-		btnQuery.setBounds(33, 196, 117, 29);
+		btnClearSortAnd.setBounds(151, 196, 175, 29);
 		
-		contentPane.add(btnQuery);
+		contentPane.add(btnClearSortAnd);
 	}
 
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
@@ -157,15 +172,55 @@ public class GisolfiBlottoFrame extends JFrame {
 		AddGameframe.setVisible(true);
 		AddGameframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
-	protected void do_btnQuery_actionPerformed(ActionEvent e) {
+	protected void do_mntmGameName_actionPerformed(ActionEvent e) {
+		String query = queryBuilder("Name");
+		refreshTable(query);
+		mntmGameName.setEnabled(false);
+		mntmTopPrize.setEnabled(true);
+		mntmGameType.setEnabled(true);
+	}
+	protected void do_mntmTopPrize_actionPerformed(ActionEvent e) {
+		String query = queryBuilder("Prize");
+		refreshTable(query);
+		mntmGameName.setEnabled(true);
+		mntmTopPrize.setEnabled(false);
+		mntmGameType.setEnabled(true);
+	}
+	protected void do_mntmGameType_actionPerformed(ActionEvent e) {
+		String query = queryBuilder("Type");
+		refreshTable(query);
+		mntmGameName.setEnabled(true);
+		mntmTopPrize.setEnabled(true);
+		mntmGameType.setEnabled(false);
+	}
+	
+	public String queryBuilder(String sort) {
+		
+		String query = ("SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners"
+					+ " FROM Games"
+					+ " WHERE(1=1)");
+		//Build Query
+		//Sorts
+		if (sort == "Name") {
+			query += " ORDER BY GameName;";
+		}else if (sort == "Prize") {
+			query += " ORDER BY TopPrize DESC;";
+		}else if (sort == "Type") {
+			query += " ORDER BY GameType;";
+		}else {
+			query+= "ORDER BY GameID;";
+		}
+			
+		System.out.println(query);	
+		return query;
+	}
+	
+	public void refreshTable(String query) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:ucanaccess:///Users/daniel/Dropbox/Marist/Sophmore/Spring/SystemsDesign/GisolfiBlotto/GisolfiBlotto.accdb");
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			String query = "SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners FROM Games;";
-
-			System.out.println(query);
 			
 			rs = stmt.executeQuery(query);
 			
@@ -195,6 +250,14 @@ public class GisolfiBlottoFrame extends JFrame {
 			System.out.println("Vendor Error: " + ex.getErrorCode());
 			ex.printStackTrace();
 		} //catch
+	}
+	protected void do_btnClearSortAnd_actionPerformed(ActionEvent e) {
+		String query = queryBuilder("GameID");
+		refreshTable(query);
+		mntmGameName.setEnabled(true);
+		mntmTopPrize.setEnabled(true);
+		mntmGameType.setEnabled(true);
+		
 	}
 }
 
