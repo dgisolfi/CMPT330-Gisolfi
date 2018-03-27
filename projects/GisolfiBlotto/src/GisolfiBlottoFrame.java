@@ -44,7 +44,8 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JMenuItem mntmByGameType = new JMenuItem("By Game Type");
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JButton btnClearSortAnd = new JButton("Clear Sort and Filters");
-	private final priceType  thePrice = new priceType();
+	private final priceType  thePriceFilter = new priceType();
+	private final JButton btnApplySortAnd = new JButton("Apply Sort and Filters");
 
 	/**
 	 * Launch the application.
@@ -169,9 +170,17 @@ public class GisolfiBlottoFrame extends JFrame {
 				do_btnClearSortAnd_actionPerformed(e);
 			}
 		});
-		btnClearSortAnd.setBounds(151, 196, 175, 29);
+		btnClearSortAnd.setBounds(291, 196, 175, 29);
 		
 		contentPane.add(btnClearSortAnd);
+		btnApplySortAnd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnApplySortAnd_actionPerformed(e);
+			}
+		});
+		btnApplySortAnd.setBounds(6, 196, 185, 29);
+		
+		contentPane.add(btnApplySortAnd);
 	}
 
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
@@ -185,39 +194,50 @@ public class GisolfiBlottoFrame extends JFrame {
 		AddGameframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
 	protected void do_mntmGameName_actionPerformed(ActionEvent e) {
-		String query = queryBuilder("Name");
+		String query = queryBuilder();
 		refreshTable(query);
 		mntmGameName.setEnabled(false);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
 	}
 	protected void do_mntmTopPrize_actionPerformed(ActionEvent e) {
-		String query = queryBuilder("Prize");
+		String query = queryBuilder();
 		refreshTable(query);
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(false);
 		mntmGameType.setEnabled(true);
 	}
 	protected void do_mntmGameType_actionPerformed(ActionEvent e) {
-		String query = queryBuilder("Type");
+		String query = queryBuilder();
 		refreshTable(query);
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(false);
 	}
 	
-	public String queryBuilder(String type) {
+	public String queryBuilder() {
 		
 		String query = ("SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners"
 					+ " FROM Games"
-					+ " WHERE(1=1)");
+					+ " WHERE(1=1)"
+					+ " AND(1=0)");
 		//Build Query
 		
 		//filters
 		
 		//price
-		if (mntmGameName.isEnabled() == false) {
-		query += "";
+		String price = thePriceFilter.getPrice();
+		String greaterPrice = thePriceFilter.getGreaterPrice();
+		String filter = thePriceFilter.getFilter();
+				
+		if (filter == "less than") {
+			query += "OR Price < " + price;
+		}else if (filter == "Greater than") {
+			query += "OR Price > " + price;	
+		}else if (filter == "Between") {
+			query += "OR BETWEEN " + price + " AND " + greaterPrice;			
+		}
+		
 		
 		//gametype
 		
@@ -231,7 +251,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		}else if (mntmGameType.isEnabled() == false) {
 			query += " ORDER BY GameType;";
 		}else {
-			query+= "ORDER BY GameID;";
+			query+= " ORDER BY GameID;";
 		}
 			
 		System.out.println(query);	
@@ -275,7 +295,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		} //catch
 	}
 	protected void do_btnClearSortAnd_actionPerformed(ActionEvent e) {
-		String sort = queryBuilder("GameID");
+		String sort = queryBuilder();
 		refreshTable(sort);
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
@@ -283,19 +303,19 @@ public class GisolfiBlottoFrame extends JFrame {
 		
 	}
 	protected void do_mntmByPrice_actionPerformed(ActionEvent e) {
-		GisolfiBlottoFilterByPriceFrame FilterByPriceframe = new GisolfiBlottoFilterByPriceFrame();
+		GisolfiBlottoFilterByPriceFrame FilterByPriceframe = new GisolfiBlottoFilterByPriceFrame(thePriceFilter);
 		FilterByPriceframe.setVisible(true);
 		FilterByPriceframe.setLocation(this.getX() + 30 , getY() + 30);
-		
-		String price = thePrice.getPrice();
-		queryBuilder(price);
-		
 		
 	}
 	protected void do_mntmByGameType_actionPerformed(ActionEvent e) {
 		GisolfiBlottoFilterByGameTypeFrame FilterByGameTypeframe = new GisolfiBlottoFilterByGameTypeFrame();
 		FilterByGameTypeframe.setVisible(true);
 		FilterByGameTypeframe.setLocation(this.getX() + 30 , getY() + 30);
+	}
+	protected void do_btnApplySortAnd_actionPerformed(ActionEvent e) {
+		String applySortsQuery = queryBuilder();
+		refreshTable(applySortsQuery);
 	}
 }
 

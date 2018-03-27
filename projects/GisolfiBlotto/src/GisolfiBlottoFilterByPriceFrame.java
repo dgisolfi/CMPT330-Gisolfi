@@ -22,8 +22,13 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 	private JPanel contentPane;
 	private final JFormattedTextField lesserPriceFTF = new JFormattedTextField();
 	
-	//Define the Price mask
-	MaskFormatter priceMask = createFormatter("##,###");
+	//Define the currency masks
+	MaskFormatter lesserMask = createFormatter("##,###");
+	MaskFormatter greaterMask = createFormatter("##,###");
+	MaskFormatter lowerRangeMask = createFormatter("##,###");
+	MaskFormatter greaterRangeMask = createFormatter("##,###");
+	
+	
 	private final JRadioButton rdbtnLessThan = new JRadioButton("Less than:");
 	private final JRadioButton rdbtnGreaterThan = new JRadioButton("Greater than: ");
 	private final JFormattedTextField lessRangeFTF = new JFormattedTextField();
@@ -54,7 +59,7 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GisolfiBlottoFilterByPriceFrame() {
+	public GisolfiBlottoFilterByPriceFrame(priceType it) {
 		jbInit();
 		
 		rangeChoicebtnGroup.add(rdbtnLessThan);
@@ -75,9 +80,11 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 		rdbtnGreaterThan.setBounds(6, 76, 141, 23);
 		
 		contentPane.add(rdbtnGreaterThan);
+		lessRangeFTF.setEnabled(false);
 		lessRangeFTF.setBounds(138, 110, 62, 26);
 		
 		contentPane.add(lessRangeFTF);
+		greaterRangeFTF.setEnabled(false);
 		greaterRangeFTF.setBounds(243, 110, 62, 26);
 		
 		contentPane.add(greaterRangeFTF);
@@ -91,9 +98,11 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 		rdbtnBetween.setBounds(6, 111, 141, 23);
 		
 		contentPane.add(rdbtnBetween);
+		lblAnd.setEnabled(false);
 		lblAnd.setBounds(207, 115, 61, 16);
 		
 		contentPane.add(lblAnd);
+		greaterPriceFTF.setEnabled(false);
 		greaterPriceFTF.setBounds(138, 76, 62, 26);
 		
 		contentPane.add(greaterPriceFTF);
@@ -113,7 +122,6 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 		btnCancel.setBounds(159, 179, 117, 29);
 		
 		contentPane.add(btnCancel);
-		priceType it = null;
 		thing = it;
 	}
 	private void jbInit() {
@@ -124,28 +132,40 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		lesserPriceFTF.setEnabled(false);
 		lesserPriceFTF.setBounds(138, 38, 62, 26);
 		
 		contentPane.add(lesserPriceFTF);
 		
-		priceMask.setPlaceholderCharacter('0');
-		priceMask.install(lesserPriceFTF);
-		priceMask.install(lessRangeFTF);
-		priceMask.install(greaterRangeFTF);
-		priceMask.install(greaterRangeFTF);
+		lesserMask.setPlaceholderCharacter('0');
+		lesserMask.install(lesserPriceFTF);
+		
+		greaterMask.setPlaceholderCharacter('0');
+		greaterMask.install(greaterPriceFTF);
+		
+		lowerRangeMask.setPlaceholderCharacter('0');
+		lowerRangeMask.install(lessRangeFTF);
+		
+		greaterRangeMask.setPlaceholderCharacter('0');
+		greaterRangeMask.install(greaterRangeFTF);
+		
 	}
 	
 	protected void do_btnCancel_actionPerformed(ActionEvent e) {
 		this.dispose();
 	}
 	protected void do_btnOk_actionPerformed(ActionEvent e) {
-		//Find the text feild the val is in
+		//Find the text field the val is in
 		if (rdbtnLessThan.isSelected()) {
-			thing.setPrice(lesserPriceFTF.getText().trim());
+			thing.setPrice(lesserPriceFTF.getText().trim().replace(",", ""));
+			thing.setFilter("less than");
 		}else if (rdbtnGreaterThan.isSelected()) {
-			thing.setPrice(greaterPriceFTF.getText().trim());
+			thing.setPrice(greaterPriceFTF.getText().trim().replace(",", ""));
+			thing.setFilter("Greater than");
 		}else if (rdbtnBetween.isSelected()) {
-			thing.setPrice(lessRangeFTF.getText().trim() + greaterRangeFTF.getText().trim());
+			thing.setPrice(lessRangeFTF.getText().trim().replace(",", ""));
+			thing.setGreaterPrice(greaterRangeFTF.getText().trim().replace(",", ""));
+			thing.setFilter("Between");
 		}
 		
 		this.dispose();
@@ -156,7 +176,7 @@ public class GisolfiBlottoFilterByPriceFrame extends JFrame {
 		
 		greaterRangeFTF.setEnabled(false);
 		lblAnd.setEnabled(false);
-		lessRangeFTF.setEnabled(false);
+		lessRangeFTF.setEnabled(false);	
 	
 	}
 	protected void do_rdbtnLessThan_stateChanged(ChangeEvent e) {

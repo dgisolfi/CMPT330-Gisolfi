@@ -1,18 +1,39 @@
 
 public class priceType {
 	private String price;
-
+	private String greaterPrice;
+	private String filter;
+	
 	public void priceType() {
 		//default query
 		price = "0";
+		greaterPrice = "0";
+		filter = "default";
+		
 	}
 	public String getPrice() {
 		return price;
 		
 	}
-	
 	public void setPrice(String n) {
 		price = n;
+		
+	}
+	public String getGreaterPrice() {
+		return price;
+		
+	}
+	
+	public void setGreaterPrice(String n) {
+		price = n;
+		
+	}public String getFilter() {
+		return filter;
+		
+	}
+	
+	public void setFilter(String n) {
+		filter = n;
 		
 	}
 }
