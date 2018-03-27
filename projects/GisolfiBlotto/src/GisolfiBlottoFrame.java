@@ -23,6 +23,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JRadioButtonMenuItem;
 
 public class GisolfiBlottoFrame extends JFrame {
 
@@ -43,6 +44,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JMenuItem mntmByGameType = new JMenuItem("By Game Type");
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JButton btnClearSortAnd = new JButton("Clear Sort and Filters");
+	private final priceType  thePrice = new priceType();
 
 	/**
 	 * Launch the application.
@@ -117,8 +119,18 @@ public class GisolfiBlottoFrame extends JFrame {
 		mnSort.add(mntmGameType);
 		
 		mnTools.add(mnFilter);
+		mntmByPrice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmByPrice_actionPerformed(e);
+			}
+		});
 		
 		mnFilter.add(mntmByPrice);
+		mntmByGameType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmByGameType_actionPerformed(e);
+			}
+		});
 		
 		mnFilter.add(mntmByGameType);
 		
@@ -194,18 +206,29 @@ public class GisolfiBlottoFrame extends JFrame {
 		mntmGameType.setEnabled(false);
 	}
 	
-	public String queryBuilder(String sort) {
+	public String queryBuilder(String type) {
 		
 		String query = ("SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners"
 					+ " FROM Games"
 					+ " WHERE(1=1)");
 		//Build Query
+		
+		//filters
+		
+		//price
+		if (mntmGameName.isEnabled() == false) {
+		query += "";
+		
+		//gametype
+		
+		
+		
 		//Sorts
-		if (sort == "Name") {
+		if (mntmGameName.isEnabled() == false) {
 			query += " ORDER BY GameName;";
-		}else if (sort == "Prize") {
+		}else if (mntmTopPrize.isEnabled() == false) {
 			query += " ORDER BY TopPrize DESC;";
-		}else if (sort == "Type") {
+		}else if (mntmGameType.isEnabled() == false) {
 			query += " ORDER BY GameType;";
 		}else {
 			query+= "ORDER BY GameID;";
@@ -252,12 +275,27 @@ public class GisolfiBlottoFrame extends JFrame {
 		} //catch
 	}
 	protected void do_btnClearSortAnd_actionPerformed(ActionEvent e) {
-		String query = queryBuilder("GameID");
-		refreshTable(query);
+		String sort = queryBuilder("GameID");
+		refreshTable(sort);
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
 		
+	}
+	protected void do_mntmByPrice_actionPerformed(ActionEvent e) {
+		GisolfiBlottoFilterByPriceFrame FilterByPriceframe = new GisolfiBlottoFilterByPriceFrame();
+		FilterByPriceframe.setVisible(true);
+		FilterByPriceframe.setLocation(this.getX() + 30 , getY() + 30);
+		
+		String price = thePrice.getPrice();
+		queryBuilder(price);
+		
+		
+	}
+	protected void do_mntmByGameType_actionPerformed(ActionEvent e) {
+		GisolfiBlottoFilterByGameTypeFrame FilterByGameTypeframe = new GisolfiBlottoFilterByGameTypeFrame();
+		FilterByGameTypeframe.setVisible(true);
+		FilterByGameTypeframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
 }
 
