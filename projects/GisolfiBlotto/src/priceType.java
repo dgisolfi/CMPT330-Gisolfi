@@ -4,7 +4,7 @@ public class priceType {
 	private String greaterPrice;
 	private String filter;
 	
-	public void priceType() {
+	public void priceFilter() {
 		//default query
 		price = "0";
 		greaterPrice = "0";

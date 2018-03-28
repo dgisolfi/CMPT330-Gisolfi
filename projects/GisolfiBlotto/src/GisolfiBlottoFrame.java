@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.MenuKeyListener;
@@ -18,11 +20,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JRadioButtonMenuItem;
 
 public class GisolfiBlottoFrame extends JFrame {
@@ -46,7 +51,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JButton btnClearSortAnd = new JButton("Clear Sort and Filters");
 	private final priceType  thePriceFilter = new priceType();
 	private final JButton btnApplySortAnd = new JButton("Apply Sort and Filters");
-
+	private final gameFilter  theGameFilter = new gameFilter();
 	/**
 	 * Launch the application.
 	 */
@@ -240,8 +245,35 @@ public class GisolfiBlottoFrame extends JFrame {
 		
 		
 		//gametype
+		String selectedgames = theGameFilter.getGames();
+		selectedgames += " noNull";
+		System.out.println(selectedgames);
+		String[] games = selectedgames.split(" ");
 		
-		
+		if( Arrays.asList(games).contains("'Bingo'")) {
+			query += "OR GameType = Bingo";
+		}
+		if( Arrays.asList(games).contains("'TriplePay'")) {
+			query += "OR GameType = TriplePay";
+		} 
+		if( Arrays.asList(games).contains("'88Fortunes'")) {
+			query += "OR GameType = 88Fortunes";
+		} 
+		if( Arrays.asList(games).contains("'Millionaire'")) {
+			query += "OR GameType = Millionaire";
+		}
+		if( Arrays.asList(games).contains("'CashWord'")) {
+			query += "OR GameType = CashWord";
+		}
+		if( Arrays.asList(games).contains("'JumboBucks'")) {
+			query += "OR GameType = JumboBucks";
+		}
+		if( Arrays.asList(games).contains("'MoneyVault'")) {
+			query += "OR GameType = MoneyVault";
+		}
+		if( Arrays.asList(games).contains("'CashForLife'")) {
+			query += "OR GameType = CashForLife";
+		}
 		
 		//Sorts
 		if (mntmGameName.isEnabled() == false) {
@@ -309,7 +341,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		
 	}
 	protected void do_mntmByGameType_actionPerformed(ActionEvent e) {
-		GisolfiBlottoFilterByGameTypeFrame FilterByGameTypeframe = new GisolfiBlottoFilterByGameTypeFrame();
+		GisolfiBlottoFilterByGameTypeFrame FilterByGameTypeframe = new GisolfiBlottoFilterByGameTypeFrame(theGameFilter);
 		FilterByGameTypeframe.setVisible(true);
 		FilterByGameTypeframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
