@@ -213,16 +213,19 @@ public class GisolfiBlottoFrame extends JFrame {
 	}
 
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
+		//close the program
 		System.exit(0);
 	}
 	
 	//Add Game
 	protected void do_mntmAddGame_actionPerformed(ActionEvent e) {
+		//open a new instance of the add game frame
 		GisolfiBlottoAddGameFrame AddGameframe = new GisolfiBlottoAddGameFrame();
 		AddGameframe.setVisible(true);
 		AddGameframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
 	protected void do_mntmGameName_actionPerformed(ActionEvent e) {
+		//apply the current sort by graying out the selected and running the query builder
 		mntmGameName.setEnabled(false);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
@@ -230,6 +233,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		refreshTable(query);
 	}
 	protected void do_mntmTopPrize_actionPerformed(ActionEvent e) {
+		//apply the current sort by graying out the selected and running the query builder
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(false);
 		mntmGameType.setEnabled(true);
@@ -237,6 +241,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		refreshTable(query);
 	}
 	protected void do_mntmGameType_actionPerformed(ActionEvent e) {
+		//apply the current sort by graying out the selected and running the query builder
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(false);
@@ -245,28 +250,28 @@ public class GisolfiBlottoFrame extends JFrame {
 	}
 	
 	public String queryBuilder() {
-		
+		//the base query
 		String query = ("SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners"
 					+ " FROM Games"
 					+ " WHERE(1=1)");
 		//Build Query
 		
-		//filters
 		
 		//price
+		//get all price dependent class vars
 		String price = thePriceFilter.getPrice();
 		String greaterPrice = thePriceFilter.getGreaterPrice();
 		String filter = thePriceFilter.getFilter();
 		
 		//gametype
+		//get all gametype dependent class vars
 		String selectedgames = theGameFilter.getGames();
 		selectedgames += " defualt";
 		System.out.println(selectedgames);
 		String[] games = selectedgames.split(" ");
 		
-		System.out.println(filter);
-		System.out.println(theGameFilter.getSort());
-		
+		//If either filter setting is applied add the AND(1=0) 
+		//additionally find the exact game or price modifier and add it to the query
 		if (filter != null || theGameFilter.getSort() == true) {
 			query += " AND(1=0 ";
 		
@@ -310,6 +315,8 @@ public class GisolfiBlottoFrame extends JFrame {
 
 		
 		//Sorts
+		//when a sort is selected use the cheaty way to determine which was
+		//selcted and then add the modifier to the query
 		if (mntmGameName.isEnabled() == false) {
 			query += " ORDER BY GameName;";
 		}else if (mntmTopPrize.isEnabled() == false) {
@@ -326,6 +333,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	}
 	
 	public void refreshTable(String query) {
+		//Declare a function able to refresh the table no matter what modifiers
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
@@ -362,7 +370,7 @@ public class GisolfiBlottoFrame extends JFrame {
 		} //catch
 	}
 	protected void do_btnClearSortAnd_actionPerformed(ActionEvent e) {
-		
+		//set all class variables and modifiers back to normal to reset the program
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
@@ -389,17 +397,18 @@ public class GisolfiBlottoFrame extends JFrame {
 		FilterByGameTypeframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
 	protected void do_btnApplySortAnd_actionPerformed(ActionEvent e) {
+		//force run a query builder and query execution
 		String applySortsQuery = queryBuilder();
 		refreshTable(applySortsQuery);
 	}
 	protected void do_btnClearGameFilter_actionPerformed(ActionEvent e) {
-	
+		//force remove and rerun game filter
 		theGameFilter.setGames("defualt");
 		String sort = queryBuilder();
 		refreshTable(sort);
 	}
 	protected void do_btnClearPriceFilter_actionPerformed(ActionEvent e) {
-		
+		//force re move price filter 
 		thePriceFilter.setPrice("0");
 		thePriceFilter.setGreaterPrice("0");
 		thePriceFilter.setFilter("defualt");
@@ -409,11 +418,13 @@ public class GisolfiBlottoFrame extends JFrame {
 		
 	}
 	public void helpMsg(String msg) {
+		//allow for any help menu to appear if needed 
 		Component frame = null;
 		//Error messages for all errors within form
 		JOptionPane.showMessageDialog(frame, msg);
 	}
 	protected void do_mntmHelp_actionPerformed(ActionEvent e) {
+		//send the help info to the pop up because theres no reason to make a whole frame for some text
 		helpMsg("Add a Game: to add a game click Tools > Add Game. This will pop up a window to input all required data,\n"
 				+ " ensure the game ID and game Name have not been used in the database already.\n"
 				+ "\n " + 

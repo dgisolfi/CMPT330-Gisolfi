@@ -5,13 +5,14 @@ public class priceType {
 	private String filter;
 	
 	public void priceFilter() {
-		//default query
+		//default prices and filter values
 		price = "0";
 		greaterPrice = "0";
 		filter = "default";
 		
 	}
 	public String getPrice() {
+		//allow the program to get the current price 
 		return price;
 		
 	}
@@ -28,6 +29,7 @@ public class priceType {
 		greaterPrice = n;
 		
 	}public String getFilter() {
+		//Create a filter to allow the program to determine what comparison to be made 
 		return filter;
 		
 	}
