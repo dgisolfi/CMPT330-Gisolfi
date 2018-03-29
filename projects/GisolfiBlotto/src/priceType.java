@@ -20,12 +20,12 @@ public class priceType {
 		
 	}
 	public String getGreaterPrice() {
-		return price;
+		return greaterPrice;
 		
 	}
 	
 	public void setGreaterPrice(String n) {
-		price = n;
+		greaterPrice = n;
 		
 	}public String getFilter() {
 		return filter;

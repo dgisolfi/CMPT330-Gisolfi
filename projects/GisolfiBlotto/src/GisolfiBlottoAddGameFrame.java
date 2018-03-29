@@ -30,8 +30,6 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 	private final JButton btnCancel = new JButton("Cancel");
 	private final JTextField gameNameTF = new JTextField();
 	private final JComboBox gameTypeCB = new JComboBox();
-	private final JFormattedTextField priceFTF = new JFormattedTextField();
-	private final JFormattedTextField topPrizeFTF = new JFormattedTextField();
 	private final JSpinner numPrintedSpin = new JSpinner();
 	private final JSpinner numWinnersSpin = new JSpinner();
 	private final JLabel lblGameid = new JLabel("GameID: ");
@@ -52,6 +50,8 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 	
 	//Define the top Prize mask
 	MaskFormatter topPrizeMask = createFormatter("###,###,###");
+	private final JSpinner priceSpin = new JSpinner();
+	private final JSpinner prizeSpin = new JSpinner();
 	
 	//place this code after main()
 
@@ -106,12 +106,6 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 		gameTypeCB.setBounds(219, 109, 130, 27);
 		
 		contentPane.add(gameTypeCB);
-		priceFTF.setBounds(219, 148, 55, 26);
-		
-		contentPane.add(priceFTF);
-		topPrizeFTF.setBounds(219, 186, 91, 26);
-		
-		contentPane.add(topPrizeFTF);
 		numPrintedSpin.setBounds(219, 224, 55, 26);
 		
 		contentPane.add(numPrintedSpin);
@@ -151,25 +145,28 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 		idMask.setPlaceholderCharacter('0');
 		idMask.install(gameIDFTF);
 		priceMask.setPlaceholderCharacter('0');
-		priceMask.install(priceFTF);
 		topPrizeMask.setPlaceholderCharacter('0');
-		topPrizeMask.install(topPrizeFTF);
+		priceSpin.setBounds(219, 148, 55, 26);
+		
+		contentPane.add(priceSpin);
+		prizeSpin.setBounds(219, 186, 55, 26);
+		
+		contentPane.add(prizeSpin);
 	}
 	protected void do_btnCancel_actionPerformed(ActionEvent e) {
 		this.dispose();
 	}
 	protected void do_btnOk_actionPerformed(ActionEvent e) {
-		if(checkAllVals() != true) {
-			errMsg("Data Validation Error");
-		}else if (checkAllVals() == true){
+
+		 if (checkAllVals() == true){
 			ResultSet rs = null;
 			Statement stmt = null;
 			//establish the connection
 			gameIDFTF.setForeground(Color.BLACK);
 			gameNameTF.setForeground(Color.BLACK);
 			gameTypeCB.setForeground(Color.BLACK);
-			priceFTF.setForeground(Color.BLACK);
-			topPrizeFTF.setForeground(Color.BLACK);
+			priceSpin.setForeground(Color.BLACK);
+			prizeSpin.setForeground(Color.BLACK);
 			numPrintedSpin.setForeground(Color.BLACK);
 			numWinnersSpin.setForeground(Color.BLACK);
 		
@@ -180,8 +177,8 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 				query += gameIDFTF.getText().trim() + ", ";
 				query += "'" + gameNameTF.getText().trim() + "',";
 				query += "'" + gameTypeCB.getSelectedItem().toString().trim() + "', ";
-				query += (priceFTF.getText().trim()).replace(",", "") + ", ";
-				query += topPrizeFTF.getText().trim().replace(",", "") + ", ";
+				query += priceSpin.getValue().toString().trim() + ", ";
+				query += prizeSpin.getValue().toString().trim() + ", ";
 				query += numPrintedSpin.getValue().toString().trim() + ", ";
 				query += numWinnersSpin.getValue().toString().trim() + ")";
 
@@ -206,10 +203,12 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 	
 	
 	public boolean checkAllVals() {
+	
 		Statement stmt = null;
 		ResultSet rs = null; //will hold the records
 		
 		try {
+			boolean err = false;
 			//establish the connection
 			Connection conn = DriverManager.getConnection("jdbc:ucanaccess:///Users/daniel/Dropbox/Marist/Sophmore/Spring/SystemsDesign/GisolfiBlotto/GisolfiBlotto.accdb");
 			
@@ -222,6 +221,7 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 			if (rs.next()) {
 				errMsg("ID currently in use within the Database please use a new ID");
 				gameIDFTF.setForeground(Color.RED);
+				err = true;
 			}
 			
 			//Validate Name
@@ -231,60 +231,40 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 			if (rs.next()) {
 				errMsg("Name currently in use within the Database please use a new ID");
 				gameNameTF.setForeground(Color.RED);
+				err = true;
 			}
-			else if (gameNameTF.getText() == null) {
+			if (gameNameTF.getText() == null) {
 				errMsg("A game must have a name");
 				gameNameTF.setForeground(Color.RED);
+				err = true;
 			}
 			
-			else if (gameNameTF.getText().length() > 20) {
+			if (gameNameTF.getText().length() > 20) {
 				errMsg("A game name may not exceed 20 characters in length");
 				gameNameTF.setForeground(Color.RED);
+				err = true;
 			}
-			
+
 			//Validate GameType
-			else if (gameTypeCB.getSelectedItem() == "...") {
+			if (gameTypeCB.getSelectedItem() == "…") {
 				errMsg("A GameType must be chosen");
 				gameTypeCB.setForeground(Color.RED);
-			}
-			
-			//Validate price 
-			else if (priceFTF.getText() == "00,000") {
-				errMsg("0 is not a valid price for a ticket please enter a Value greater than 0");
-				priceFTF.setForeground(Color.RED);
-			}
-			
-			//Validate top prize
-			else if (topPrizeFTF.getText() == "000,000,000") {
-				errMsg("0 is not a valid top prize for a game please enter a Value greater than 0");
-				topPrizeFTF.setForeground(Color.RED);
-			}
-			
-			
-			//Validate num of tickets
-			else if (numPrintedSpin.getValue() == "0") {
-				errMsg("0 is not a valid number of tickets for a game please enter a Value greater than 0");
-				numPrintedSpin.setForeground(Color.RED);
-			}
-			
-			
-			//Validate num of winning tickets
-			
-			else if (numWinnersSpin.getValue() == "0") {
-				errMsg("0 is not a valid top prize for a game please enter a Value greater than 0");
-				lblWinningTickets.setForeground(Color.RED);
+				err = true;
 				
+			}
+			if (err == true) {
+				return false;
 			}else {
-				return true;
+				return true;	
 			}
-				
+			
 		}catch (SQLException ex){
 			System.out.println("SQL Exception: " + ex.getMessage());
 			System.out.println("SQL State: " + ex.getSQLState());
 			System.out.println("Vendor Error: " + ex.getErrorCode());
 			ex.printStackTrace();
-		} //catch
-		return false;
+			return false;
+			}	
 	}
 	
 	
@@ -296,7 +276,6 @@ public class GisolfiBlottoAddGameFrame extends JFrame {
 		    "Inane error",
 		    JOptionPane.ERROR_MESSAGE);
 	}
-
 }
 
 

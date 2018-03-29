@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.List;
 
@@ -48,10 +49,12 @@ public class GisolfiBlottoFrame extends JFrame {
 	private final JMenuItem mntmByPrice = new JMenuItem("By Price");
 	private final JMenuItem mntmByGameType = new JMenuItem("By Game Type");
 	private final JScrollPane scrollPane = new JScrollPane();
-	private final JButton btnClearSortAnd = new JButton("Clear Sort and Filters");
+	private final JButton btnClearSortAnd = new JButton("Clear Sort");
 	private final priceType  thePriceFilter = new priceType();
 	private final JButton btnApplySortAnd = new JButton("Apply Sort and Filters");
 	private final gameFilter  theGameFilter = new gameFilter();
+	private final JButton btnClearPriceFilter = new JButton("Clear Price Filter");
+	private final JButton btnClearGameFilter = new JButton("Clear Game Filter");
 	/**
 	 * Launch the application.
 	 */
@@ -79,7 +82,7 @@ public class GisolfiBlottoFrame extends JFrame {
 	private void jbInit() {
 		setTitle("Gisolfi Blotto ");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 472, 300);
+		setBounds(100, 100, 542, 382);
 		
 		setJMenuBar(menuBar);
 		
@@ -139,13 +142,18 @@ public class GisolfiBlottoFrame extends JFrame {
 		});
 		
 		mnFilter.add(mntmByGameType);
+		mntmHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_mntmHelp_actionPerformed(e);
+			}
+		});
 		
 		menuBar.add(mntmHelp);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		scrollPane.setBounds(6, 6, 460, 161);
+		scrollPane.setBounds(6, 6, 530, 215);
 		
 		contentPane.add(scrollPane);
 		outputTA.setModel(new DefaultTableModel(
@@ -175,7 +183,7 @@ public class GisolfiBlottoFrame extends JFrame {
 				do_btnClearSortAnd_actionPerformed(e);
 			}
 		});
-		btnClearSortAnd.setBounds(291, 196, 175, 29);
+		btnClearSortAnd.setBounds(379, 303, 157, 29);
 		
 		contentPane.add(btnClearSortAnd);
 		btnApplySortAnd.addActionListener(new ActionListener() {
@@ -183,9 +191,25 @@ public class GisolfiBlottoFrame extends JFrame {
 				do_btnApplySortAnd_actionPerformed(e);
 			}
 		});
-		btnApplySortAnd.setBounds(6, 196, 185, 29);
+		btnApplySortAnd.setBounds(170, 250, 185, 29);
 		
 		contentPane.add(btnApplySortAnd);
+		btnClearPriceFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnClearPriceFilter_actionPerformed(e);
+			}
+		});
+		btnClearPriceFilter.setBounds(182, 303, 157, 29);
+		
+		contentPane.add(btnClearPriceFilter);
+		btnClearGameFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				do_btnClearGameFilter_actionPerformed(e);
+			}
+		});
+		btnClearGameFilter.setBounds(6, 303, 157, 29);
+		
+		contentPane.add(btnClearGameFilter);
 	}
 
 	protected void do_mntmExit_actionPerformed(ActionEvent e) {
@@ -199,33 +223,32 @@ public class GisolfiBlottoFrame extends JFrame {
 		AddGameframe.setLocation(this.getX() + 30 , getY() + 30);
 	}
 	protected void do_mntmGameName_actionPerformed(ActionEvent e) {
-		String query = queryBuilder();
-		refreshTable(query);
 		mntmGameName.setEnabled(false);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
-	}
-	protected void do_mntmTopPrize_actionPerformed(ActionEvent e) {
 		String query = queryBuilder();
 		refreshTable(query);
+	}
+	protected void do_mntmTopPrize_actionPerformed(ActionEvent e) {
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(false);
 		mntmGameType.setEnabled(true);
-	}
-	protected void do_mntmGameType_actionPerformed(ActionEvent e) {
 		String query = queryBuilder();
 		refreshTable(query);
+	}
+	protected void do_mntmGameType_actionPerformed(ActionEvent e) {
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(false);
+		String query = queryBuilder();
+		refreshTable(query);
 	}
 	
 	public String queryBuilder() {
 		
 		String query = ("SELECT GameID, GameName, GameType, Price, TopPrize, NumPrinted, NumWinners"
 					+ " FROM Games"
-					+ " WHERE(1=1)"
-					+ " AND(1=0)");
+					+ " WHERE(1=1)");
 		//Build Query
 		
 		//filters
@@ -234,46 +257,57 @@ public class GisolfiBlottoFrame extends JFrame {
 		String price = thePriceFilter.getPrice();
 		String greaterPrice = thePriceFilter.getGreaterPrice();
 		String filter = thePriceFilter.getFilter();
-				
-		if (filter == "less than") {
-			query += "OR Price < " + price;
-		}else if (filter == "Greater than") {
-			query += "OR Price > " + price;	
-		}else if (filter == "Between") {
-			query += "OR BETWEEN " + price + " AND " + greaterPrice;			
-		}
-		
 		
 		//gametype
 		String selectedgames = theGameFilter.getGames();
-		selectedgames += " noNull";
+		selectedgames += " defualt";
 		System.out.println(selectedgames);
 		String[] games = selectedgames.split(" ");
 		
-		if( Arrays.asList(games).contains("'Bingo'")) {
-			query += "OR GameType = Bingo";
+		System.out.println(filter);
+		System.out.println(theGameFilter.getSort());
+		
+		if (filter != null || theGameFilter.getSort() == true) {
+			query += " AND(1=0 ";
+		
+			if (filter == "less than") {
+				query += "OR Price < " + price;
+			}else if (filter == "Greater than") {
+				query += "OR Price > " + price;	
+			}else if (filter == "Between") {
+				query += " OR Price < " + price + " OR Price > " + greaterPrice;			
+			}
+			
+	
+			if( Arrays.asList(games).contains("Bingo")) {
+				query += " OR GameType = 'Bingo'";
+			}
+			if( Arrays.asList(games).contains("TriplePay")) {
+				query += " OR GameType = 'TriplePay'";
+			} 
+			if( Arrays.asList(games).contains("88Fortunes")) {
+				query += " OR GameType = '88Fortunes'";
+			} 
+			if( Arrays.asList(games).contains("Millionaire")) {
+				query += " OR GameType = 'Millionaire'";
+			}
+			if( Arrays.asList(games).contains("CashWord")) {
+				query += " OR GameType = 'CashWord'";
+			}
+			if( Arrays.asList(games).contains("JumboBucks")) {
+				query += " OR GameType = 'JumboBucks'";
+			}
+			if( Arrays.asList(games).contains("MoneyVault")) {
+				query += " OR GameType = 'MoneyVault'";
+			}
+			if( Arrays.asList(games).contains("'CashForLife'")) {
+				query += " OR GameType = 'CashForLife'";
+			}
+			
+			query += " )";
+		
 		}
-		if( Arrays.asList(games).contains("'TriplePay'")) {
-			query += "OR GameType = TriplePay";
-		} 
-		if( Arrays.asList(games).contains("'88Fortunes'")) {
-			query += "OR GameType = 88Fortunes";
-		} 
-		if( Arrays.asList(games).contains("'Millionaire'")) {
-			query += "OR GameType = Millionaire";
-		}
-		if( Arrays.asList(games).contains("'CashWord'")) {
-			query += "OR GameType = CashWord";
-		}
-		if( Arrays.asList(games).contains("'JumboBucks'")) {
-			query += "OR GameType = JumboBucks";
-		}
-		if( Arrays.asList(games).contains("'MoneyVault'")) {
-			query += "OR GameType = MoneyVault";
-		}
-		if( Arrays.asList(games).contains("'CashForLife'")) {
-			query += "OR GameType = CashForLife";
-		}
+
 		
 		//Sorts
 		if (mntmGameName.isEnabled() == false) {
@@ -288,6 +322,7 @@ public class GisolfiBlottoFrame extends JFrame {
 			
 		System.out.println(query);	
 		return query;
+		
 	}
 	
 	public void refreshTable(String query) {
@@ -327,11 +362,19 @@ public class GisolfiBlottoFrame extends JFrame {
 		} //catch
 	}
 	protected void do_btnClearSortAnd_actionPerformed(ActionEvent e) {
-		String sort = queryBuilder();
-		refreshTable(sort);
+		
 		mntmGameName.setEnabled(true);
 		mntmTopPrize.setEnabled(true);
 		mntmGameType.setEnabled(true);
+		
+		thePriceFilter.setPrice("0");
+		thePriceFilter.setGreaterPrice("0");
+		thePriceFilter.setFilter("defualt");
+		
+		theGameFilter.setGames("defualt");
+		
+		String sort = queryBuilder();
+		refreshTable(sort);
 		
 	}
 	protected void do_mntmByPrice_actionPerformed(ActionEvent e) {
@@ -348,6 +391,39 @@ public class GisolfiBlottoFrame extends JFrame {
 	protected void do_btnApplySortAnd_actionPerformed(ActionEvent e) {
 		String applySortsQuery = queryBuilder();
 		refreshTable(applySortsQuery);
+	}
+	protected void do_btnClearGameFilter_actionPerformed(ActionEvent e) {
+	
+		theGameFilter.setGames("defualt");
+		String sort = queryBuilder();
+		refreshTable(sort);
+	}
+	protected void do_btnClearPriceFilter_actionPerformed(ActionEvent e) {
+		
+		thePriceFilter.setPrice("0");
+		thePriceFilter.setGreaterPrice("0");
+		thePriceFilter.setFilter("defualt");
+		
+		String sort = queryBuilder();
+		refreshTable(sort);
+		
+	}
+	public void helpMsg(String msg) {
+		Component frame = null;
+		//Error messages for all errors within form
+		JOptionPane.showMessageDialog(frame, msg);
+	}
+	protected void do_mntmHelp_actionPerformed(ActionEvent e) {
+		helpMsg("Add a Game: to add a game click Tools > Add Game. This will pop up a window to input all required data,\n"
+				+ " ensure the game ID and game Name have not been used in the database already.\n"
+				+ "\n " + 
+				"Sorting: To sort the outputs of the Database go to Tools > Set Sort and choose the appropriate sort\n "
+				+ "option. It will refresh automatically. Click the clear sort button below to remove the sort\n"
+				+ "\n " + 
+				"Filters: To filter you can either go to Tools > Filter by > Game Type or Price. Each will bring\n "
+				+ "up its own window where you may enter data to use in filtering the database. This will not auto refresh\n"
+				+ " to apply it press the top button below. Additionally there are to corresponding buttons at the bottom\n "
+				+ "to clear these sorts");
 	}
 }
 

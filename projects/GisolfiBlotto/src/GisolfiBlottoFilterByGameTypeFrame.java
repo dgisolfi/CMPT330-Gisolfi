@@ -89,29 +89,31 @@ public class GisolfiBlottoFilterByGameTypeFrame extends JFrame {
 	protected void do_btnOk_actionPerformed(ActionEvent e) {
 		String games = GameFilter.getGames();
 		if (chckbxBingo.isSelected()) {
-			GameFilter.setGames( games + " Bingo");
+			GameFilter.setGames( games += " Bingo");
 		}
 		if (chckbxTriplepay.isSelected()) {
-			GameFilter.setGames( games + " TriplePay");
+			GameFilter.setGames( games += " TriplePay");
 		}
 		if (chckbxfortunes.isSelected()) {
-			GameFilter.setGames( games + " 88Fortunes");
+			GameFilter.setGames( games += " 88Fortunes");
 		}
 		if (chckbxMillionaire.isSelected()) {
-			GameFilter.setGames( games + " Millionaire");
+			GameFilter.setGames( games += " Millionaire");
 		}
 		if (chckbxCashword.isSelected()) {
-			GameFilter.setGames( games + " CashWord");
+			GameFilter.setGames( games += " CashWord");
 		}
 		if (chckbxJumbobucks.isSelected()) {
-			GameFilter.setGames( games + " JumboBucks");
+			GameFilter.setGames( games += " JumboBucks");
 		}
 		if (chckbxMoneyvault.isSelected()) {
-			GameFilter.setGames( games + " MoneyVault");
+			GameFilter.setGames( games += " MoneyVault");
 		}
 		if (chckbxCashforlife.isSelected()) {
-			GameFilter.setGames( games + " CashForLife");
+			GameFilter.setGames( games += " CashForLife");
 		}
+		
+		System.out.println(GameFilter.getGames());
 		
 		this.dispose();
 		
